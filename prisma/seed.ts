@@ -6,16 +6,19 @@ const prisma = new PrismaClient();
 async function main() {
   console.log("Seeding database...");
 
-  const passwordHash = await bcrypt.hash("password123", 12);
+  const adminHash = await bcrypt.hash("admin123", 12);
+  const brandHash = await bcrypt.hash("brand123", 12);
+  const agencyHash = await bcrypt.hash("agency123", 12);
+  const creatorHash = await bcrypt.hash("creator123", 12);
 
   // Create Admin
   const admin = await prisma.user.upsert({
     where: { email: "admin@gudangklip.com" },
-    update: {},
+    update: { passwordHash: adminHash },
     create: {
       name: "Admin GudangKlip",
       email: "admin@gudangklip.com",
-      passwordHash,
+      passwordHash: adminHash,
       role: "ADMIN",
       referralCode: "ADMIN001",
       trustScore: 100,
@@ -24,24 +27,24 @@ async function main() {
 
   // Create Brands
   const brand1 = await prisma.user.upsert({
-    where: { email: "brand@aeternaklip.com" },
-    update: {},
+    where: { email: "brand1@gudangklip.com" },
+    update: { passwordHash: brandHash },
     create: {
-      name: "AE Ternaklip",
-      email: "brand@aeternaklip.com",
-      passwordHash,
+      name: "Brand Satu",
+      email: "brand1@gudangklip.com",
+      passwordHash: brandHash,
       role: "BRAND",
       referralCode: "BRAND001",
     },
   });
 
   const brand2 = await prisma.user.upsert({
-    where: { email: "brand@saji.com" },
-    update: {},
+    where: { email: "brand2@gudangklip.com" },
+    update: { passwordHash: brandHash },
     create: {
-      name: "Saji Corp Indonesia",
-      email: "brand@saji.com",
-      passwordHash,
+      name: "Brand Dua",
+      email: "brand2@gudangklip.com",
+      passwordHash: brandHash,
       role: "BRAND",
       referralCode: "BRAND002",
     },
@@ -49,12 +52,12 @@ async function main() {
 
   // Create Agency
   const agencyOwner = await prisma.user.upsert({
-    where: { email: "agency@pro.com" },
-    update: {},
+    where: { email: "agency@gudangklip.com" },
+    update: { passwordHash: agencyHash },
     create: {
       name: "Agency Pro Indonesia",
-      email: "agency@pro.com",
-      passwordHash,
+      email: "agency@gudangklip.com",
+      passwordHash: agencyHash,
       role: "AGENCY",
       referralCode: "AGCY001",
     },
@@ -72,16 +75,16 @@ async function main() {
 
   // Create Creators
   const creatorData = [
-    { name: "Super Clips", email: "super@creator.com", trustScore: 95, totalViews: 25000000, totalEarnings: 75000000, walletBalance: 2500000 },
-    { name: "Maya Creative", email: "maya@creator.com", trustScore: 82, totalViews: 12000000, totalEarnings: 36000000, walletBalance: 1800000 },
-    { name: "Dika Content", email: "dika@creator.com", trustScore: 91, totalViews: 18000000, totalEarnings: 62000000, walletBalance: 3200000 },
-    { name: "Jamal Viral", email: "jamal@creator.com", trustScore: 88, totalViews: 15000000, totalEarnings: 51000000, walletBalance: 1500000 },
-    { name: "Al Fatan Creative", email: "fatan@creator.com", trustScore: 85, totalViews: 12000000, totalEarnings: 51000000, walletBalance: 4100000 },
-    { name: "Teja Clips", email: "teja@creator.com", trustScore: 82, totalViews: 9000000, totalEarnings: 27000000, walletBalance: 900000 },
-    { name: "Sari Content", email: "sari@creator.com", trustScore: 62, totalViews: 5000000, totalEarnings: 15000000, walletBalance: 700000 },
-    { name: "Alex Creator", email: "alex@creator.com", trustScore: 55, totalViews: 2500000, totalEarnings: 7500000, walletBalance: 350000 },
-    { name: "Nina Viral", email: "nina@creator.com", trustScore: 48, totalViews: 800000, totalEarnings: 2400000, walletBalance: 120000 },
-    { name: "Budi Clip", email: "budi@creator.com", trustScore: 40, totalViews: 300000, totalEarnings: 900000, walletBalance: 50000 },
+    { name: "Creator Satu", email: "creator1@gudangklip.com", trustScore: 95, totalViews: 25000000, totalEarnings: 75000000, walletBalance: 2500000 },
+    { name: "Creator Dua", email: "creator2@gudangklip.com", trustScore: 82, totalViews: 12000000, totalEarnings: 36000000, walletBalance: 1800000 },
+    { name: "Creator Tiga", email: "creator3@gudangklip.com", trustScore: 91, totalViews: 18000000, totalEarnings: 62000000, walletBalance: 3200000 },
+    { name: "Creator Empat", email: "creator4@gudangklip.com", trustScore: 88, totalViews: 15000000, totalEarnings: 51000000, walletBalance: 1500000 },
+    { name: "Creator Lima", email: "creator5@gudangklip.com", trustScore: 85, totalViews: 12000000, totalEarnings: 51000000, walletBalance: 4100000 },
+    { name: "Creator Enam", email: "creator6@gudangklip.com", trustScore: 82, totalViews: 9000000, totalEarnings: 27000000, walletBalance: 900000 },
+    { name: "Creator Tujuh", email: "creator7@gudangklip.com", trustScore: 62, totalViews: 5000000, totalEarnings: 15000000, walletBalance: 700000 },
+    { name: "Creator Delapan", email: "creator8@gudangklip.com", trustScore: 55, totalViews: 2500000, totalEarnings: 7500000, walletBalance: 350000 },
+    { name: "Creator Sembilan", email: "creator9@gudangklip.com", trustScore: 48, totalViews: 800000, totalEarnings: 2400000, walletBalance: 120000 },
+    { name: "Creator Sepuluh", email: "creator10@gudangklip.com", trustScore: 40, totalViews: 300000, totalEarnings: 900000, walletBalance: 50000 },
   ];
 
   const createdCreators = [];
@@ -89,11 +92,11 @@ async function main() {
     const d = creatorData[i];
     const creator = await prisma.user.upsert({
       where: { email: d.email },
-      update: {},
+      update: { passwordHash: creatorHash },
       create: {
         name: d.name,
         email: d.email,
-        passwordHash,
+        passwordHash: creatorHash,
         role: "CREATOR",
         referralCode: `CREATOR${String(i + 1).padStart(3, "0")}`,
         trustScore: d.trustScore,
