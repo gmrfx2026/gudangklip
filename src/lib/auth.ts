@@ -13,6 +13,17 @@ export function getUserRole(session: Session | null): UserRole | null {
   return (session?.user as { role?: UserRole } | undefined)?.role ?? null;
 }
 
+export function getSessionUser(session: Session | null): {
+  id: string | null;
+  role: UserRole | null;
+} {
+  const user = session?.user as { id?: string; role?: UserRole } | undefined;
+  return {
+    id: user?.id ?? null,
+    role: user?.role ?? null,
+  };
+}
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
   session: { strategy: "jwt" },

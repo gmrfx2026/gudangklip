@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { auth } from "@/lib/auth";
+import { auth, getSessionUser } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 
 export async function connectSocialAccount(data: {
@@ -9,11 +9,12 @@ export async function connectSocialAccount(data: {
   username: string;
 }) {
   const session = await auth();
-  if (!session?.user) throw new Error("Unauthorized");
+  const { id: userId } = getSessionUser(session);
+  if (!userId) throw new Error("Unauthorized");
 
   await prisma.socialAccount.create({
     data: {
-      userId: (session.user as any).id,
+      userId,
       platform: data.platform as any,
       username: data.username,
       verified: true,
@@ -25,21 +26,23 @@ export async function connectSocialAccount(data: {
 
 export async function getSocialAccounts() {
   const session = await auth();
-  if (!session?.user) throw new Error("Unauthorized");
+  const { id: userId } = getSessionUser(session);
+  if (!userId) throw new Error("Unauthorized");
 
   return prisma.socialAccount.findMany({
-    where: { userId: (session.user as any).id },
+    where: { userId },
   });
 }
 
 export async function joinCampaign(campaignId: string) {
   const session = await auth();
-  if (!session?.user || (session.user as any).role !== "CREATOR") {
+  const { id: userId, role } = getSessionUser(session);
+  if (!userId || role !== "CREATOR") {
     throw new Error("Unauthorized");
   }
 
   const existing = await prisma.campaignParticipant.findUnique({
-    where: { campaignId_creatorId: { campaignId, creatorId: (session.user as any).id } },
+    where: { campaignId_creatorId: { campaignId, creatorId: userId } },
   });
 
   if (existing) throw new Error("Already joined this campaign");
@@ -47,7 +50,7 @@ export async function joinCampaign(campaignId: string) {
   await prisma.campaignParticipant.create({
     data: {
       campaignId,
-      creatorId: (session.user as any).id,
+      creatorId: userId,
     },
   });
 

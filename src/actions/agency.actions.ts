@@ -1,15 +1,14 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { auth } from "@/lib/auth";
+import { auth, getSessionUser } from "@/lib/auth";
 
 export async function getAgencyInviteLink() {
   const session = await auth();
-  if (!session?.user || (session.user as any).role !== "AGENCY") {
+  const { id: userId, role } = getSessionUser(session);
+  if (!userId || role !== "AGENCY") {
     throw new Error("Unauthorized");
   }
-
-  const userId = (session.user as any).id;
 
   const user = await prisma.user.findUnique({
     where: { id: userId },
@@ -30,11 +29,10 @@ export async function getAgencyInviteLink() {
 
 export async function getAgencyOverview() {
   const session = await auth();
-  if (!session?.user || (session.user as any).role !== "AGENCY") {
+  const { id: userId, role } = getSessionUser(session);
+  if (!userId || role !== "AGENCY") {
     throw new Error("Unauthorized");
   }
-
-  const userId = (session.user as any).id;
 
   const agency = await prisma.agency.findFirst({
     where: { ownerId: userId },
@@ -71,11 +69,10 @@ export async function getAgencyOverview() {
 
 export async function getAgencyMembers() {
   const session = await auth();
-  if (!session?.user || (session.user as any).role !== "AGENCY") {
+  const { id: userId, role } = getSessionUser(session);
+  if (!userId || role !== "AGENCY") {
     throw new Error("Unauthorized");
   }
-
-  const userId = (session.user as any).id;
 
   const agency = await prisma.agency.findFirst({
     where: { ownerId: userId },

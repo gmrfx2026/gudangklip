@@ -1,15 +1,15 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { auth } from "@/lib/auth";
+import { auth, getSessionUser } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import { snap, generateOrderId } from "@/lib/midtrans";
 
 export async function createTopUp(amount: number) {
   const session = await auth();
-  if (!session?.user) throw new Error("Unauthorized");
+  const { id: userId } = getSessionUser(session);
+  if (!userId) throw new Error("Unauthorized");
 
-  const userId = (session.user as any).id;
   const orderId = generateOrderId();
 
   const parameter = {
@@ -18,8 +18,8 @@ export async function createTopUp(amount: number) {
       gross_amount: amount,
     },
     customer_details: {
-      first_name: session.user.name || "User",
-      email: session.user.email || "",
+      first_name: session?.user?.name || "User",
+      email: session?.user?.email || "",
     },
   };
 
@@ -39,10 +39,11 @@ export async function createTopUp(amount: number) {
 
 export async function getTransactionHistory() {
   const session = await auth();
-  if (!session?.user) throw new Error("Unauthorized");
+  const { id: userId } = getSessionUser(session);
+  if (!userId) throw new Error("Unauthorized");
 
   return prisma.transaction.findMany({
-    where: { userId: (session.user as any).id },
+    where: { userId },
     orderBy: { createdAt: "desc" },
   });
 }

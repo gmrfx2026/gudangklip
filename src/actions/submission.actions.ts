@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { auth } from "@/lib/auth";
+import { auth, getSessionUser } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import { createNotification } from "@/actions/notification.actions";
 
@@ -12,14 +12,15 @@ export async function submitVideo(data: {
   platform?: string;
 }) {
   const session = await auth();
-  if (!session?.user || (session.user as any).role !== "CREATOR") {
+  const { id: userId, role } = getSessionUser(session);
+  if (!userId || role !== "CREATOR") {
     throw new Error("Unauthorized");
   }
 
   const submission = await prisma.submission.create({
     data: {
       campaignId: data.campaignId,
-      creatorId: (session.user as any).id,
+      creatorId: userId,
       videoUrl: data.videoUrl || null,
       platformLink: data.platformLink || null,
       platform: (data.platform as any) || null,
@@ -36,7 +37,7 @@ export async function submitVideo(data: {
     await createNotification(
       campaign.brandId,
       "Submission Baru",
-      `${session.user.name} mengirim video untuk campaign "${campaign.title}"`,
+      `${session?.user?.name ?? "Creator"} mengirim video untuk campaign "${campaign.title}"`,
       `/brand/campaigns/${data.campaignId}`
     );
   }
@@ -47,10 +48,11 @@ export async function submitVideo(data: {
 
 export async function getCreatorSubmissions() {
   const session = await auth();
-  if (!session?.user) throw new Error("Unauthorized");
+  const { id: userId } = getSessionUser(session);
+  if (!userId) throw new Error("Unauthorized");
 
   return prisma.submission.findMany({
-    where: { creatorId: (session.user as any).id },
+    where: { creatorId: userId },
     include: {
       campaign: { select: { title: true, cpmRate: true } },
       viewLogs: { select: { views: true } },
@@ -67,7 +69,8 @@ export async function reviewSubmission(submissionId: string, status: string, not
   }
 
   const session = await auth();
-  if (!session?.user || !["BRAND", "ADMIN"].includes((session.user as any).role)) {
+  const { id: userId, role } = getSessionUser(session);
+  if (!userId || !["BRAND", "ADMIN"].includes(role ?? "")) {
     throw new Error("Unauthorized");
   }
 

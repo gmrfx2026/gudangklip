@@ -1,19 +1,20 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { auth } from "@/lib/auth";
+import { auth, getSessionUser } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import type { CampaignInput } from "@/lib/validations";
 
 export async function createCampaign(data: CampaignInput) {
   const session = await auth();
-  if (!session?.user || (session.user as any).role !== "BRAND") {
+  const { id: userId, role } = getSessionUser(session);
+  if (!userId || role !== "BRAND") {
     throw new Error("Unauthorized");
   }
 
   const campaign = await prisma.campaign.create({
     data: {
-      brandId: (session.user as any).id,
+      brandId: userId,
       title: data.title,
       description: data.description,
       brief: data.brief || "",
@@ -35,10 +36,11 @@ export async function createCampaign(data: CampaignInput) {
 
 export async function getBrandCampaigns() {
   const session = await auth();
-  if (!session?.user) throw new Error("Unauthorized");
+  const { id: userId } = getSessionUser(session);
+  if (!userId) throw new Error("Unauthorized");
 
   const campaigns = await prisma.campaign.findMany({
-    where: { brandId: (session.user as any).id },
+    where: { brandId: userId },
     include: {
       _count: { select: { participants: true, submissions: true } },
       submissions: {
@@ -62,10 +64,11 @@ export async function getBrandCampaigns() {
 
 export async function getBrandCampaignById(campaignId: string) {
   const session = await auth();
-  if (!session?.user) throw new Error("Unauthorized");
+  const { id: userId } = getSessionUser(session);
+  if (!userId) throw new Error("Unauthorized");
 
   const campaign = await prisma.campaign.findFirst({
-    where: { id: campaignId, brandId: (session.user as any).id },
+    where: { id: campaignId, brandId: userId },
     include: {
       _count: { select: { participants: true, submissions: true } },
       submissions: {
@@ -90,12 +93,11 @@ export async function getBrandCampaignById(campaignId: string) {
 
 export async function getBrandOverview() {
   const session = await auth();
-  if (!session?.user) throw new Error("Unauthorized");
-
-  const brandId = (session.user as any).id;
+  const { id: userId } = getSessionUser(session);
+  if (!userId) throw new Error("Unauthorized");
 
   const campaigns = await prisma.campaign.findMany({
-    where: { brandId },
+    where: { brandId: userId },
     include: {
       _count: { select: { participants: true, submissions: true } },
       participants: { select: { creatorId: true } },
@@ -114,7 +116,7 @@ export async function getBrandOverview() {
   const uniqueCreators = new Set(campaigns.flatMap((c) => c.participants.map((p) => p.creatorId))).size;
 
   const recentSubmissions = await prisma.submission.findMany({
-    where: { campaign: { brandId } },
+    where: { campaign: { brandId: userId } },
     include: {
       creator: { select: { id: true, name: true, image: true } },
       campaign: { select: { id: true, title: true } },

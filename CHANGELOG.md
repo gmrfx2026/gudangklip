@@ -51,6 +51,32 @@ Semua perubahan penting pada project GudangKlip dicatat di sini.
 
 ---
 
+## [0.1.3] - 2026-06-21
+
+### Refactored — Type Safety (Fase 0.2 Stabilisasi lanjutan)
+
+#### Auth Helper Centralization
+- `getSessionUser(session)` di `src/lib/auth.ts` — satu helper terpusat yang return `{ id: string | null, role: string | null }`, ganti seluruh pola `(session?.user as any)` di 13 server action files
+- Pattern konsisten: `const { id: userId, role } = getSessionUser(session)` → gunakan `userId` / `role` langsung
+- File yang diupdate:
+  - `admin.actions.ts` — 7 fungsi (getAdminStats, getAllUsers, updateUserRole, approveCampaign, rejectCampaign, getAllPayouts, processPayout)
+  - `agency.actions.ts` — 3 fungsi (getAgencyStats, getAgencyMembers, generateInviteLink)
+  - `ai.actions.ts` — batchScoreSubmissions
+  - `analytics.actions.ts` — getBrandAnalytics
+  - `auth.actions.ts` — 3 fungsi (connectSocial, getSocialAccounts, joinCampaign)
+  - `campaign.actions.ts` — 4 fungsi (createCampaign, getBrandCampaigns, getBrandCampaignById, getBrandOverview)
+  - `creator.actions.ts` — 3 fungsi (getCreatorStats, getCreatorSubmissions, getCreatorEarnings)
+  - `notification.actions.ts` — 3 fungsi (getNotifications, getUnreadCount, markAllAsRead)
+  - `payout.actions.ts` — 2 fungsi (requestPayout, getPayoutHistory)
+  - `profile.actions.ts` — 2 fungsi (updateProfile, uploadAvatar)
+  - `submission.actions.ts` — 3 fungsi (submitVideo, getCreatorSubmissions, reviewSubmission)
+  - `transaction.actions.ts` — 2 fungsi (createTopUp, getTransactionHistory)
+  - `tracking.actions.ts` — simulateViewTracking
+- Null-safe guard: `session?.user?.name ?? "Creator"` di `submission.actions.ts`, `session?.user?.name/email || "..."` di `transaction.actions.ts`
+- Fix parameter shadowing: `updateUserRole(userId, role)` → `updateUserRole(targetUserId, targetRole)` + destructure rename `adminUserId` / `adminRole`
+
+---
+
 ## [0.1.1] - 2026-06-21
 
 ### Added

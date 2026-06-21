@@ -1,16 +1,15 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { auth } from "@/lib/auth";
+import { auth, getSessionUser } from "@/lib/auth";
 
 export async function getBrandAnalytics() {
   const session = await auth();
-  if (!session?.user) throw new Error("Unauthorized");
-
-  const brandId = (session.user as any).id;
+  const { id: userId } = getSessionUser(session);
+  if (!userId) throw new Error("Unauthorized");
 
   const campaigns = await prisma.campaign.findMany({
-    where: { brandId },
+    where: { brandId: userId },
     include: {
       _count: { select: { participants: true } },
       submissions: {

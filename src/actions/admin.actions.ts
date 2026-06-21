@@ -1,13 +1,14 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { auth } from "@/lib/auth";
+import { auth, getSessionUser } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import { createNotification } from "@/actions/notification.actions";
 
 export async function getAdminStats() {
   const session = await auth();
-  if (!session?.user || (session.user as any).role !== "ADMIN") {
+  const { id: userId, role } = getSessionUser(session);
+  if (!userId || role !== "ADMIN") {
     throw new Error("Unauthorized");
   }
 
@@ -43,7 +44,8 @@ export async function getAdminStats() {
 
 export async function getAllUsers() {
   const session = await auth();
-  if (!session?.user || (session.user as any).role !== "ADMIN") {
+  const { id: userId, role } = getSessionUser(session);
+  if (!userId || role !== "ADMIN") {
     throw new Error("Unauthorized");
   }
 
@@ -63,19 +65,20 @@ export async function getAllUsers() {
 
 const VALID_ROLES = ["BRAND", "CREATOR", "AGENCY", "ADMIN"] as const;
 
-export async function updateUserRole(userId: string, role: string) {
+export async function updateUserRole(targetUserId: string, targetRole: string) {
   const session = await auth();
-  if (!session?.user || (session.user as any).role !== "ADMIN") {
+  const { id: adminUserId, role: adminRole } = getSessionUser(session);
+  if (!adminUserId || adminRole !== "ADMIN") {
     throw new Error("Unauthorized");
   }
 
-  if (!VALID_ROLES.includes(role as any)) {
-    throw new Error(`Role tidak valid: ${role}. Role yang diizinkan: ${VALID_ROLES.join(", ")}`);
+  if (!VALID_ROLES.includes(targetRole as any)) {
+    throw new Error(`Role tidak valid: ${targetRole}. Role yang diizinkan: ${VALID_ROLES.join(", ")}`);
   }
 
   await prisma.user.update({
-    where: { id: userId },
-    data: { role: role as any },
+    where: { id: targetUserId },
+    data: { role: targetRole as any },
   });
 
   revalidatePath("/admin/users");
@@ -83,7 +86,8 @@ export async function updateUserRole(userId: string, role: string) {
 
 export async function approveCampaign(campaignId: string) {
   const session = await auth();
-  if (!session?.user || (session.user as any).role !== "ADMIN") {
+  const { id: userId, role } = getSessionUser(session);
+  if (!userId || role !== "ADMIN") {
     throw new Error("Unauthorized");
   }
 
@@ -105,7 +109,8 @@ export async function approveCampaign(campaignId: string) {
 
 export async function rejectCampaign(campaignId: string, reason?: string) {
   const session = await auth();
-  if (!session?.user || (session.user as any).role !== "ADMIN") {
+  const { id: userId, role } = getSessionUser(session);
+  if (!userId || role !== "ADMIN") {
     throw new Error("Unauthorized");
   }
 
@@ -127,7 +132,8 @@ export async function rejectCampaign(campaignId: string, reason?: string) {
 
 export async function getAllPayouts() {
   const session = await auth();
-  if (!session?.user || (session.user as any).role !== "ADMIN") {
+  const { id: userId, role } = getSessionUser(session);
+  if (!userId || role !== "ADMIN") {
     throw new Error("Unauthorized");
   }
 
@@ -141,7 +147,8 @@ export async function getAllPayouts() {
 
 export async function processPayout(payoutId: string, status: "PROCESSING" | "COMPLETED" | "FAILED") {
   const session = await auth();
-  if (!session?.user || (session.user as any).role !== "ADMIN") {
+  const { id: userId, role } = getSessionUser(session);
+  if (!userId || role !== "ADMIN") {
     throw new Error("Unauthorized");
   }
 

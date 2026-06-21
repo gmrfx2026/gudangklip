@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { auth } from "@/lib/auth";
+import { auth, getSessionUser } from "@/lib/auth";
 import OpenAI from "openai";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY || "" });
@@ -56,7 +56,8 @@ Return ONLY a single number between 1 and 100, nothing else.`;
 
 export async function batchScoreSubmissions() {
   const session = await auth();
-  if (!session?.user || (session.user as any).role !== "ADMIN") {
+  const { id: userId, role } = getSessionUser(session);
+  if (!userId || role !== "ADMIN") {
     throw new Error("Unauthorized");
   }
 

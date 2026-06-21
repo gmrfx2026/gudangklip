@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { auth } from "@/lib/auth";
+import { auth, getSessionUser } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 
 export async function requestPayout(data: {
@@ -10,10 +10,11 @@ export async function requestPayout(data: {
   accountInfo: string;
 }) {
   const session = await auth();
-  if (!session?.user) throw new Error("Unauthorized");
+  const { id: userId } = getSessionUser(session);
+  if (!userId) throw new Error("Unauthorized");
 
   const user = await prisma.user.findUnique({
-    where: { id: (session.user as any).id },
+    where: { id: userId },
   });
 
   if (!user || user.walletBalance < data.amount) {
@@ -45,10 +46,11 @@ export async function requestPayout(data: {
 
 export async function getPayoutHistory() {
   const session = await auth();
-  if (!session?.user) throw new Error("Unauthorized");
+  const { id: userId } = getSessionUser(session);
+  if (!userId) throw new Error("Unauthorized");
 
   return prisma.payout.findMany({
-    where: { creatorId: (session.user as any).id },
+    where: { creatorId: userId },
     orderBy: { createdAt: "desc" },
   });
 }

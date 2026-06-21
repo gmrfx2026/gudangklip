@@ -1,13 +1,12 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { auth } from "@/lib/auth";
+import { auth, getSessionUser } from "@/lib/auth";
 
 export async function getCreatorOverview() {
   const session = await auth();
-  if (!session?.user) throw new Error("Unauthorized");
-
-  const userId = (session.user as any).id;
+  const { id: userId } = getSessionUser(session);
+  if (!userId) throw new Error("Unauthorized");
 
   const user = await prisma.user.findUnique({
     where: { id: userId },
@@ -33,9 +32,8 @@ export async function getCreatorOverview() {
 
 export async function getCreatorCampaigns() {
   const session = await auth();
-  if (!session?.user) throw new Error("Unauthorized");
-
-  const userId = (session.user as any).id;
+  const { id: userId } = getSessionUser(session);
+  if (!userId) throw new Error("Unauthorized");
 
   const participations = await prisma.campaignParticipant.findMany({
     where: { creatorId: userId },
@@ -75,9 +73,8 @@ export async function getCreatorCampaigns() {
 
 export async function getCreatorJoinedCampaignIds() {
   const session = await auth();
-  if (!session?.user) throw new Error("Unauthorized");
-
-  const userId = (session.user as any).id;
+  const { id: userId } = getSessionUser(session);
+  if (!userId) throw new Error("Unauthorized");
 
   const participations = await prisma.campaignParticipant.findMany({
     where: { creatorId: userId },
