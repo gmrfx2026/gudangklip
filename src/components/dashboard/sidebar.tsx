@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import { SIDEBAR_LINKS } from "@/lib/constants";
 import {
   LayoutDashboard,
@@ -35,6 +35,7 @@ const ICON_MAP: Record<string, React.ElementType> = {
 export default function Sidebar() {
   const pathname = usePathname();
   const { data: session } = useSession();
+  const t = useTranslations();
   const [collapsed, setCollapsed] = useState(false);
   const role = (session?.user as any)?.role as keyof typeof SIDEBAR_LINKS;
   const links = SIDEBAR_LINKS[role] || [];
@@ -105,7 +106,7 @@ export default function Sidebar() {
           className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-[#8888aa] hover:bg-[#ef4444]/10 hover:text-[#ef4444] transition-colors"
         >
           <LogOut className="h-5 w-5 shrink-0" />
-          {!collapsed && <span>Logout</span>}
+          {!collapsed && <span>{t("Sidebar.logout")}</span>}
         </button>
       </div>
     </aside>
