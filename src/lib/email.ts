@@ -14,7 +14,9 @@ function getResend(): Resend | null {
 export async function sendVerificationEmail(email: string, token: string) {
   const resend = getResend();
   if (!resend) {
-    console.log(`[DEV] Verification email for ${email}: token=${token}`);
+    if (process.env.NODE_ENV === "development") {
+      console.log(`[DEV] Verification email for ${email}: token=${token}`);
+    }
     return;
   }
 
@@ -51,7 +53,9 @@ export async function sendPayoutNotification(
 ) {
   const resend = getResend();
   if (!resend) {
-    console.log(`[DEV] Payout notification for ${email}: ${status} Rp ${amount}`);
+    if (process.env.NODE_ENV === "development") {
+      console.log(`[DEV] Payout notification for ${email}: ${status} Rp ${amount}`);
+    }
     return;
   }
 

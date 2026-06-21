@@ -4,6 +4,14 @@ import Google from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
+import type { Session } from "next-auth";
+import type { Role } from "@prisma/client";
+
+export type UserRole = Role;
+
+export function getUserRole(session: Session | null): UserRole | null {
+  return (session?.user as { role?: UserRole } | undefined)?.role ?? null;
+}
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),

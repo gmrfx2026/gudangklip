@@ -1,4 +1,5 @@
 import { auth } from "@/lib/auth";
+import { getUserRole } from "@/lib/auth";
 import { NextResponse } from "next/server";
 
 const publicRoutes = ["/", "/login", "/register", "/campaigns", "/leaderboard"];
@@ -15,7 +16,7 @@ export default auth((req) => {
   const { nextUrl } = req;
   const pathname = nextUrl.pathname;
   const session = req.auth;
-  const role = (session?.user as any)?.role;
+  const role = getUserRole(session);
 
   if (publicRoutes.includes(pathname)) {
     if (session && authRoutes.includes(pathname)) {
@@ -25,7 +26,7 @@ export default auth((req) => {
         AGENCY: "/agency",
         ADMIN: "/admin",
       };
-      return NextResponse.redirect(new URL(redirectMap[role] || "/", nextUrl));
+      return NextResponse.redirect(new URL(redirectMap[role ?? ""] || "/", nextUrl));
     }
     return NextResponse.next();
   }

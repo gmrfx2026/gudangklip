@@ -3,11 +3,21 @@ import { auth } from "@/lib/auth";
 import { writeFile, mkdir } from "fs/promises";
 import path from "path";
 import { randomUUID } from "crypto";
+import { checkRateLimit } from "@/lib/rate-limit";
 
 export async function POST(req: Request) {
   const session = await auth();
   if (!session?.user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const userId = (session.user as any).id as string;
+  const rateLimit = checkRateLimit(`upload:${userId}`, "upload");
+  if (!rateLimit.success) {
+    return NextResponse.json(
+      { error: "Terlalu banyak upload. Coba lagi nanti." },
+      { status: 429, headers: { "X-RateLimit-Reset": String(rateLimit.resetAt) } }
+    );
   }
 
   try {
@@ -44,7 +54,8 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ url, fileName });
   } catch (error) {
-    console.error("Upload error:", error);
+    const message = error instanceof Error ? error.message : "Unknown upload error";
+    console.error(`[Upload] ${message}`);
     return NextResponse.json({ error: "Upload failed" }, { status: 500 });
   }
 }

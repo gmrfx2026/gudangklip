@@ -4,6 +4,53 @@ Semua perubahan penting pada project GudangKlip dicatat di sini.
 
 ---
 
+## [0.1.2] - 2026-06-21
+
+### Security — Hardening (Fase 0.2 Stabilisasi)
+
+#### Auth & Authorization
+- `getUserRole(session)` helper di `src/lib/auth.ts` — centralized role extraction, ganti pola `(session?.user as any)?.role` di middleware
+- `simulateViewTracking()` di `src/actions/tracking.actions.ts` — tambah auth check, hanya ADMIN yang bisa trigger tracking simulasi
+- `updateUserRole()` di `src/actions/admin.actions.ts` — validasi role terhadap Prisma Role enum (`VALID_ROLES = ["BRAND", "CREATOR", "AGENCY", "ADMIN"]`), reject invalid role sebelum query DB
+
+#### Input Validation Hardening
+- `reviewSubmission()` di `src/actions/submission.actions.ts` — runtime status validation (`VALID_SUBMISSION_STATUSES`), ganti `status: "APPROVED" | "REJECTED"` → `status: string` + guard untuk mencegah type confusion
+- Zod schemas di `src/lib/validations.ts`:
+  - `campaignSchema`: max length di title (200), description (2000), deliverables (max 10 items)
+  - `submissionSchema`: `.refine` — minimal salah satu dari `videoUrl` atau `platformLink` harus diisi
+  - `payoutSchema`: max amount (100000000), max accountInfo (100)
+  - `registerSchema`: referral code regex `^[A-Z0-9]*$` — mencegah injection
+  - `connectSocialSchema`: max username (100)
+
+#### Security Headers (`next.config.ts`)
+- Content-Security-Policy (CSP) — default-src 'self', script-src include `unsafe-eval` (Midtrans Snap SDK) + `unsafe-inline`, connect-src include Midtrans API + OpenAI API + Google OAuth
+- Strict-Transport-Security (HSTS) — max-age=31536000, includeSubDomains
+- X-Frame-Options: DENY
+- X-Content-Type-Options: nosniff
+- Referrer-Policy: strict-origin-when-cross-origin
+- Permissions-Policy: camera/microphone/geolocation none
+
+#### Rate Limiting
+- `src/lib/rate-limit.ts` (NEW) — in-memory rate limiter dengan Map, 4 tier konfigurasi: auth (5 req/60s), api (30 req/60s), upload (5 req/60s), webhook (60 req/60s)
+- Auto-cleanup expired entries via `setInterval().unref()` setiap 60 detik
+- Applied di `upload/route.ts` dan `midtrans/notification/route.ts`
+
+#### Environment Validation
+- `src/lib/env.ts` (NEW) — Zod schema untuk validasi semua env vars di startup (`getEnv()`): DATABASE_URL, NEXTAUTH_SECRET, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, OPENAI_API_KEY, MIDTRANS_SERVER_KEY, MIDTRANS_CLIENT_KEY, RESEND_API_KEY, EMAIL_FROM
+
+#### Info Leak Prevention
+- `src/app/api/upload/route.ts`: fix `console.error` — hanya log `error.message`, bukan error object utuh
+- `src/app/api/midtrans/notification/route.ts`: fix `console.error` — hanya log `error.message`
+- `src/lib/email.ts`: guard `console.log` dengan `NODE_ENV === "development"`
+
+### Fixed
+- `middleware.ts`: type error `Type 'null' cannot be used as an index type` di `redirectMap[role]` — fix dengan `role ?? ""`
+
+### Changed
+- `next.config.ts`: `eslint.ignoreDuringBuilds` dari `true` → `false` (lint dijalankan saat build)
+
+---
+
 ## [0.1.1] - 2026-06-21
 
 ### Added

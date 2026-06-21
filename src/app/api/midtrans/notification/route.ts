@@ -2,8 +2,16 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { coreApi } from "@/lib/midtrans";
 import crypto from "crypto";
+import { checkRateLimit } from "@/lib/rate-limit";
 
 export async function POST(req: Request) {
+  const rateLimit = checkRateLimit("midtrans:webhook", "webhook");
+  if (!rateLimit.success) {
+    return NextResponse.json(
+      { error: "Too many requests" },
+      { status: 429, headers: { "X-RateLimit-Reset": String(rateLimit.resetAt) } }
+    );
+  }
   try {
     const body = await req.json();
 
@@ -68,7 +76,8 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ status: "OK" });
   } catch (error) {
-    console.error("Midtrans notification error:", error);
+    const message = error instanceof Error ? error.message : "Unknown notification error";
+    console.error(`[Midtrans Notification] ${message}`);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

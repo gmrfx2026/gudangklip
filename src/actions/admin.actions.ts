@@ -61,10 +61,16 @@ export async function getAllUsers() {
   });
 }
 
+const VALID_ROLES = ["BRAND", "CREATOR", "AGENCY", "ADMIN"] as const;
+
 export async function updateUserRole(userId: string, role: string) {
   const session = await auth();
   if (!session?.user || (session.user as any).role !== "ADMIN") {
     throw new Error("Unauthorized");
+  }
+
+  if (!VALID_ROLES.includes(role as any)) {
+    throw new Error(`Role tidak valid: ${role}. Role yang diizinkan: ${VALID_ROLES.join(", ")}`);
   }
 
   await prisma.user.update({

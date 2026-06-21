@@ -59,16 +59,24 @@ export async function getCreatorSubmissions() {
   });
 }
 
-export async function reviewSubmission(submissionId: string, status: "APPROVED" | "REJECTED", notes?: string) {
+const VALID_SUBMISSION_STATUSES = ["APPROVED", "REJECTED"] as const;
+
+export async function reviewSubmission(submissionId: string, status: string, notes?: string) {
+  if (!VALID_SUBMISSION_STATUSES.includes(status as any)) {
+    throw new Error(`Status submission tidak valid: ${status}. Gunakan APPROVED atau REJECTED.`);
+  }
+
   const session = await auth();
   if (!session?.user || !["BRAND", "ADMIN"].includes((session.user as any).role)) {
     throw new Error("Unauthorized");
   }
 
+  const typedStatus = status as "APPROVED" | "REJECTED";
+
   const submission = await prisma.submission.update({
     where: { id: submissionId },
     data: {
-      status,
+      status: typedStatus,
       reviewNotes: notes || null,
       reviewedAt: new Date(),
     },
@@ -80,8 +88,8 @@ export async function reviewSubmission(submissionId: string, status: "APPROVED" 
 
   await createNotification(
     submission.creatorId,
-    status === "APPROVED" ? "Submission Disetujui" : "Submission Ditolak",
-    `${status === "APPROVED" ? "Selamat! " : "Maaf, "}submission kamu untuk "${submission.campaign.title}" telah ${status === "APPROVED" ? "disetujui" : "ditolak"}${notes ? `. Catatan: ${notes}` : ""}`,
+    typedStatus === "APPROVED" ? "Submission Disetujui" : "Submission Ditolak",
+    `${typedStatus === "APPROVED" ? "Selamat! " : "Maaf, "}submission kamu untuk "${submission.campaign.title}" telah ${typedStatus === "APPROVED" ? "disetujui" : "ditolak"}${notes ? `. Catatan: ${notes}` : ""}`,
     "/creator/submissions"
   );
 
