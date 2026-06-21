@@ -4,6 +4,42 @@ Semua perubahan penting pada project GudangKlip dicatat di sini.
 
 ---
 
+## [0.1.4] - 2026-06-21
+
+### i18n — Internationalization (Fase 0.3)
+
+#### next-intl Integration
+- `next-intl` v4 dengan `localePrefix: "as-needed"` (default: `id`)
+- 2 locale: Bahasa Indonesia (`id`) + English (`en`)
+- `src/i18n/routing.ts` — routing config (`defineRouting`)
+- `src/i18n/request.ts` — message loader (`getRequestConfig`)
+- `src/i18n/navigation.ts` — `Link`, `useRouter`, `usePathname` wrappers (`createNavigation`)
+- `src/components/shared/locale-switcher.tsx` — tombol toggle ID/EN di navbar
+
+#### [locale] Route Group Migration
+- Seluruh 23 halaman dipindahkan ke `src/app/[locale]/`
+- Root `src/app/layout.tsx` dipertahankan (wrapper `<html>` / `<body>`)
+- `src/app/[locale]/layout.tsx` — wrapping `NextIntlClientProvider` + `SessionProvider` + `ThemeProvider`
+- Semua halaman menggunakan `useTranslations()` dan `@/i18n/navigation`
+
+#### Translation Messages
+- `messages/id.json` — 491 baris translasi Bahasa Indonesia
+- `messages/en.json` — 491 baris translasi English
+- Mencakup: Common, Navbar, Sidebar, Auth, Landing, Dashboard (Admin/Brand/Creator/Agency), Campaigns, Leaderboard, Wallet
+
+#### Middleware Refactor
+- Middleware digabung: `createMiddleware(routing)` dari next-intl + custom auth/RBAC logic
+- Pathname parsing locale-aware: deteksi locale prefix sebelum routing decision
+
+#### Component Updates
+- `Navbar` — greeting + notifications pakai `useTranslations`, date-fns locale-aware, locale switcher
+- `Sidebar` — navigasi pakai `Link` dari `@/i18n/navigation`, `useTranslations` untuk label
+
+#### Config
+- `next.config.ts` — tambah `createNextIntlPlugin("./src/i18n/request.ts")` + wrap export dengan `withNextIntl()`
+
+---
+
 ## [0.1.2] - 2026-06-21
 
 ### Security — Hardening (Fase 0.2 Stabilisasi)
