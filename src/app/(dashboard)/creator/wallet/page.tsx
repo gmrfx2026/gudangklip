@@ -125,7 +125,7 @@ export default function WalletPage() {
           },
         });
       } else {
-        toast.info("Midtrans Snap siap digunakan saat production. Gunakan payment gateway untuk melanjutkan.");
+        toast.info("Midtrans Snap sedang dimuat, silakan coba lagi.");
       }
     } catch (err: any) {
       toast.error(err.message || "Gagal membuat transaksi");

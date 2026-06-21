@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "@/components/shared/theme-provider";
@@ -17,6 +18,10 @@ export const metadata: Metadata = {
     "Platform marketplace clipping yang menghubungkan brand dengan content creator. Brand buat campaign, creator bikin clip, posting di sosmed, cuan ngalir tiap views naik.",
   keywords: ["clipping", "marketplace", "creator", "brand", "iklan", "indonesia"],
 };
+
+const midtransSnapUrl = process.env.MIDTRANS_IS_PRODUCTION === "true"
+  ? "https://app.midtrans.com/snap/snap.js"
+  : "https://app.sandbox.midtrans.com/snap/snap.js";
 
 export default function RootLayout({
   children,
@@ -41,6 +46,11 @@ export default function RootLayout({
             />
           </ThemeProvider>
         </SessionProvider>
+        <Script
+          src={midtransSnapUrl}
+          data-client-key={process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY}
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
