@@ -4,6 +4,35 @@ Semua perubahan penting pada project GudangKlip dicatat di sini.
 
 ---
 
+## [0.1.5] - 2026-06-21
+
+### Testing & Error Handling (Fase 0.4)
+
+#### Error Boundaries — Next.js App Router Convention
+- `src/app/[locale]/error.tsx` — root error boundary untuk seluruh public pages (campaigns, leaderboard, homepage)
+- `src/app/[locale]/loading.tsx` — root loading spinner
+- `src/app/[locale]/not-found.tsx` — root 404 page (FileQuestion icon + "Kembali ke Beranda")
+- `src/app/[locale]/(dashboard)/error.tsx` — cascade ke seluruh dashboard (admin/brand/agency/creator + sub-routes)
+- `src/app/[locale]/(dashboard)/loading.tsx` — skeleton loader: stat cards + table rows animasi pulse
+- `src/app/[locale]/(auth)/error.tsx` — error boundary untuk login/register/verify
+
+#### Unit Testing — Vitest + Testing Library
+- `vitest` v4 dengan jsdom environment, `@testing-library/react` + `@testing-library/jest-dom`
+- `vitest.config.ts` — path alias `@/` → `./src/*`, globals mode, setup file
+- `src/test/setup.ts` — `@testing-library/jest-dom/vitest` matchers
+- **4 test suites, 60 test cases, 100% pass**:
+  - `src/test/auth.test.ts` (13 tests) — `getUserRole()`, `getSessionUser()`: null safety, edge cases (missing id/role/user)
+  - `src/test/validations.test.ts` (22 tests) — 6 Zod schemas: login, register, campaign, submission, payout, connectSocial — valid/invalid/boundary/refinement
+  - `src/test/rate-limit.test.ts` (11 tests) — `checkRateLimit()`: rate window, remaining count, multi-key isolation, per-config limits (auth/api/upload/webhook)
+  - `src/test/env.test.ts` (14 tests) — env schema: valid config, optional fields, MIDTRANS_IS_PRODUCTION default, missing vars, invalid formats
+
+#### Config
+- `package.json` — `test` script (`vitest run`), `test:watch` script (`vitest`)
+- `vitest.config.ts` — resolve alias `@/` + jsdom environment + globals
+- Mock strategy: `vi.mock()` untuk chain next-auth (`next-auth`, `next-auth/providers/*`, `@auth/prisma-adapter`, `@/lib/prisma`, `bcryptjs`) agar test auth helpers tanpa dependency server-side
+
+---
+
 ## [0.1.4] - 2026-06-21
 
 ### i18n — Internationalization (Fase 0.3)

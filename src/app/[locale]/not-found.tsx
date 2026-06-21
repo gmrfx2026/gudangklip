@@ -1,0 +1,27 @@
+import { FileQuestion } from "lucide-react";
+import { Link } from "@/i18n/navigation";
+
+export default function RootNotFound() {
+  return (
+    <div className="flex min-h-screen flex-col items-center justify-center p-6 text-center">
+      <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-[#6c63ff]/10">
+        <FileQuestion className="h-10 w-10 text-[#6c63ff]" />
+      </div>
+
+      <h1 className="mb-2 text-6xl font-bold text-white">404</h1>
+      <h2 className="mb-2 text-xl font-semibold text-white">
+        Halaman Tidak Ditemukan
+      </h2>
+      <p className="mb-8 max-w-md text-sm text-[#8888aa]">
+        Halaman yang Anda cari tidak tersedia atau telah dipindahkan.
+      </p>
+
+      <Link
+        href="/"
+        className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#6c63ff] to-[#3b82f6] px-6 py-3 text-sm font-semibold text-white hover:opacity-90 transition-opacity"
+      >
+        Kembali ke Beranda
+      </Link>
+    </div>
+  );
+}
