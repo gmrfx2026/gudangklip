@@ -43,6 +43,16 @@ export default async function middleware(request: NextRequest) {
 
   const localePrefix = locale === routing.defaultLocale ? "" : `/${locale}`;
 
+  // Redirect old /creator/* routes to /clipper/*
+  if (pathname.startsWith("/creator")) {
+    const newPath = pathname.replace(/^\/creator/, "/clipper");
+    return NextResponse.redirect(
+      new URL(`${localePrefix}${newPath}`, nextUrl),
+      { status: 301 }
+    );
+  }
+
+
   if (publicRoutes.includes(pathname)) {
     if (session && authRoutes.includes(pathname)) {
       const redirectMap: Record<string, string> = {
