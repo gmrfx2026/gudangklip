@@ -70,6 +70,7 @@ export async function getBrandCampaignById(campaignId: string) {
   const campaign = await prisma.campaign.findFirst({
     where: { id: campaignId, brandId: userId },
     include: {
+      brand: { select: { id: true, name: true, image: true, companyName: true } },
       _count: { select: { participants: true, submissions: true } },
       submissions: {
         include: {
@@ -88,7 +89,23 @@ export async function getBrandCampaignById(campaignId: string) {
     0
   );
 
-  return { ...campaign, totalViews };
+  const submissions = campaign.submissions.map((sub) => {
+    const subViews = sub.viewLogs.reduce((s, v) => s + v.views, 0);
+    const estimatedPayout = Math.round(subViews * campaign.cpmRate / 1000);
+    return {
+      id: sub.id,
+      creator: sub.creator,
+      views: subViews,
+      status: sub.status,
+      platform: sub.platform,
+      videoUrl: sub.videoUrl,
+      platformLink: sub.platformLink,
+      submittedAt: sub.submittedAt.toISOString(),
+      estimatedPayout,
+    };
+  });
+
+  return { ...campaign, totalViews, submissions };
 }
 
 export async function getBrandOverview() {
@@ -105,6 +122,7 @@ export async function getBrandOverview() {
         include: { viewLogs: { select: { views: true } } },
       },
     },
+    orderBy: { createdAt: "desc" },
   });
 
   const activeCount = campaigns.filter((c) => c.status === "ACTIVE").length;
@@ -114,6 +132,43 @@ export async function getBrandOverview() {
   const totalBudget = campaigns.reduce((sum, c) => sum + c.totalBudget, 0);
   const usedBudget = campaigns.reduce((sum, c) => sum + (c.totalBudget - c.remainingBudget), 0);
   const uniqueCreators = new Set(campaigns.flatMap((c) => c.participants.map((p) => p.creatorId))).size;
+
+  // Pending submissions count (need to review)
+  const needToReview = await prisma.submission.count({
+    where: { campaign: { brandId: userId }, status: "PENDING" },
+  });
+
+  // Total submissions
+  const totalSubmissions = campaigns.reduce((sum, c) => sum + c._count.submissions, 0);
+
+  // Campaign cards
+  const campaignCards = campaigns.map((c) => {
+    const campaignViews = c.submissions.reduce((s, sub) => s + sub.viewLogs.reduce((v, vl) => v + vl.views, 0), 0);
+    const platforms = [...new Set(c.submissions.filter((s) => s.platform).map((s) => s.platform))];
+    return {
+      id: c.id,
+      title: c.title,
+      status: c.status,
+      cpmRate: c.cpmRate,
+      totalBudget: c.totalBudget,
+      remainingBudget: c.remainingBudget,
+      totalViews: campaignViews,
+      creatorCount: c._count.participants,
+      platforms,
+    };
+  });
+
+  // Approved videos
+  const approvedVideos = await prisma.submission.findMany({
+    where: { campaign: { brandId: userId }, status: "APPROVED" },
+    include: {
+      creator: { select: { id: true, name: true, image: true } },
+      campaign: { select: { id: true, title: true } },
+      viewLogs: { select: { views: true } },
+    },
+    orderBy: { reviewedAt: "desc" },
+    take: 20,
+  });
 
   const recentSubmissions = await prisma.submission.findMany({
     where: { campaign: { brandId: userId } },
@@ -132,6 +187,20 @@ export async function getBrandOverview() {
     totalBudget,
     usedBudget,
     uniqueCreators,
+    needToReview,
+    totalSubmissions,
+    campaignCards,
+    approvedVideos: approvedVideos.map((s) => ({
+      id: s.id,
+      creatorName: s.creator.name || s.creator.id,
+      creatorImage: s.creator.image,
+      campaignTitle: s.campaign.title,
+      videoUrl: s.videoUrl,
+      platformLink: s.platformLink,
+      platform: s.platform,
+      views: s.viewLogs.reduce((sum, v) => sum + v.views, 0),
+      reviewedAt: s.reviewedAt?.toISOString() || null,
+    })),
     recentSubmissions: recentSubmissions.map((s) => ({
       id: s.id,
       creatorName: s.creator.name || s.creator.id,

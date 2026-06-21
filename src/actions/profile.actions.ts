@@ -17,7 +17,30 @@ export async function updateProfileImage(imageUrl: string) {
   revalidatePath("/creator/profile");
 }
 
-export async function updateProfile(data: { name?: string; phone?: string }) {
+export async function getBrandProfile() {
+  const session = await auth();
+  const { id: userId } = getSessionUser(session);
+  if (!userId) throw new Error("Unauthorized");
+
+  return prisma.user.findUnique({
+    where: { id: userId },
+    select: {
+      id: true,
+      name: true,
+      image: true,
+      companyName: true,
+      industry: true,
+      createdAt: true,
+    },
+  });
+}
+
+export async function updateBrandProfile(data: {
+  name?: string;
+  companyName?: string;
+  industry?: string;
+  image?: string;
+}) {
   const session = await auth();
   const { id: userId } = getSessionUser(session);
   if (!userId) throw new Error("Unauthorized");
@@ -26,9 +49,13 @@ export async function updateProfile(data: { name?: string; phone?: string }) {
     where: { id: userId },
     data: {
       ...(data.name && { name: data.name }),
-      ...(data.phone !== undefined && { phone: data.phone }),
+      ...(data.companyName !== undefined && { companyName: data.companyName }),
+      ...(data.industry !== undefined && { industry: data.industry as any }),
+      ...(data.image !== undefined && { image: data.image }),
     },
   });
 
-  revalidatePath("/creator/profile");
+  revalidatePath("/brand/settings");
+  revalidatePath("/brand");
+  return { success: true };
 }

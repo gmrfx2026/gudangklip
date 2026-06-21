@@ -7,8 +7,21 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema, type RegisterInput } from "@/lib/validations";
 import { toast } from "sonner";
-import { Eye, EyeOff, UserPlus } from "lucide-react";
+import { Eye, EyeOff, UserPlus, ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
+
+const INDUSTRIES = [
+  { value: "E_COMMERCE", label: "E-Commerce" },
+  { value: "FOOD_BEVERAGE", label: "Food & Beverage" },
+  { value: "FASHION_BEAUTY", label: "Fashion & Beauty" },
+  { value: "TECHNOLOGY", label: "Technology" },
+  { value: "FINANCE", label: "Finance" },
+  { value: "HEALTH_WELLNESS", label: "Health & Wellness" },
+  { value: "ENTERTAINMENT", label: "Entertainment" },
+  { value: "EDUCATION", label: "Education" },
+  { value: "TRAVEL_HOSPITALITY", label: "Travel & Hospitality" },
+  { value: "OTHER", label: "Other" },
+];
 
 export default function RegisterPage() {
   const t = useTranslations();
@@ -127,6 +140,43 @@ export default function RegisterPage() {
                 ))}
               </div>
             </div>
+
+            {/* Brand-specific fields */}
+            {selectedRole === "BRAND" && (
+              <>
+                <div>
+                  <label className="mb-1.5 block text-sm font-medium text-[#e8e8f0]">{t("Auth.companyName")}</label>
+                  <input
+                    {...register("companyName")}
+                    placeholder={t("Auth.companyNamePlaceholder")}
+                    className="w-full rounded-xl border border-[#2a2a50] bg-[#111128] px-4 py-3 text-sm text-white placeholder:text-[#a0a0c0] focus:border-[#6c63ff] focus:outline-none focus:ring-1 focus:ring-[#6c63ff]"
+                  />
+                  {errors.companyName && <p className="mt-1 text-xs text-red-400">{errors.companyName.message}</p>}
+                </div>
+
+                <div>
+                  <label className="mb-1.5 block text-sm font-medium text-[#e8e8f0]">{t("Auth.industry")}</label>
+                  <div className="relative">
+                    <select
+                      {...register("industry")}
+                      className="w-full appearance-none rounded-xl border border-[#2a2a50] bg-[#111128] px-4 py-3 text-sm text-white focus:border-[#6c63ff] focus:outline-none focus:ring-1 focus:ring-[#6c63ff]"
+                      defaultValue=""
+                    >
+                      <option value="" disabled className="bg-[#111128] text-[#a0a0c0]">
+                        {t("Auth.industryPlaceholder")}
+                      </option>
+                      {INDUSTRIES.map((ind) => (
+                        <option key={ind.value} value={ind.value} className="bg-[#111128] text-white">
+                          {ind.label}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#a0a0c0]" />
+                  </div>
+                  {errors.industry && <p className="mt-1 text-xs text-red-400">{errors.industry.message}</p>}
+                </div>
+              </>
+            )}
 
             <div>
               <label className="mb-1.5 block text-sm font-medium text-[#e8e8f0]">{t("Auth.fullName")}</label>

@@ -7,10 +7,14 @@ import { sendVerificationEmail } from "@/lib/email";
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, password, role, referralCode } = await req.json();
+    const { name, email, password, role, companyName, industry, referralCode } = await req.json();
 
     if (!name || !email || !password || !role) {
       return NextResponse.json({ message: "Semua field wajib diisi" }, { status: 400 });
+    }
+
+    if (role === "BRAND" && (!companyName || !industry)) {
+      return NextResponse.json({ message: "Nama perusahaan dan industri wajib diisi untuk Brand" }, { status: 400 });
     }
 
     const existingUser = await prisma.user.findUnique({ where: { email } });
@@ -43,6 +47,8 @@ export async function POST(req: NextRequest) {
         email,
         passwordHash,
         role,
+        companyName: role === "BRAND" ? companyName : null,
+        industry: role === "BRAND" ? industry : null,
         referralCode: newReferralCode,
         referredBy,
         agencyId,

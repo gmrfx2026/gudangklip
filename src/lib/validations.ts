@@ -10,6 +10,8 @@ export const registerSchema = z.object({
   email: z.string().email("Email tidak valid"),
   password: z.string().min(6, "Password minimal 6 karakter"),
   role: z.enum(["BRAND", "CREATOR", "AGENCY"]),
+  companyName: z.string().min(2, "Nama perusahaan minimal 2 karakter").max(200).optional(),
+  industry: z.enum(["E_COMMERCE", "FOOD_BEVERAGE", "FASHION_BEAUTY", "TECHNOLOGY", "FINANCE", "HEALTH_WELLNESS", "ENTERTAINMENT", "EDUCATION", "TRAVEL_HOSPITALITY", "OTHER"]).optional(),
   referralCode: z.string().max(50, "Referral code maksimal 50 karakter").regex(/^[A-Z0-9]*$/, "Referral code hanya boleh huruf kapital dan angka").optional(),
 });
 

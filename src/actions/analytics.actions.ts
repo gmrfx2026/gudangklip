@@ -26,16 +26,18 @@ export async function getBrandAnalytics() {
 
   const totalBudget = campaigns.reduce((sum, c) => sum + c.totalBudget, 0);
   const usedBudget = campaigns.reduce((sum, c) => sum + (c.totalBudget - c.remainingBudget), 0);
+  const remainingBudget = campaigns.reduce((sum, c) => sum + c.remainingBudget, 0);
+  const budgetPercent = totalBudget > 0 ? Math.round((usedBudget / totalBudget) * 100) : 0;
+
+  const allSubmissions = campaigns.flatMap((c) => c.submissions);
 
   const uniqueCreators = new Set(
-    campaigns.flatMap((c) =>
-      c.submissions.map((s) => s.creatorId)
-    )
+    allSubmissions.map((s) => s.creatorId)
   ).size;
 
   const costPerView = totalViews > 0 ? Math.round(usedBudget / totalViews) : 0;
 
-  const totalSubmissions = campaigns.reduce((sum, c) => sum + c.submissions.length, 0);
+  const totalSubmissions = allSubmissions.length;
 
   const engagementRate =
     totalSubmissions > 0 && uniqueCreators > 0
@@ -60,11 +62,70 @@ export async function getBrandAnalytics() {
     .sort((a, b) => b.views - a.views)
     .slice(0, 5);
 
+  // Status counts
+  const statusCounts = {
+    approved: allSubmissions.filter((s) => s.status === "APPROVED").length,
+    pending: allSubmissions.filter((s) => s.status === "PENDING").length,
+    rejected: allSubmissions.filter((s) => s.status === "REJECTED").length,
+  };
+
+  // Platform distribution
+  const platformMap: Record<string, number> = {};
+  for (const s of allSubmissions) {
+    if (s.platform) {
+      platformMap[s.platform] = (platformMap[s.platform] || 0) + 1;
+    }
+  }
+  const platformDistribution = Object.entries(platformMap).map(([platform, count]) => ({
+    platform,
+    count,
+    percent: allSubmissions.length > 0 ? Math.round((count / allSubmissions.length) * 100) : 0,
+  }));
+
+  // Average CPM original (from campaigns) vs effective (total spent / total views * 1000)
+  const avgCpmOriginal = campaigns.length > 0
+    ? Math.round(campaigns.reduce((sum, c) => sum + c.cpmRate, 0) / campaigns.length)
+    : 0;
+  const cpmEffective = totalViews > 0 ? Math.round((usedBudget / totalViews) * 1000) : 0;
+
+  // Approved videos
+  const approvedVideos = await prisma.submission.findMany({
+    where: { campaign: { brandId: userId }, status: "APPROVED" },
+    include: {
+      creator: { select: { id: true, name: true, image: true } },
+      campaign: { select: { id: true, title: true } },
+      viewLogs: { select: { views: true } },
+    },
+    orderBy: { reviewedAt: "desc" },
+    take: 20,
+  });
+
   return {
+    totalViews,
+    totalBudget,
+    spent: usedBudget,
+    remaining: remainingBudget,
+    budgetPercent,
+    costPerView,
+    cpmEffective,
+    cpmOriginal: avgCpmOriginal,
     totalReach: totalViews,
     engagementRate,
-    costPerView,
     activeCreators: uniqueCreators,
+    totalSubmissions,
     topCampaigns,
+    statusCounts,
+    platformDistribution,
+    approvedVideos: approvedVideos.map((s) => ({
+      id: s.id,
+      creatorName: s.creator.name || s.creator.id,
+      campaignTitle: s.campaign.title,
+      videoUrl: s.videoUrl,
+      platformLink: s.platformLink,
+      platform: s.platform,
+      views: s.viewLogs.reduce((sum, v) => sum + v.views, 0),
+      reviewedAt: s.reviewedAt?.toISOString() || null,
+      status: s.status,
+    })),
   };
 }

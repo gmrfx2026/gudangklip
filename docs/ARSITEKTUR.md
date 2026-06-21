@@ -30,6 +30,7 @@ flowchart TB
             admin_act["admin.actions"]
             agency_act["agency.actions"]
             analytics_act["analytics.actions"]
+            budget_act["budget.actions"]
             leaderboard_act["leaderboard.actions"]
             notification_act["notification.actions"]
             profile_act["profile.actions"]
@@ -116,18 +117,19 @@ clipper/
     │   ├── midtrans.ts        # Midtrans Snap/Core API client
     │   └── email.ts           # Resend email sender (verification, payout notification)
     │
-    ├── actions/               # 14 Server Action modules
+    ├── actions/               # 15 Server Action modules
     │   ├── admin.actions.ts       # Dashboard stats, user management, payout processing, campaign approval
     │   ├── agency.actions.ts      # Agency overview, member listing, invite link generation
     │   ├── ai.actions.ts          # OpenAI GPT-4o-mini submission quality scoring
     │   ├── analytics.actions.ts   # Brand analytics (ROI, cost-per-view, reach, engagement)
     │   ├── auth.actions.ts        # Social account connect, join campaign
+    │   ├── budget.actions.ts      # Brand wallet balance, campaign budget list, transaction history
     │   ├── campaign.actions.ts    # Campaign CRUD, brand overview, active campaigns
     │   ├── creator.actions.ts     # Creator overview stats, active campaigns, joined campaign IDs
     │   ├── leaderboard.actions.ts # Top 20 creators by total earnings
     │   ├── notification.actions.ts# In-app notification CRUD, mark read
     │   ├── payout.actions.ts      # Request payout, payout history
-    │   ├── profile.actions.ts     # Update profile image, bio, social accounts
+    │   ├── profile.actions.ts     # Profile CRUD, brand profile (company name, industry, logo)
     │   ├── submission.actions.ts  # Submit video, review submission (approve/reject)
     │   ├── tracking.actions.ts    # View log simulation with bot detection
     │   └── transaction.actions.ts # Top-up initiation via Midtrans, transaction history
@@ -174,6 +176,8 @@ clipper/
             │
             ├── brand/
             │   ├── page.tsx           # Brand overview + review submissions
+            │   ├── budget/page.tsx    # Wallet balance, top-up (Midtrans), transaction history
+            │   ├── settings/page.tsx  # Brand profile (logo, company name, industry), security tab
             │   ├── campaigns/page.tsx # Brand's campaign list
             │   ├── campaigns/new/page.tsx # Campaign creation form
             │   ├── campaigns/[id]/page.tsx # Campaign detail + review submissions
@@ -222,6 +226,7 @@ erDiagram
 | `Role` | BRAND, CREATOR, AGENCY, ADMIN |
 | `Platform` | TIKTOK, INSTAGRAM, YOUTUBE |
 | `Category` | MUSIC, FILM, BRAND, ENTERTAINMENT |
+| `Industry` | E_COMMERCE, FOOD_BEVERAGE, FASHION_BEAUTY, TECHNOLOGY, FINANCE, HEALTH_WELLNESS, ENTERTAINMENT, EDUCATION, TRAVEL_HOSPITALITY, OTHER |
 | `CampaignStatus` | DRAFT, ACTIVE, PAUSED, ENDED |
 | `SubmissionStatus` | PENDING, APPROVED, REJECTED |
 | `PayoutStatus` | PENDING, PROCESSING, COMPLETED, FAILED |
@@ -231,7 +236,7 @@ erDiagram
 
 | Model | Fields | Description |
 |-------|--------|-------------|
-| **User** | id, name, email, role, walletBalance, trustScore, totalViews, totalEarnings, referralCode, agencyId | Central entity for all roles |
+| **User** | id, name, email, role, companyName, industry, walletBalance, trustScore, totalViews, totalEarnings, referralCode, agencyId | Central entity for all roles |
 | **Campaign** | id, brandId, title, description, totalBudget, remainingBudget, cpmRate, startDate, endDate, status | Brand-created campaign |
 | **Submission** | id, campaignId, creatorId, videoUrl, platformLink, platform, status, aiScore | Creator's submitted video |
 | **ViewLog** | id, submissionId, views, date, isBotFiltered, payoutAmount | Per-day view tracking |

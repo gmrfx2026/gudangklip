@@ -4,6 +4,73 @@ Semua perubahan penting pada project GudangKlip dicatat di sini.
 
 ---
 
+## [0.1.7] - 2026-06-22
+
+### Brand Dashboard Redesign — Budget, Settings, Analytics & Campaign Detail
+
+#### Halaman Baru: Budget (`/brand/budget`)
+- `src/actions/budget.actions.ts` (NEW) — `getBrandBudget()`: wallet balance + campaign budget list + transaction history
+- `src/app/[locale]/(dashboard)/brand/budget/page.tsx` (NEW) — Balance card dengan Top Up (Midtrans Snap) + History table (Completed | On Process tabs)
+
+#### Halaman Baru: Settings (`/brand/settings`)
+- `src/app/[locale]/(dashboard)/brand/settings/page.tsx` (NEW) — Logo upload, Company Profile | Security tabs, Company Name input, Industry select dropdown (10 industri)
+
+#### Database: Brand Fields
+- `prisma/schema.prisma` — `Industry` enum (10 values) + field `companyName` + `industry` di model User
+- `prisma/migrations/20260621194900_add_brand_fields/` (NEW) — migration untuk kolom baru
+- `prisma/seed.ts` — seed data untuk `companyName` + `industry` pada brand users
+
+#### Registration Extended
+- `src/app/api/auth/register/route.ts` — validasi: Brand wajib isi `companyName` + `industry` saat registrasi
+- `src/app/[locale]/(auth)/register/page.tsx` — input `companyName` + `industry` di form registrasi brand
+- `src/lib/validations.ts` — `registerSchema` diperluas dengan `companyName` (min 2 karakter) + `industry` (enum validation)
+
+#### Dashboard Redesign (`/brand`)
+- **Overview** (`/brand/page.tsx`): Welcome greeting + 4 stat cards (Views, Need to Review, Total Submissions, Budget Spent) + Add Campaign CTA + campaign filter tabs (Semua | Active | Paused | Ended) + campaign cards dengan status/platform badges + action buttons + approved videos table + pending submissions section
+- **Analytics** (`/brand/analytics/page.tsx`): Budget progress bar + 4 stat cards (Views, Spent, CPM Effective/Original, Submissions) + Statistik section dengan platform tabs + Total/Kenaikan toggle + 4 sub-stats + Platform Distribution horizontal bars + Submission Status counts + Budget Efficiency comparison + Approved Videos table
+- **Campaign Detail** (`/brand/campaigns/[id]/page.tsx`): Hero banner dengan category/status badges + 3 tabs (Detail | Submission | Analytic) + About Campaign + Brief/Material cards + Budget Info + Top 10 Clip ranking + Submission tab (approved/pending/rejected counts + list dengan approve/reject) + Analytic tab (stats grid)
+
+#### Server Actions Extended
+- `src/actions/campaign.actions.ts` — `getBrandOverview()` sekarang return `needToReview`, `totalSubmissions`, `campaignCards[]`, `approvedVideos[]`; `getBrandCampaignById()` return `brand`, `videoUrl`, `platformLink`, `submittedAt`, `estimatedPayout` per submission
+- `src/actions/analytics.actions.ts` — return `budgetPercent`, `remaining`, `spent`, `totalSubmissions`, `cpmEffective`, `cpmOriginal`, `statusCounts`, `platformDistribution[]`, `approvedVideos[]`
+- `src/actions/profile.actions.ts` — `getBrandProfile()` + `updateBrandProfile()` + `updateProfileImage()` dengan `revalidatePath`
+
+#### Sidebar Update
+- `src/components/dashboard/sidebar.tsx` — Tambah navigasi Budget/Wallet + Settings/User untuk BRAND + section "Campaign Saya" (fetch brand's active campaigns) + section "Butuh Bantuan?" (Hubungi Admin WhatsApp, FaQ & Peraturan)
+- `src/lib/constants.ts` — `SIDEBAR_LINKS` diperluas dengan budget + settings links untuk BRAND
+
+#### i18n
+- `messages/id.json` + `messages/en.json` — ~185 baris baru per file
+  - `BrandBudget`: 22 keys (balance, refund, history, tabs)
+  - `BrandSettings`: 19 keys (profile, security, company name, industry, save)
+  - `Brand`: 20+ keys (welcome, stats, review, cta, filters, cards, approved videos)
+  - `BrandAnalytics`: 20+ keys (budget stats, platform tabs, distribution, efficiency)
+  - `BrandCampaignDetail`: 15+ keys (tabs, about, brief, material, budget info, top clip)
+  - `Sidebar`: 5 keys (budget, settings, campaignSaya, helpSection, draftCount)
+
+### Changed Files
+- `messages/en.json` — +185 lines
+- `messages/id.json` — +185 lines
+- `prisma/schema.prisma` — +15 lines (Industry enum + brand fields)
+- `prisma/seed.ts` — +36 lines (brand seed data)
+- `prisma/migrations/20260621194900_add_brand_fields/migration.sql` (NEW)
+- `src/actions/analytics.actions.ts` — +71 lines
+- `src/actions/budget.actions.ts` (NEW) — 42 lines
+- `src/actions/campaign.actions.ts` — +71 lines
+- `src/actions/profile.actions.ts` — +33 lines
+- `src/app/[locale]/(auth)/register/page.tsx` — +52 lines
+- `src/app/[locale]/(dashboard)/brand/analytics/page.tsx` — +300 lines
+- `src/app/[locale]/(dashboard)/brand/budget/page.tsx` (NEW) — 280 lines
+- `src/app/[locale]/(dashboard)/brand/campaigns/[id]/page.tsx` — +287 lines
+- `src/app/[locale]/(dashboard)/brand/page.tsx` — +289 lines
+- `src/app/[locale]/(dashboard)/brand/settings/page.tsx` (NEW) — 280 lines
+- `src/app/api/auth/register/route.ts` — +8 lines
+- `src/components/dashboard/sidebar.tsx` — +94 lines
+- `src/lib/constants.ts` — +4 lines
+- `src/lib/validations.ts` — +2 lines
+
+---
+
 ## [0.1.5] - 2026-06-21
 
 ### Testing & Error Handling (Fase 0.4)

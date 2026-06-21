@@ -2,6 +2,7 @@
 
 import { Link, usePathname } from "@/i18n/navigation";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import { SIDEBAR_LINKS } from "@/lib/constants";
 import {
   LayoutDashboard,
@@ -19,6 +20,7 @@ import {
   Shield,
   MessageCircle,
   Search,
+  Settings,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { signOut } from "next-auth/react";
@@ -33,6 +35,8 @@ const ICON_MAP: Record<string, React.ElementType> = {
   Users,
   Banknote,
   Search,
+  User,
+  Settings,
 };
 
 interface SidebarProps {
@@ -50,10 +54,33 @@ type JoinedCampaign = {
 function SidebarContent({ onCloseMobile }: { onCloseMobile?: () => void }) {
   const pathname = usePathname();
   const { data: session } = useSession();
+  const t = useTranslations();
   const [collapsed, setCollapsed] = useState(false);
   const [joinedCampaigns, setJoinedCampaigns] = useState<JoinedCampaign[]>([]);
   const role = (session?.user as any)?.role as keyof typeof SIDEBAR_LINKS;
   const links = SIDEBAR_LINKS[role] || [];
+
+  // Map sidebar href to i18n key
+  const getLinkLabel = (href: string, fallback: string): string => {
+    const keyMap: Record<string, string> = {
+      "/brand": "overview",
+      "/brand/campaigns": "campaigns",
+      "/brand/analytics": "analytics",
+      "/brand/budget": "budget",
+      "/brand/settings": "settings",
+      "/clipper": "overview",
+      "/clipper/campaigns": "myCampaigns",
+      "/clipper/analytic": "analytics",
+      "/clipper/earnings": "wallet",
+      "/agency": "overview",
+      "/agency/members": "members",
+      "/admin": "overview",
+      "/admin/users": "users",
+      "/admin/payouts": "payouts",
+    };
+    const key = keyMap[href];
+    return key ? t(`Sidebar.${key}`) : fallback;
+  };
 
   useEffect(() => {
     if (role === "CREATOR") {
@@ -66,9 +93,20 @@ function SidebarContent({ onCloseMobile }: { onCloseMobile?: () => void }) {
         })
         .catch(() => {});
     }
-  }, [role]);
+    if (role === "BRAND") {
+      getActiveCampaigns()
+        .then((campaigns) => {
+          const brandCampaigns = (campaigns as any[])
+            .filter((c: any) => c.brandId === (session?.user as any)?.id)
+            .slice(0, 5);
+          setJoinedCampaigns(brandCampaigns as unknown as JoinedCampaign[]);
+        })
+        .catch(() => {});
+    }
+  }, [role, session]);
 
   const isCreator = role === "CREATOR";
+  const isBrand = role === "BRAND";
 
   return (
     <div className="flex h-full flex-col">
@@ -119,7 +157,7 @@ function SidebarContent({ onCloseMobile }: { onCloseMobile?: () => void }) {
               }`}
             >
               <Icon className="h-5 w-5 shrink-0" />
-              {!collapsed && <span>{link.label}</span>}
+              {!collapsed && <span>{getLinkLabel(link.href, link.label)}</span>}
             </Link>
           );
         })}
@@ -167,6 +205,58 @@ function SidebarContent({ onCloseMobile }: { onCloseMobile?: () => void }) {
                 </Link>
               ))
             )}
+          </div>
+        )}
+
+        {/* Campaign Saya Section (Brand only) */}
+        {isBrand && !collapsed && (
+          <div className="pt-4">
+            <div className="mb-2 px-3">
+              <p className="text-xs font-semibold uppercase tracking-wider text-[#6b7280]">
+                {t("Sidebar.campaignSaya")}
+              </p>
+            </div>
+            {joinedCampaigns.length === 0 ? (
+              <div className="px-3 py-2">
+                <p className="text-xs text-[#6b7280]">{t("Brand.noCampaigns")}</p>
+              </div>
+            ) : (
+              joinedCampaigns.map((c) => (
+                <Link
+                  key={c.id}
+                  href={`/brand/campaigns/${c.slug || c.id}`}
+                  onClick={onCloseMobile}
+                  className={`flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition-all ${
+                    pathname.includes(c.id)
+                      ? "bg-[#6c63ff]/10 text-[#6c63ff]"
+                      : "text-[#a0a0c0] hover:bg-[#1e1e3f]/50 hover:text-[#e8e8f0]"
+                  }`}
+                >
+                  <Megaphone className="h-4 w-4 shrink-0" />
+                  {!collapsed && <span className="truncate text-xs">{c.title}</span>}
+                </Link>
+              ))
+            )}
+          </div>
+        )}
+
+        {/* Help Section (Brand only) */}
+        {isBrand && !collapsed && (
+          <div className="pt-4">
+            <div className="mb-2 px-3">
+              <p className="text-xs font-semibold uppercase tracking-wider text-[#6b7280]">
+                {t("Sidebar.helpSection")}
+              </p>
+            </div>
+            <a
+              href="https://wa.me/6281113098585?text=Halo%20admin%20GudangKlip%2C%20saya%20mau%20bertanya%20perihal%20platformnya%2C%20bisa%20tolong%20dibantu%3F"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 rounded-xl px-3 py-2 text-sm text-[#a0a0c0] hover:bg-[#1e1e3f]/50 hover:text-[#e8e8f0] transition-colors"
+            >
+              <MessageCircle className="h-5 w-5 shrink-0" />
+              <span>{t("Sidebar.hubungiAdmin")}</span>
+            </a>
           </div>
         )}
 

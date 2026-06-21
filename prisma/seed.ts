@@ -28,26 +28,30 @@ async function main() {
   // Create Brands
   const brand1 = await prisma.user.upsert({
     where: { email: "brand1@gudangklip.com" },
-    update: { passwordHash: brandHash },
-    create: {
-      name: "Brand Satu",
-      email: "brand1@gudangklip.com",
-      passwordHash: brandHash,
-      role: "BRAND",
-      referralCode: "BRAND001",
-    },
+      update: { passwordHash: brandHash, companyName: "Brand Satu Group", industry: "TECHNOLOGY" },
+      create: {
+        name: "Brand Satu",
+        email: "brand1@gudangklip.com",
+        passwordHash: brandHash,
+        role: "BRAND",
+        companyName: "Brand Satu Group",
+        industry: "TECHNOLOGY",
+        referralCode: "BRAND001",
+      },
   });
 
   const brand2 = await prisma.user.upsert({
     where: { email: "brand2@gudangklip.com" },
-    update: { passwordHash: brandHash },
-    create: {
-      name: "Brand Dua",
-      email: "brand2@gudangklip.com",
-      passwordHash: brandHash,
-      role: "BRAND",
-      referralCode: "BRAND002",
-    },
+      update: { passwordHash: brandHash, companyName: "Brand Dua Indonesia", industry: "FASHION_BEAUTY" },
+      create: {
+        name: "Brand Dua",
+        email: "brand2@gudangklip.com",
+        passwordHash: brandHash,
+        role: "BRAND",
+        companyName: "Brand Dua Indonesia",
+        industry: "FASHION_BEAUTY",
+        referralCode: "BRAND002",
+      },
   });
 
   // Create Agency

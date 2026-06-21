@@ -32,9 +32,11 @@ export const TRUST_SCORE_THRESHOLDS = {
 
 export const SIDEBAR_LINKS = {
   BRAND: [
-    { href: "/brand", label: "Overview", icon: "LayoutDashboard" },
+    { href: "/brand", label: "Dashboard", icon: "LayoutDashboard" },
     { href: "/brand/campaigns", label: "Campaigns", icon: "Megaphone" },
     { href: "/brand/analytics", label: "Analytics", icon: "BarChart3" },
+    { href: "/brand/budget", label: "Budget", icon: "Wallet" },
+    { href: "/brand/settings", label: "Pengaturan", icon: "User" },
   ],
   CREATOR: [
     { href: "/clipper", label: "Dashboard", icon: "LayoutDashboard" },

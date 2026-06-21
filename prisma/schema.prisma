@@ -14,6 +14,19 @@ enum Role {
   ADMIN
 }
 
+enum Industry {
+  E_COMMERCE
+  FOOD_BEVERAGE
+  FASHION_BEAUTY
+  TECHNOLOGY
+  FINANCE
+  HEALTH_WELLNESS
+  ENTERTAINMENT
+  EDUCATION
+  TRAVEL_HOSPITALITY
+  OTHER
+}
+
 enum Platform {
   TIKTOK
   INSTAGRAM
@@ -61,6 +74,8 @@ model User {
   image         String?
   phone         String?
   role          Role      @default(CREATOR)
+  companyName   String?
+  industry      Industry?
   passwordHash  String?
 
   referralCode String?  @unique
