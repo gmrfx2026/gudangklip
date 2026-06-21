@@ -9,11 +9,13 @@ export const CATEGORIES = [
   { value: "FILM", label: "Film" },
   { value: "BRAND", label: "Brand" },
   { value: "ENTERTAINMENT", label: "Entertainment" },
+  { value: "LIFESTYLE", label: "Lifestyle" },
+  { value: "EDUCATION", label: "Education" },
 ] as const;
 
 export const ROLES = [
   { value: "BRAND", label: "Brand" },
-  { value: "CREATOR", label: "Creator" },
+  { value: "CREATOR", label: "Clipper" },
   { value: "AGENCY", label: "Agency" },
   { value: "ADMIN", label: "Admin" },
 ] as const;
@@ -35,11 +37,10 @@ export const SIDEBAR_LINKS = {
     { href: "/brand/analytics", label: "Analytics", icon: "BarChart3" },
   ],
   CREATOR: [
-    { href: "/creator", label: "Overview", icon: "LayoutDashboard" },
-    { href: "/creator/explore", label: "Explore Campaigns", icon: "Search" },
-    { href: "/creator/campaigns", label: "My Campaigns", icon: "FolderOpen" },
-    { href: "/creator/submissions", label: "Submissions", icon: "Video" },
-    { href: "/creator/wallet", label: "Wallet", icon: "Wallet" },
+    { href: "/clipper", label: "Dashboard", icon: "LayoutDashboard" },
+    { href: "/clipper/campaigns", label: "Campaigns", icon: "Megaphone" },
+    { href: "/clipper/analytic", label: "Analitik", icon: "BarChart3" },
+    { href: "/clipper/earnings", label: "Pendapatan", icon: "Wallet" },
   ],
   AGENCY: [
     { href: "/agency", label: "Overview", icon: "LayoutDashboard" },

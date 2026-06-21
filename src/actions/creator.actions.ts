@@ -83,3 +83,14 @@ export async function getCreatorJoinedCampaignIds() {
 
   return participations.map((p) => p.campaignId);
 }
+
+export async function getCreatorSocialAccounts() {
+  const session = await auth();
+  const { id: userId } = getSessionUser(session);
+  if (!userId) throw new Error("Unauthorized");
+
+  return prisma.socialAccount.findMany({
+    where: { userId },
+    select: { id: true, platform: true, username: true, verified: true },
+  });
+}

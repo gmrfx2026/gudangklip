@@ -38,7 +38,15 @@ export default function LoginPage() {
         toast.error(t("Auth.loginError"));
       } else {
         toast.success(t("Auth.loginSuccess"));
-        router.push("/creator");
+        // Redirect based on user role
+        const role = (result as any)?.role || "CREATOR";
+        const roleRedirects: Record<string, string> = {
+          BRAND: "/brand",
+          CREATOR: "/clipper",
+          AGENCY: "/agency",
+          ADMIN: "/admin",
+        };
+        router.push(roleRedirects[role] || "/clipper");
         router.refresh();
       }
     } catch {

@@ -152,3 +152,53 @@ export async function getActiveCampaigns() {
     orderBy: { createdAt: "desc" },
   });
 }
+
+export async function getCampaignSubmissions(campaignId: string) {
+  const session = await auth();
+  const { id: userId } = getSessionUser(session);
+  if (!userId) throw new Error("Unauthorized");
+
+  const submissions = await prisma.submission.findMany({
+    where: { campaignId },
+    include: {
+      creator: { select: { id: true, name: true, image: true } },
+      viewLogs: { select: { views: true } },
+    },
+    orderBy: { submittedAt: "desc" },
+  });
+
+  const mySubmissions = submissions
+    .filter((s) => s.creatorId === userId)
+    .map((s) => ({
+      id: s.id,
+      platform: s.platform,
+      platformLink: s.platformLink,
+      status: s.status,
+      views: s.viewLogs.reduce((sum, v) => sum + v.views, 0),
+      submittedAt: s.submittedAt.toISOString(),
+    }));
+  const top10 = submissions
+    .filter((s) => s.status === "APPROVED")
+    .sort((a, b) => {
+      const aViews = a.viewLogs.reduce((sum, v) => sum + v.views, 0);
+      const bViews = b.viewLogs.reduce((sum, v) => sum + v.views, 0);
+      return bViews - aViews;
+    })
+    .slice(0, 10)
+    .map((s) => ({
+      id: s.id,
+      creatorName: s.creator.name ?? "Unknown",
+      creatorImage: s.creator.image,
+      platform: s.platform,
+      views: s.viewLogs.reduce((sum, v) => sum + v.views, 0),
+      status: s.status,
+      submittedAt: s.submittedAt.toISOString(),
+      videoUrl: s.videoUrl,
+    }));
+
+  return {
+    mySubmissions,
+    top10,
+    hasJoined: submissions.some((s) => s.creatorId === userId),
+  };
+}

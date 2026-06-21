@@ -21,7 +21,7 @@ export async function connectSocialAccount(data: {
     },
   });
 
-  revalidatePath("/creator/profile");
+  revalidatePath("/clipper/settings");
 }
 
 export async function getSocialAccounts() {
@@ -54,5 +54,5 @@ export async function joinCampaign(campaignId: string) {
     },
   });
 
-  revalidatePath("/creator/campaigns");
+  revalidatePath("/clipper/campaigns");
 }

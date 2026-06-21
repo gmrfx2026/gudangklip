@@ -11,7 +11,7 @@ const authRoutes = ["/login", "/register"];
 
 const roleRouteMap: Record<string, string[]> = {
   BRAND: ["/brand"],
-  CREATOR: ["/creator"],
+  CREATOR: ["/clipper"],
   AGENCY: ["/agency"],
   ADMIN: ["/admin"],
 };
@@ -47,7 +47,7 @@ export default async function middleware(request: NextRequest) {
     if (session && authRoutes.includes(pathname)) {
       const redirectMap: Record<string, string> = {
         BRAND: "/brand",
-        CREATOR: "/creator",
+        CREATOR: "/clipper",
         AGENCY: "/agency",
         ADMIN: "/admin",
       };

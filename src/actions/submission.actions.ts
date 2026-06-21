@@ -42,7 +42,7 @@ export async function submitVideo(data: {
     );
   }
 
-  revalidatePath("/creator/submissions");
+  revalidatePath("/clipper/dashboard");
   return submission;
 }
 
@@ -93,7 +93,7 @@ export async function reviewSubmission(submissionId: string, status: string, not
     submission.creatorId,
     typedStatus === "APPROVED" ? "Submission Disetujui" : "Submission Ditolak",
     `${typedStatus === "APPROVED" ? "Selamat! " : "Maaf, "}submission kamu untuk "${submission.campaign.title}" telah ${typedStatus === "APPROVED" ? "disetujui" : "ditolak"}${notes ? `. Catatan: ${notes}` : ""}`,
-    "/creator/submissions"
+    "/clipper/dashboard"
   );
 
   revalidatePath("/brand/campaigns");
