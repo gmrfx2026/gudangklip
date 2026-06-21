@@ -12,7 +12,7 @@ export default function RootNotFound() {
       <h2 className="mb-2 text-xl font-semibold text-white">
         Halaman Tidak Ditemukan
       </h2>
-      <p className="mb-8 max-w-md text-sm text-[#8888aa]">
+      <p className="mb-8 max-w-md text-sm text-[#a0a0c0]">
         Halaman yang Anda cari tidak tersedia atau telah dipindahkan.
       </p>
 

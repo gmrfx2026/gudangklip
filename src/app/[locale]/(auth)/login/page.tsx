@@ -93,7 +93,7 @@ export default function LoginPage() {
           </div>
 
           <h1 className="mb-2 text-2xl font-bold text-white">{t("Auth.loginTitle")}</h1>
-          <p className="mb-8 text-[#8888aa]">
+          <p className="mb-8 text-[#a0a0c0]">
             {t("Auth.noAccount")}{" "}
             <Link href="/register" className="text-[#6c63ff] hover:underline">
               {t("Auth.signUpFree")}
@@ -119,7 +119,7 @@ export default function LoginPage() {
               <div className="w-full border-t border-[#2a2a50]" />
             </div>
             <div className="relative flex justify-center text-xs">
-              <span className="bg-[#0a0a1a] px-2 text-[#8888aa]">{t("Auth.orLoginWithEmail")}</span>
+              <span className="bg-[#0a0a1a] px-2 text-[#a0a0c0]">{t("Auth.orLoginWithEmail")}</span>
             </div>
           </div>
 
@@ -130,7 +130,7 @@ export default function LoginPage() {
                 {...register("email")}
                 type="email"
                 placeholder={t("Auth.emailPlaceholder")}
-                className="w-full rounded-xl border border-[#2a2a50] bg-[#111128] px-4 py-3 text-sm text-white placeholder:text-[#8888aa] focus:border-[#6c63ff] focus:outline-none focus:ring-1 focus:ring-[#6c63ff]"
+                className="w-full rounded-xl border border-[#2a2a50] bg-[#111128] px-4 py-3 text-sm text-white placeholder:text-[#a0a0c0] focus:border-[#6c63ff] focus:outline-none focus:ring-1 focus:ring-[#6c63ff]"
               />
               {errors.email && <p className="mt-1 text-xs text-red-400">{errors.email.message}</p>}
             </div>
@@ -142,12 +142,12 @@ export default function LoginPage() {
                   {...register("password")}
                   type={showPassword ? "text" : "password"}
                   placeholder={t("Auth.passwordPlaceholder")}
-                  className="w-full rounded-xl border border-[#2a2a50] bg-[#111128] px-4 py-3 pr-12 text-sm text-white placeholder:text-[#8888aa] focus:border-[#6c63ff] focus:outline-none focus:ring-1 focus:ring-[#6c63ff]"
+                  className="w-full rounded-xl border border-[#2a2a50] bg-[#111128] px-4 py-3 pr-12 text-sm text-white placeholder:text-[#a0a0c0] focus:border-[#6c63ff] focus:outline-none focus:ring-1 focus:ring-[#6c63ff]"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#8888aa] hover:text-white"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#a0a0c0] hover:text-white"
                 >
                   {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>

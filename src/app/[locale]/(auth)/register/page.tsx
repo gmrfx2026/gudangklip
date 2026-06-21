@@ -90,7 +90,7 @@ export default function RegisterPage() {
           </div>
 
           <h1 className="mb-2 text-2xl font-bold text-white">{t("Auth.registerTitle")}</h1>
-          <p className="mb-8 text-[#8888aa]">
+          <p className="mb-8 text-[#a0a0c0]">
             {t("Auth.haveAccount")}{" "}
             <Link href="/login" className="text-[#6c63ff] hover:underline">{t("Auth.login")}</Link>
           </p>
@@ -133,7 +133,7 @@ export default function RegisterPage() {
               <input
                 {...register("name")}
                 placeholder={t("Auth.fullNamePlaceholder")}
-                className="w-full rounded-xl border border-[#2a2a50] bg-[#111128] px-4 py-3 text-sm text-white placeholder:text-[#8888aa] focus:border-[#6c63ff] focus:outline-none focus:ring-1 focus:ring-[#6c63ff]"
+                className="w-full rounded-xl border border-[#2a2a50] bg-[#111128] px-4 py-3 text-sm text-white placeholder:text-[#a0a0c0] focus:border-[#6c63ff] focus:outline-none focus:ring-1 focus:ring-[#6c63ff]"
               />
               {errors.name && <p className="mt-1 text-xs text-red-400">{errors.name.message}</p>}
             </div>
@@ -144,7 +144,7 @@ export default function RegisterPage() {
                 {...register("email")}
                 type="email"
                 placeholder="nama@email.com"
-                className="w-full rounded-xl border border-[#2a2a50] bg-[#111128] px-4 py-3 text-sm text-white placeholder:text-[#8888aa] focus:border-[#6c63ff] focus:outline-none focus:ring-1 focus:ring-[#6c63ff]"
+                className="w-full rounded-xl border border-[#2a2a50] bg-[#111128] px-4 py-3 text-sm text-white placeholder:text-[#a0a0c0] focus:border-[#6c63ff] focus:outline-none focus:ring-1 focus:ring-[#6c63ff]"
               />
               {errors.email && <p className="mt-1 text-xs text-red-400">{errors.email.message}</p>}
             </div>
@@ -156,12 +156,12 @@ export default function RegisterPage() {
                   {...register("password")}
                   type={showPassword ? "text" : "password"}
                   placeholder={t("Auth.passwordPlaceholder")}
-                  className="w-full rounded-xl border border-[#2a2a50] bg-[#111128] px-4 py-3 pr-12 text-sm text-white placeholder:text-[#8888aa] focus:border-[#6c63ff] focus:outline-none focus:ring-1 focus:ring-[#6c63ff]"
+                  className="w-full rounded-xl border border-[#2a2a50] bg-[#111128] px-4 py-3 pr-12 text-sm text-white placeholder:text-[#a0a0c0] focus:border-[#6c63ff] focus:outline-none focus:ring-1 focus:ring-[#6c63ff]"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#8888aa] hover:text-white"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#a0a0c0] hover:text-white"
                 >
                   {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
@@ -176,7 +176,7 @@ export default function RegisterPage() {
               <input
                 {...register("referralCode")}
                 placeholder={t("Auth.referralCodePlaceholder")}
-                className="w-full rounded-xl border border-[#2a2a50] bg-[#111128] px-4 py-3 text-sm text-white placeholder:text-[#8888aa] focus:border-[#6c63ff] focus:outline-none focus:ring-1 focus:ring-[#6c63ff]"
+                className="w-full rounded-xl border border-[#2a2a50] bg-[#111128] px-4 py-3 text-sm text-white placeholder:text-[#a0a0c0] focus:border-[#6c63ff] focus:outline-none focus:ring-1 focus:ring-[#6c63ff]"
               />
             </div>
 

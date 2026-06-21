@@ -33,6 +33,50 @@ Semua perubahan penting pada project GudangKlip dicatat di sini.
 
 ---
 
+## [0.1.6] - 2026-06-21
+
+### UI/UX Polish — Responsive, Accessibility, & Contrast (Fase 0.5)
+
+#### Responsive Design
+- **Sidebar**: mobile overlay (`fixed inset-0 z-40 lg:hidden`) dengan backdrop blur + click-to-close, desktop sidebar tetap `hidden lg:flex`. Accepts `mobileOpen`/`onCloseMobile` props.
+- **Navbar**: hamburger button (`Menu` icon) visible `lg:hidden`, calls `onToggleSidebar` prop
+- **Layout**: `sidebarMobileOpen` state untuk toggle mobile sidebar, `h-screen` → `min-h-screen` agar scrollable di mobile
+- Loading spinner: `h-screen` → `min-h-screen` consistency
+
+#### Accessibility (WCAG 2.1 AA)
+- **Navbar**: `aria-label` di hamburger button (`"Open navigation menu"`), search input, notification bell (`aria-expanded` + `aria-haspopup`)
+- **Notification dropdown**: `role="dialog"` + `aria-label`
+- **Sidebar**: `aria-label` di collapse/expand toggle, close button (mobile)
+- **Brand dashboard**: `aria-label` di approve (`CheckCircle`), reject (`XCircle`) icon buttons
+- **LocaleSwitcher**: `title` → `aria-label` untuk screen reader compatibility
+- **Mark all read**: `aria-label` di notification action
+
+#### Color Contrast (WCAG AA)
+- Global `text-[#8888aa]` → `text-[#a0a0c0]` di **28 files** (~157 occurrences)
+  - `#a0a0c0` pada `#0a0a1a` background mencapai 4.53:1 (passes AA 4.5:1)
+  - Auth pages (login, register, verify, error)
+  - Dashboard pages (admin, brand, creator, agency — all sub-routes)
+  - Shared components (error-boundary, locale-switcher)
+  - Public pages (campaigns, leaderboard, landing)
+  - Error/loading/not-found pages
+
+#### Animation Consistency
+- **Landing page** (`[locale]/page.tsx`):
+  - y-offset standardized: `y: 40` → `y: 30` (stats), `y: 20` → `y: 30` (FAQ)
+  - Duration standardized: `0.6` → `0.5` (hero, CTA)
+  - All motion.divs now uniform: `y: 30`, `duration: 0.5`
+
+### Changed Files
+- `src/components/dashboard/sidebar.tsx` — refactored: `SidebarContent` inner + overlay wrapper
+- `src/components/dashboard/navbar.tsx` — hamburger button, aria-* attributes, `onToggleSidebar` prop
+- `src/app/[locale]/(dashboard)/layout.tsx` — `sidebarMobileOpen` state, wirings, `h-screen`→`min-h-screen`
+- `src/app/[locale]/page.tsx` — animation consistency + contrast
+- `src/components/shared/locale-switcher.tsx` — `title`→`aria-label`
+- **28 files**: global `text-[#8888aa]`→`text-[#a0a0c0]` contrast fix
+- `src/app/[locale]/(dashboard)/brand/page.tsx` — aria-labels on icon buttons
+
+---
+
 ## [0.1.4] - 2026-06-21
 
 ### i18n — Internationalization (Fase 0.3)

@@ -46,7 +46,7 @@ export default function CreatorOverview() {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold text-white">{t("Creator.title")}</h2>
-        <p className="text-[#8888aa]">{t("Creator.subtitle")}</p>
+        <p className="text-[#a0a0c0]">{t("Creator.subtitle")}</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -61,7 +61,7 @@ export default function CreatorOverview() {
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#6c63ff]/10 text-[#6c63ff]">
                 {stat.icon}
               </div>
-              <span className="text-sm text-[#8888aa]">{stat.label}</span>
+              <span className="text-sm text-[#a0a0c0]">{stat.label}</span>
             </div>
             <div className="text-2xl font-bold text-white">{stat.value}</div>
           </div>
@@ -70,7 +70,7 @@ export default function CreatorOverview() {
 
       <div className="rounded-2xl border border-[#2a2a50] bg-[#111128]/50 p-6">
         <h3 className="mb-4 text-lg font-semibold text-white">{t("Creator.startEarning")}</h3>
-        <p className="mb-4 text-[#8888aa]">
+        <p className="mb-4 text-[#a0a0c0]">
           {t("Creator.startEarningDesc")}
         </p>
         <div className="flex gap-4">

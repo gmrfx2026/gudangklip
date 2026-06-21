@@ -30,7 +30,7 @@ export default function LeaderboardPage() {
     if (rank === 1) return <Trophy className="h-5 w-5 text-[#f59e0b]" />;
     if (rank === 2) return <Medal className="h-5 w-5 text-[#b8b8d0]" />;
     if (rank === 3) return <Medal className="h-5 w-5 text-[#cd7f32]" />;
-    return <span className="text-sm font-bold text-[#8888aa]">{rank}</span>;
+    return <span className="text-sm font-bold text-[#a0a0c0]">{rank}</span>;
   };
 
   return (
@@ -60,7 +60,7 @@ export default function LeaderboardPage() {
               <Loader2 className="h-8 w-8 animate-spin text-[#6c63ff]" />
             </div>
           ) : leaders.length === 0 ? (
-            <div className="py-20 text-center text-[#8888aa]">
+            <div className="py-20 text-center text-[#a0a0c0]">
               <p className="text-lg">{t("Leaderboard.noData")}</p>
             </div>
           ) : (
@@ -74,7 +74,7 @@ export default function LeaderboardPage() {
                         <div className="flex h-10 w-10 items-center justify-center">{getRankIcon(rank)}</div>
                         <div>
                           <p className="font-semibold text-white">{l.name}</p>
-                          <div className="flex items-center gap-2 text-xs text-[#8888aa]">
+                          <div className="flex items-center gap-2 text-xs text-[#a0a0c0]">
                             <Star className="h-3 w-3 fill-[#f59e0b] text-[#f59e0b]" />
                             {t("Leaderboard.trustScore", { score: l.trustScore })}
                           </div>
@@ -82,7 +82,7 @@ export default function LeaderboardPage() {
                       </div>
                       <div className="text-right">
                         <p className="font-bold text-[#10b981]">{formatCurrency(l.totalEarnings)}</p>
-                        <p className="text-xs text-[#8888aa]">{formatCompactNumber(l.totalViews)} {t("Leaderboard.views")}</p>
+                        <p className="text-xs text-[#a0a0c0]">{formatCompactNumber(l.totalViews)} {t("Leaderboard.views")}</p>
                       </div>
                     </div>
                   </div>

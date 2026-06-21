@@ -77,7 +77,7 @@ export default function SubmissionsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold text-white">{t("CreatorSubmissions.title")}</h2>
-          <p className="text-[#8888aa]">{t("CreatorSubmissions.subtitle")}</p>
+          <p className="text-[#a0a0c0]">{t("CreatorSubmissions.subtitle")}</p>
         </div>
         <button
           onClick={() => setShowForm(!showForm)}
@@ -112,11 +112,11 @@ export default function SubmissionsPage() {
             <div>
               <label className="mb-1.5 block text-sm font-medium text-[#e8e8f0]">{t("CreatorSubmissions.videoLink")}</label>
               <div className="relative">
-                <Link className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#8888aa]" />
+                <Link className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#a0a0c0]" />
                 <input
                   name="platformLink"
                   placeholder={t("CreatorSubmissions.videoLinkPlaceholder")}
-                  className="w-full rounded-xl border border-[#2a2a50] bg-[#0d0d22] py-3 pl-10 pr-4 text-sm text-white placeholder:text-[#8888aa] focus:border-[#6c63ff] focus:outline-none"
+                  className="w-full rounded-xl border border-[#2a2a50] bg-[#0d0d22] py-3 pl-10 pr-4 text-sm text-white placeholder:text-[#a0a0c0] focus:border-[#6c63ff] focus:outline-none"
                 />
               </div>
             </div>
@@ -132,7 +132,7 @@ export default function SubmissionsPage() {
           <Loader2 className="h-8 w-8 animate-spin text-[#6c63ff]" />
         </div>
       ) : submissions.length === 0 ? (
-        <div className="py-20 text-center text-[#8888aa]">
+        <div className="py-20 text-center text-[#a0a0c0]">
           <p className="text-lg">{t("CreatorSubmissions.empty")}</p>
         </div>
       ) : (
@@ -150,7 +150,7 @@ export default function SubmissionsPage() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-white">{sub.campaign?.title || t("CreatorSubmissions.unknownCampaign")}</h4>
-                      <div className="mt-1 flex items-center gap-3 text-sm text-[#8888aa]">
+                      <div className="mt-1 flex items-center gap-3 text-sm text-[#a0a0c0]">
                         <span>{PLATFORMS.find((p) => p.value === sub.platform)?.label || sub.platform || "N/A"}</span>
                         {sub.platformLink && (
                           <a href={sub.platformLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-[#6c63ff] hover:underline">
@@ -163,11 +163,11 @@ export default function SubmissionsPage() {
                   <div className="flex items-center gap-6">
                     <div className="text-center">
                       <div className="text-lg font-bold text-white">{formatCompactNumber(totalViews)}</div>
-                      <div className="text-xs text-[#8888aa]">{t("CreatorSubmissions.views")}</div>
+                      <div className="text-xs text-[#a0a0c0]">{t("CreatorSubmissions.views")}</div>
                     </div>
                     <div className="text-center">
                       <div className="text-lg font-bold text-[#10b981]">Rp {estimatedPayout.toLocaleString()}</div>
-                      <div className="text-xs text-[#8888aa]">{t("CreatorSubmissions.estimated")}</div>
+                      <div className="text-xs text-[#a0a0c0]">{t("CreatorSubmissions.estimated")}</div>
                     </div>
                     <div className={`flex items-center gap-1.5 rounded-full ${config.bg} px-3 py-1.5`}>
                       {config.icon}

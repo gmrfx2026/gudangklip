@@ -66,7 +66,7 @@ export default function AdminPayouts() {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold text-white">{t("AdminPayouts.title")}</h2>
-        <p className="text-[#8888aa]">{t("AdminPayouts.subtitle")}</p>
+        <p className="text-[#a0a0c0]">{t("AdminPayouts.subtitle")}</p>
       </div>
 
       <div className="flex gap-2 overflow-x-auto">
@@ -88,7 +88,7 @@ export default function AdminPayouts() {
           <Loader2 className="h-8 w-8 animate-spin text-[#6c63ff]" />
         </div>
       ) : filtered.length === 0 ? (
-        <div className="py-20 text-center text-[#8888aa]">
+        <div className="py-20 text-center text-[#a0a0c0]">
           <p className="text-lg">{t("AdminPayouts.empty")}</p>
         </div>
       ) : (
@@ -96,7 +96,7 @@ export default function AdminPayouts() {
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead className="border-b border-[#2a2a50]">
-                <tr className="text-left text-xs font-medium text-[#8888aa]">
+                <tr className="text-left text-xs font-medium text-[#a0a0c0]">
                   <th className="px-6 py-4">{t("AdminPayouts.colCreator")}</th>
                   <th className="px-6 py-4">{t("AdminPayouts.colAmount")}</th>
                   <th className="px-6 py-4">{t("AdminPayouts.colMethod")}</th>
@@ -112,16 +112,16 @@ export default function AdminPayouts() {
                     <tr key={p.id} className="border-b border-[#2a2a50]/50 text-sm hover:bg-[#1e1e3f]/20">
                       <td className="px-6 py-4">
                         <p className="font-medium text-white">{p.creator.name}</p>
-                        <p className="text-xs text-[#8888aa]">{p.creator.email}</p>
+                        <p className="text-xs text-[#a0a0c0]">{p.creator.email}</p>
                       </td>
                       <td className="px-6 py-4 text-[#10b981] font-medium">{formatCurrency(p.amount)}</td>
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-2">
-                          {p.payoutMethod === "BANK" ? <Banknote className="h-4 w-4 text-[#8888aa]" /> : <Smartphone className="h-4 w-4 text-[#8888aa]" />}
+                          {p.payoutMethod === "BANK" ? <Banknote className="h-4 w-4 text-[#a0a0c0]" /> : <Smartphone className="h-4 w-4 text-[#a0a0c0]" />}
                           <span className="text-white">{p.payoutMethod}</span>
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-[#8888aa]">{p.accountInfo}</td>
+                      <td className="px-6 py-4 text-[#a0a0c0]">{p.accountInfo}</td>
                       <td className="px-6 py-4">
                         <span className={`flex items-center gap-1 rounded-full ${config.bg} px-2.5 py-0.5 text-xs font-medium ${config.color}`}>
                           {config.icon} {config.label}

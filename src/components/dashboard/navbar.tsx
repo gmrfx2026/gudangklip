@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useSession } from "next-auth/react";
 import { useTranslations, useLocale } from "next-intl";
-import { Bell, Search, CheckCheck } from "lucide-react";
+import { Bell, Search, CheckCheck, Menu } from "lucide-react";
 import { getNotifications, getUnreadCount, markAllRead } from "@/actions/notification.actions";
 import { formatDistanceToNow } from "date-fns";
 import { id as idLocale, enUS } from "date-fns/locale";
@@ -20,7 +20,11 @@ type NotifItem = {
   createdAt: string;
 };
 
-export default function Navbar() {
+interface NavbarProps {
+  onToggleSidebar?: () => void;
+}
+
+export default function Navbar({ onToggleSidebar }: NavbarProps) {
   const { data: session } = useSession();
   const t = useTranslations();
   const locale = useLocale();
@@ -62,23 +66,40 @@ export default function Navbar() {
   };
 
   return (
-    <header className="flex h-16 items-center justify-between border-b border-[#2a2a50]/50 bg-[#0d0d22]/80 px-6 backdrop-blur-xl">
-      <div>
+    <header className="flex h-16 items-center justify-between border-b border-[#2a2a50]/50 bg-[#0d0d22]/80 px-4 sm:px-6 backdrop-blur-xl">
+      <div className="flex items-center gap-3">
+        {/* Mobile hamburger */}
+        {onToggleSidebar && (
+          <button
+            onClick={onToggleSidebar}
+            className="rounded-xl p-2 text-[#a0a0c0] hover:bg-[#1e1e3f] hover:text-white transition-colors lg:hidden"
+            aria-label="Open navigation menu"
+          >
+            <Menu className="h-5 w-5" />
+          </button>
+        )}
         <h1 className="text-lg font-semibold text-white">
           {t("Navbar.greeting", { name: session?.user?.name?.split(" ")[0] ?? "" })}
         </h1>
       </div>
       <div className="flex items-center gap-4">
         <div className="relative hidden sm:block">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#8888aa]" />
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#a0a0c0]" />
           <input
             placeholder={t("Common.search")}
-            className="w-64 rounded-xl border border-[#2a2a50] bg-[#111128] py-2 pl-10 pr-4 text-sm text-white placeholder:text-[#8888aa] focus:border-[#6c63ff] focus:outline-none"
+            aria-label={t("Common.search")}
+            className="w-64 rounded-xl border border-[#2a2a50] bg-[#111128] py-2 pl-10 pr-4 text-sm text-white placeholder:text-[#a0a0c0] focus:border-[#6c63ff] focus:outline-none"
           />
         </div>
         <LocaleSwitcher />
         <div ref={dropdownRef} className="relative">
-          <button onClick={toggleDropdown} className="relative rounded-xl p-2 text-[#8888aa] hover:bg-[#1e1e3f] hover:text-white transition-colors">
+          <button
+            onClick={toggleDropdown}
+            className="relative rounded-xl p-2 text-[#a0a0c0] hover:bg-[#1e1e3f] hover:text-white transition-colors"
+            aria-label={t("Navbar.notifications")}
+            aria-expanded={showDropdown}
+            aria-haspopup="true"
+          >
             <Bell className="h-5 w-5" />
             {unread > 0 && (
               <span className="absolute right-1 top-1 flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-[#ef4444] text-[10px] font-bold text-white px-0.5">
@@ -87,11 +108,15 @@ export default function Navbar() {
             )}
           </button>
           {showDropdown && (
-            <div className="absolute right-0 top-12 z-50 w-80 rounded-2xl border border-[#2a2a50] bg-[#111128] shadow-2xl overflow-hidden">
+            <div
+              className="absolute right-0 top-12 z-50 w-80 rounded-2xl border border-[#2a2a50] bg-[#111128] shadow-2xl overflow-hidden"
+              role="dialog"
+              aria-label={t("Navbar.notifications")}
+            >
               <div className="flex items-center justify-between border-b border-[#2a2a50]/50 px-4 py-3">
                 <h3 className="text-sm font-semibold text-white">{t("Navbar.notifications")}</h3>
                 {unread > 0 && (
-                  <button onClick={handleMarkAllRead} className="flex items-center gap-1 text-xs text-[#8888aa] hover:text-white">
+                  <button onClick={handleMarkAllRead} className="flex items-center gap-1 text-xs text-[#a0a0c0] hover:text-white" aria-label={t("Navbar.markAllRead")}>
                     <CheckCheck className="h-3.5 w-3.5" /> {t("Navbar.markAllRead")}
                   </button>
                 )}

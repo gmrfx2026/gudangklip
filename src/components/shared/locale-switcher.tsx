@@ -17,8 +17,8 @@ export default function LocaleSwitcher() {
   return (
     <button
       onClick={switchLocale}
-      className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium text-[#8888aa] hover:bg-[#1e1e3f] hover:text-white transition-colors"
-      title={locale === "id" ? "Switch to English" : "Ganti ke Bahasa Indonesia"}
+      className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium text-[#a0a0c0] hover:bg-[#1e1e3f] hover:text-white transition-colors"
+      aria-label={locale === "id" ? "Switch to English" : "Ganti ke Bahasa Indonesia"}
     >
       <Globe className="h-3.5 w-3.5" />
       <span>{locale === "id" ? "EN" : "ID"}</span>

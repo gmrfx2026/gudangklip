@@ -16,6 +16,7 @@ import {
   Banknote,
   LogOut,
   ChevronLeft,
+  X,
 } from "lucide-react";
 import { useState } from "react";
 import { signOut } from "next-auth/react";
@@ -32,7 +33,12 @@ const ICON_MAP: Record<string, React.ElementType> = {
   Banknote,
 };
 
-export default function Sidebar() {
+interface SidebarProps {
+  mobileOpen?: boolean;
+  onCloseMobile?: () => void;
+}
+
+function SidebarContent({ onCloseMobile }: { onCloseMobile?: () => void }) {
   const pathname = usePathname();
   const { data: session } = useSession();
   const t = useTranslations();
@@ -41,14 +47,10 @@ export default function Sidebar() {
   const links = SIDEBAR_LINKS[role] || [];
 
   return (
-    <aside
-      className={`relative flex flex-col border-r border-[#2a2a50]/50 bg-[#0d0d22] transition-all duration-300 ${
-        collapsed ? "w-[72px]" : "w-64"
-      }`}
-    >
+    <div className="flex h-full flex-col">
       {/* Logo */}
       <div className="flex h-16 items-center gap-3 border-b border-[#2a2a50]/50 px-4">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2" onClick={onCloseMobile}>
           <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#6c63ff] to-[#3b82f6] text-sm font-bold text-white">
             G
           </div>
@@ -58,12 +60,24 @@ export default function Sidebar() {
             </span>
           )}
         </Link>
+        {/* Desktop collapse */}
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="ml-auto rounded-lg p-1 text-[#8888aa] hover:bg-[#1e1e3f] hover:text-white"
+          className="ml-auto hidden rounded-lg p-1 text-[#a0a0c0] hover:bg-[#1e1e3f] hover:text-white lg:block"
+          aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
         >
           <ChevronLeft className={`h-4 w-4 transition-transform ${collapsed ? "rotate-180" : ""}`} />
         </button>
+        {/* Mobile close */}
+        {onCloseMobile && (
+          <button
+            onClick={onCloseMobile}
+            className="ml-auto rounded-lg p-1 text-[#a0a0c0] hover:bg-[#1e1e3f] hover:text-white lg:hidden"
+            aria-label="Close sidebar"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        )}
       </div>
 
       {/* Links */}
@@ -75,10 +89,11 @@ export default function Sidebar() {
             <Link
               key={link.href}
               href={link.href}
+              onClick={onCloseMobile}
               className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-all ${
                 isActive
                   ? "bg-[#6c63ff]/10 text-[#6c63ff] font-medium"
-                  : "text-[#8888aa] hover:bg-[#1e1e3f]/50 hover:text-[#e8e8f0]"
+                  : "text-[#a0a0c0] hover:bg-[#1e1e3f]/50 hover:text-[#e8e8f0]"
               }`}
             >
               <Icon className="h-5 w-5 shrink-0" />
@@ -97,18 +112,44 @@ export default function Sidebar() {
           {!collapsed && (
             <div className="flex-1 min-w-0">
               <p className="truncate text-sm font-medium text-white">{session?.user?.name}</p>
-              <p className="truncate text-xs text-[#8888aa] capitalize">{role?.toLowerCase()}</p>
+              <p className="truncate text-xs text-[#a0a0c0] capitalize">{role?.toLowerCase()}</p>
             </div>
           )}
         </div>
         <button
           onClick={() => signOut({ callbackUrl: "/" })}
-          className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-[#8888aa] hover:bg-[#ef4444]/10 hover:text-[#ef4444] transition-colors"
+          className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-[#a0a0c0] hover:bg-[#ef4444]/10 hover:text-[#ef4444] transition-colors"
+          aria-label="Sign out"
         >
           <LogOut className="h-5 w-5 shrink-0" />
           {!collapsed && <span>{t("Sidebar.logout")}</span>}
         </button>
       </div>
-    </aside>
+    </div>
+  );
+}
+
+export default function Sidebar({ mobileOpen, onCloseMobile }: SidebarProps) {
+  return (
+    <>
+      {/* Mobile overlay */}
+      {mobileOpen && (
+        <div className="fixed inset-0 z-40 lg:hidden">
+          <div
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            onClick={onCloseMobile}
+            aria-hidden="true"
+          />
+          <aside className="absolute inset-y-0 left-0 w-64 bg-[#0d0d22] border-r border-[#2a2a50]/50 animate-slide-in">
+            <SidebarContent onCloseMobile={onCloseMobile} />
+          </aside>
+        </div>
+      )}
+
+      {/* Desktop sidebar */}
+      <aside className="hidden lg:flex lg:flex-col lg:w-64 lg:shrink-0 border-r border-[#2a2a50]/50 bg-[#0d0d22] transition-all duration-300">
+        <SidebarContent />
+      </aside>
+    </>
   );
 }

@@ -39,7 +39,7 @@ export default function BrandAnalytics() {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold text-white">{t("BrandAnalytics.title")}</h2>
-        <p className="text-[#8888aa]">{t("BrandAnalytics.subtitle")}</p>
+        <p className="text-[#a0a0c0]">{t("BrandAnalytics.subtitle")}</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -52,7 +52,7 @@ export default function BrandAnalytics() {
           <div key={s.label} className="rounded-2xl border border-[#2a2a50] bg-[#111128]/50 p-5">
             <div className="mb-3 flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#6c63ff]/10 text-[#6c63ff]">{s.icon}</div>
-              <span className="text-sm text-[#8888aa]">{s.label}</span>
+              <span className="text-sm text-[#a0a0c0]">{s.label}</span>
             </div>
             <div className="text-2xl font-bold text-white">{s.value}</div>
           </div>
@@ -62,14 +62,14 @@ export default function BrandAnalytics() {
       <div className="rounded-2xl border border-[#2a2a50] bg-[#111128]/50 p-6">
         <h3 className="mb-4 text-lg font-semibold text-white">{t("BrandAnalytics.topCampaigns")}</h3>
         {data.topCampaigns.length === 0 ? (
-          <p className="py-8 text-center text-sm text-[#8888aa]">{t("BrandAnalytics.emptyData")}</p>
+          <p className="py-8 text-center text-sm text-[#a0a0c0]">{t("BrandAnalytics.emptyData")}</p>
         ) : (
           <div className="space-y-4">
             {data.topCampaigns.map((c, i) => (
               <div key={i} className="flex items-center justify-between rounded-xl bg-[#0d0d22] p-4">
                 <div>
                   <p className="font-medium text-white">{c.name}</p>
-                  <p className="text-xs text-[#8888aa]">{formatCompactNumber(c.views)} views &middot; {c.creators} creators</p>
+                  <p className="text-xs text-[#a0a0c0]">{formatCompactNumber(c.views)} views &middot; {c.creators} creators</p>
                 </div>
                 <div className="text-lg font-bold text-[#10b981]">{c.roi}% {t("BrandAnalytics.roi")}</div>
               </div>

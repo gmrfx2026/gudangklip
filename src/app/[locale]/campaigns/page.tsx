@@ -62,12 +62,12 @@ export default function PublicCampaigns() {
 
           <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#8888aa]" />
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#a0a0c0]" />
               <input
                 placeholder={t("Campaigns.searchPlaceholder")}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full rounded-xl border border-[#2a2a50] bg-[#111128] py-2.5 pl-10 pr-4 text-sm text-white placeholder:text-[#8888aa] focus:border-[#6c63ff] focus:outline-none"
+                className="w-full rounded-xl border border-[#2a2a50] bg-[#111128] py-2.5 pl-10 pr-4 text-sm text-white placeholder:text-[#a0a0c0] focus:border-[#6c63ff] focus:outline-none"
               />
             </div>
             <div className="flex gap-2 overflow-x-auto">
@@ -83,7 +83,7 @@ export default function PublicCampaigns() {
               <Loader2 className="h-8 w-8 animate-spin text-[#6c63ff]" />
             </div>
           ) : filtered.length === 0 ? (
-            <div className="py-20 text-center text-[#8888aa]">
+            <div className="py-20 text-center text-[#a0a0c0]">
               <p className="text-lg">{t("Campaigns.noCampaigns")}</p>
             </div>
           ) : (
@@ -101,13 +101,13 @@ export default function PublicCampaigns() {
                         <span className="rounded-full bg-[#6c63ff]/10 px-2.5 py-0.5 text-xs font-medium text-[#6c63ff]">{CATEGORIES.find((x) => x.value === c.category)?.label}</span>
                       </div>
                       <h3 className="mb-1 font-semibold text-white">{c.title}</h3>
-                      <p className="mb-3 text-xs text-[#8888aa]">{c.brand.name || t("Campaigns.unknownBrand")}</p>
+                      <p className="mb-3 text-xs text-[#a0a0c0]">{c.brand.name || t("Campaigns.unknownBrand")}</p>
                       <div className="mb-3 flex items-center justify-between text-sm">
                         <div className="flex items-center gap-1 text-[#10b981]"><DollarSign className="h-4 w-4" /><span className="font-semibold">Rp {c.cpmRate.toLocaleString()} {t("Campaigns.perKViews")}</span></div>
-                        <div className="flex items-center gap-1 text-[#8888aa]"><Users className="h-4 w-4" /><span>{c._count.participants}</span></div>
+                        <div className="flex items-center gap-1 text-[#a0a0c0]"><Users className="h-4 w-4" /><span>{c._count.participants}</span></div>
                       </div>
                       <div className="mb-1 flex justify-between text-xs">
-                        <span className="text-[#8888aa]">{t("Campaigns.budget")}</span><span className="text-white">{formatCurrency(c.totalBudget)}</span>
+                        <span className="text-[#a0a0c0]">{t("Campaigns.budget")}</span><span className="text-white">{formatCurrency(c.totalBudget)}</span>
                       </div>
                       <div className="h-1.5 rounded-full bg-[#1a1a35]">
                         <div className="h-full rounded-full bg-gradient-to-r from-[#6c63ff] to-[#3b82f6]" style={{ width: `${budgetPercent}%` }} />

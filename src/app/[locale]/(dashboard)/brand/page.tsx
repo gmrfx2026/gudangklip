@@ -64,7 +64,7 @@ export default function BrandOverview() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold text-white">{t("Brand.title")}</h2>
-          <p className="text-[#8888aa]">{t("Brand.subtitle")}</p>
+          <p className="text-[#a0a0c0]">{t("Brand.subtitle")}</p>
         </div>
         <Link
           href="/brand/campaigns/new"
@@ -86,10 +86,10 @@ export default function BrandOverview() {
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#6c63ff]/10 text-[#6c63ff]">
                 {stat.icon}
               </div>
-              <span className="text-sm text-[#8888aa]">{stat.label}</span>
+              <span className="text-sm text-[#a0a0c0]">{stat.label}</span>
             </div>
             <div className="text-2xl font-bold text-white">{stat.value}</div>
-            <div className="mt-1 text-xs text-[#8888aa]">
+            <div className="mt-1 text-xs text-[#a0a0c0]">
               {t("Brand.budgetPercent", { percent: budgetPercent })}
             </div>
           </div>
@@ -99,17 +99,17 @@ export default function BrandOverview() {
       <div className="rounded-2xl border border-[#2a2a50] bg-[#111128]/50 p-6">
         <h3 className="mb-4 text-lg font-semibold text-white">{t("Brand.recentSubmissions")}</h3>
         {data.recentSubmissions.length === 0 ? (
-          <p className="py-8 text-center text-sm text-[#8888aa]">{t("Brand.noSubmissions")}</p>
+          <p className="py-8 text-center text-sm text-[#a0a0c0]">{t("Brand.noSubmissions")}</p>
         ) : (
           <div className="space-y-3">
             {data.recentSubmissions.map((sub) => (
               <div key={sub.id} className="flex items-center justify-between rounded-xl bg-[#0d0d22] p-4">
                 <div>
                   <p className="font-medium text-white">{sub.creatorName}</p>
-                  <p className="text-xs text-[#8888aa]">{sub.campaignTitle}</p>
+                  <p className="text-xs text-[#a0a0c0]">{sub.campaignTitle}</p>
                 </div>
                 <div className="flex items-center gap-4">
-                  <span className="text-sm text-[#8888aa]">{formatCompactNumber(sub.views)} views</span>
+                  <span className="text-sm text-[#a0a0c0]">{formatCompactNumber(sub.views)} views</span>
                   <span
                     className={`rounded-full px-3 py-1 text-xs font-medium ${
                       sub.status === "APPROVED" ? "bg-[#10b981]/10 text-[#10b981]" : sub.status === "REJECTED" ? "bg-[#ef4444]/10 text-[#ef4444]" : "bg-[#f59e0b]/10 text-[#f59e0b]"
@@ -119,8 +119,8 @@ export default function BrandOverview() {
                   </span>
                   {sub.status === "PENDING" && (
                     <div className="flex gap-1">
-                      <button onClick={() => handleReview(sub.id, "APPROVED")} className="rounded-lg p-1.5 text-[#10b981] hover:bg-[#10b981]/10"><CheckCircle className="h-4 w-4" /></button>
-                      <button onClick={() => handleReview(sub.id, "REJECTED")} className="rounded-lg p-1.5 text-[#ef4444] hover:bg-[#ef4444]/10"><XCircle className="h-4 w-4" /></button>
+                      <button onClick={() => handleReview(sub.id, "APPROVED")} className="rounded-lg p-1.5 text-[#10b981] hover:bg-[#10b981]/10" aria-label={t("Brand.approve")}><CheckCircle className="h-4 w-4" /></button>
+                      <button onClick={() => handleReview(sub.id, "REJECTED")} className="rounded-lg p-1.5 text-[#ef4444] hover:bg-[#ef4444]/10" aria-label={t("Brand.reject")}><XCircle className="h-4 w-4" /></button>
                     </div>
                   )}
                 </div>

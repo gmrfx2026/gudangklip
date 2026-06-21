@@ -65,7 +65,7 @@ export default function LandingPage() {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.5 }}
             >
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#2a2a50] bg-[#111128]/80 px-4 py-1.5 text-sm backdrop-blur">
                 <Zap className="h-4 w-4 text-[#f59e0b]" />
@@ -98,7 +98,7 @@ export default function LandingPage() {
 
             {/* Stats */}
             <motion.div
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0,               y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-4"
@@ -111,7 +111,7 @@ export default function LandingPage() {
               ].map((stat) => (
                 <div key={stat.label} className="rounded-2xl border border-[#2a2a50] bg-[#111128]/50 p-4 backdrop-blur">
                   <div className="text-xl font-bold text-white">{stat.value}</div>
-                  <div className="text-sm text-[#8888aa]">{stat.label}</div>
+                  <div className="text-sm text-[#a0a0c0]">{stat.label}</div>
                 </div>
               ))}
             </motion.div>
@@ -164,7 +164,7 @@ export default function LandingPage() {
                   <span className="gradient-text mr-2">{item.step}.</span>
                   {item.title}
                 </h3>
-                <p className="text-sm text-[#8888aa]">{item.desc}</p>
+                <p className="text-sm text-[#a0a0c0]">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -209,12 +209,12 @@ export default function LandingPage() {
                     </span>
                   </div>
                   <h3 className="mb-1 text-lg font-semibold text-white">{campaign.title}</h3>
-                  <div className="mb-4 flex items-center gap-2 text-sm text-[#8888aa]">
+                  <div className="mb-4 flex items-center gap-2 text-sm text-[#a0a0c0]">
                     <DollarSign className="h-4 w-4" />
                     <span>Rp {campaign.cpm.toLocaleString()} /1K views</span>
                   </div>
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-[#8888aa]">{campaign.creators} {t("creators")}</span>
+                    <span className="text-[#a0a0c0]">{campaign.creators} {t("creators")}</span>
                     <span className="font-medium text-[#10b981]">{campaign.progress}% {t("progressSuffix")}</span>
                   </div>
                   <div className="mt-3 h-1.5 rounded-full bg-[#1a1a35]">
@@ -256,7 +256,7 @@ export default function LandingPage() {
                   {item.icon}
                 </div>
                 <h3 className="mb-2 font-semibold text-white">{item.title}</h3>
-                <p className="text-sm text-[#8888aa]">{item.desc}</p>
+                <p className="text-sm text-[#a0a0c0]">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -316,14 +316,14 @@ export default function LandingPage() {
             ].map((faq_item, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 viewport={{ once: true }}
                 className="rounded-2xl border border-[#2a2a50] bg-[#111128]/50 p-6"
               >
                 <h3 className="mb-2 font-semibold text-white">{faq_item.q}</h3>
-                <p className="text-sm text-[#8888aa]">{faq_item.a}</p>
+                <p className="text-sm text-[#a0a0c0]">{faq_item.a}</p>
               </motion.div>
             ))}
           </div>
@@ -336,7 +336,7 @@ export default function LandingPage() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
             viewport={{ once: true }}
             className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#6c63ff] to-[#3b82f6] p-12 text-center"
           >
@@ -366,18 +366,18 @@ export default function LandingPage() {
                   Gudang<span className="gradient-text">Klip</span>
                 </span>
               </Link>
-              <p className="mt-2 text-sm text-[#8888aa]">
+              <p className="mt-2 text-sm text-[#a0a0c0]">
                 {t("footerTagline")}
               </p>
             </div>
-            <div className="flex gap-8 text-sm text-[#8888aa]">
+            <div className="flex gap-8 text-sm text-[#a0a0c0]">
               <Link href="/campaigns" className="hover:text-white transition-colors">{t("navCampaigns")}</Link>
               <Link href="/leaderboard" className="hover:text-white transition-colors">{t("navLeaderboard")}</Link>
               <Link href="#" className="hover:text-white transition-colors">{t("footerPrivacy")}</Link>
               <Link href="#" className="hover:text-white transition-colors">{t("footerTerms")}</Link>
             </div>
           </div>
-          <div className="mt-8 border-t border-[#2a2a50]/50 pt-8 text-center text-sm text-[#8888aa]">
+          <div className="mt-8 border-t border-[#2a2a50]/50 pt-8 text-center text-sm text-[#a0a0c0]">
             &copy; {new Date().getFullYear()} {t("footerRights")}
           </div>
         </div>

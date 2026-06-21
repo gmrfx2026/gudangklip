@@ -41,7 +41,7 @@ export default function AgencyOverview() {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold text-white">{t("Agency.title")}</h2>
-        <p className="text-[#8888aa]">{t("Agency.subtitle")}</p>
+        <p className="text-[#a0a0c0]">{t("Agency.subtitle")}</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -54,7 +54,7 @@ export default function AgencyOverview() {
           <div key={s.label} className="rounded-2xl border border-[#2a2a50] bg-[#111128]/50 p-5">
             <div className="mb-3 flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#6c63ff]/10 text-[#6c63ff]">{s.icon}</div>
-              <span className="text-sm text-[#8888aa]">{s.label}</span>
+              <span className="text-sm text-[#a0a0c0]">{s.label}</span>
             </div>
             <div className="text-2xl font-bold text-white">{s.value}</div>
           </div>
@@ -64,18 +64,18 @@ export default function AgencyOverview() {
       <div className="rounded-2xl border border-[#2a2a50] bg-[#111128]/50 p-6">
         <h3 className="mb-4 text-lg font-semibold text-white">{t("Agency.members")}</h3>
         {data.members.length === 0 ? (
-          <p className="py-8 text-center text-sm text-[#8888aa]">{t("Agency.noMembers")}</p>
+          <p className="py-8 text-center text-sm text-[#a0a0c0]">{t("Agency.noMembers")}</p>
         ) : (
           <div className="space-y-3">
             {data.members.map((m) => (
               <div key={m.id} className="flex items-center justify-between rounded-xl bg-[#0d0d22] p-4">
                 <div>
                   <p className="font-medium text-white">{m.name}</p>
-                  <p className="text-xs text-[#8888aa]">{t("Agency.trustScore", { score: m.trustScore })} &middot; {formatCompactNumber(m.totalViews)} views</p>
+                  <p className="text-xs text-[#a0a0c0]">{t("Agency.trustScore", { score: m.trustScore })} &middot; {formatCompactNumber(m.totalViews)} views</p>
                 </div>
                 <div className="text-right">
                   <p className="font-semibold text-[#10b981]">{formatCurrency(m.totalEarnings)}</p>
-                  <p className="text-xs text-[#8888aa]">{t("Agency.commissionLabel", { amount: formatCurrency(Math.round(m.totalEarnings * data.commissionRate / 100)) })}</p>
+                  <p className="text-xs text-[#a0a0c0]">{t("Agency.commissionLabel", { amount: formatCurrency(Math.round(m.totalEarnings * data.commissionRate / 100)) })}</p>
                 </div>
               </div>
             ))}

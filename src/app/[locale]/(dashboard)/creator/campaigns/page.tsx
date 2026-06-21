@@ -21,7 +21,7 @@ type CreatorCampaign = {
 };
 
 const statusConfig: Record<string, { color: string; bg: string; label: string }> = {
-  DRAFT: { color: "text-[#8888aa]", bg: "bg-[#8888aa]/10", label: "Draft" },
+  DRAFT: { color: "text-[#a0a0c0]", bg: "bg-[#8888aa]/10", label: "Draft" },
   ACTIVE: { color: "text-[#10b981]", bg: "bg-[#10b981]/10", label: "Active" },
   PAUSED: { color: "text-[#f59e0b]", bg: "bg-[#f59e0b]/10", label: "Paused" },
   ENDED: { color: "text-[#ef4444]", bg: "bg-[#ef4444]/10", label: "Ended" },
@@ -42,7 +42,7 @@ export default function MyCampaigns() {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold text-white">{t("CreatorCampaigns.title")}</h2>
-        <p className="text-[#8888aa]">{t("CreatorCampaigns.subtitle")}</p>
+        <p className="text-[#a0a0c0]">{t("CreatorCampaigns.subtitle")}</p>
       </div>
 
       {loading ? (
@@ -53,7 +53,7 @@ export default function MyCampaigns() {
         <div className="flex flex-col items-center justify-center py-20">
           <FolderOpen className="h-16 w-16 text-[#2a2a50]" />
           <h3 className="mt-4 text-lg font-semibold text-white">{t("CreatorCampaigns.empty")}</h3>
-          <p className="text-[#8888aa]">{t("CreatorCampaigns.emptyDesc")}</p>
+          <p className="text-[#a0a0c0]">{t("CreatorCampaigns.emptyDesc")}</p>
           <Link href="/creator/explore" className="mt-4 rounded-xl bg-gradient-to-r from-[#6c63ff] to-[#3b82f6] px-6 py-2.5 text-sm font-semibold text-white hover:opacity-90 transition-opacity">
             {t("CreatorCampaigns.exploreButton")}
           </Link>
@@ -75,20 +75,20 @@ export default function MyCampaigns() {
                       </span>
                     </div>
                     <h3 className="text-lg font-semibold text-white">{c.title}</h3>
-                    <p className="text-sm text-[#8888aa]">{t("CreatorCampaigns.joined")} {timeAgo(new Date(c.joinedAt))} &middot; CPM: Rp {c.cpmRate.toLocaleString()}/1K</p>
+                    <p className="text-sm text-[#a0a0c0]">{t("CreatorCampaigns.joined")} {timeAgo(new Date(c.joinedAt))} &middot; CPM: Rp {c.cpmRate.toLocaleString()}/1K</p>
                   </div>
                   <div className="flex gap-6">
                     <div className="text-center">
                       <div className="text-lg font-bold text-white">{c.submissionsCount}</div>
-                      <div className="text-xs text-[#8888aa]">{t("CreatorCampaigns.submissions")}</div>
+                      <div className="text-xs text-[#a0a0c0]">{t("CreatorCampaigns.submissions")}</div>
                     </div>
                     <div className="text-center">
                       <div className="text-lg font-bold text-white">{c.totalViews.toLocaleString()}</div>
-                      <div className="text-xs text-[#8888aa]">{t("CreatorCampaigns.totalViews")}</div>
+                      <div className="text-xs text-[#a0a0c0]">{t("CreatorCampaigns.totalViews")}</div>
                     </div>
                     <div className="text-center">
                       <div className="text-lg font-bold text-[#10b981]">{formatCurrency(c.earnings)}</div>
-                      <div className="text-xs text-[#8888aa]">{t("CreatorCampaigns.earnings")}</div>
+                      <div className="text-xs text-[#a0a0c0]">{t("CreatorCampaigns.earnings")}</div>
                     </div>
                   </div>
                 </div>

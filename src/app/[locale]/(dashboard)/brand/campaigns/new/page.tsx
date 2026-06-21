@@ -43,13 +43,13 @@ export default function NewCampaign() {
 
   return (
     <div className="mx-auto max-w-2xl space-y-6">
-      <Link href="/brand/campaigns" className="flex items-center gap-2 text-sm text-[#8888aa] hover:text-white">
+      <Link href="/brand/campaigns" className="flex items-center gap-2 text-sm text-[#a0a0c0] hover:text-white">
         <ArrowLeft className="h-4 w-4" /> Kembali
       </Link>
 
       <div>
         <h2 className="text-2xl font-bold text-white">Buat Campaign Baru</h2>
-        <p className="text-[#8888aa]">Isi detail campaign untuk mulai mencari creator.</p>
+        <p className="text-[#a0a0c0]">Isi detail campaign untuk mulai mencari creator.</p>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -57,7 +57,7 @@ export default function NewCampaign() {
           <h3 className="text-lg font-semibold text-white">Informasi Dasar</h3>
           <div>
             <label className="mb-1.5 block text-sm font-medium text-[#e8e8f0]">Judul Campaign</label>
-            <input {...register("title")} placeholder="Nama campaign kamu" className="w-full rounded-xl border border-[#2a2a50] bg-[#0d0d22] px-4 py-3 text-sm text-white placeholder:text-[#8888aa] focus:border-[#6c63ff] focus:outline-none" />
+            <input {...register("title")} placeholder="Nama campaign kamu" className="w-full rounded-xl border border-[#2a2a50] bg-[#0d0d22] px-4 py-3 text-sm text-white placeholder:text-[#a0a0c0] focus:border-[#6c63ff] focus:outline-none" />
             {errors.title && <p className="mt-1 text-xs text-red-400">{errors.title.message}</p>}
           </div>
           <div>
@@ -70,12 +70,12 @@ export default function NewCampaign() {
           </div>
           <div>
             <label className="mb-1.5 block text-sm font-medium text-[#e8e8f0]">Deskripsi</label>
-            <textarea {...register("description")} rows={3} placeholder="Jelaskan campaign kamu" className="w-full rounded-xl border border-[#2a2a50] bg-[#0d0d22] px-4 py-3 text-sm text-white placeholder:text-[#8888aa] focus:border-[#6c63ff] focus:outline-none" />
+            <textarea {...register("description")} rows={3} placeholder="Jelaskan campaign kamu" className="w-full rounded-xl border border-[#2a2a50] bg-[#0d0d22] px-4 py-3 text-sm text-white placeholder:text-[#a0a0c0] focus:border-[#6c63ff] focus:outline-none" />
             {errors.description && <p className="mt-1 text-xs text-red-400">{errors.description.message}</p>}
           </div>
           <div>
             <label className="mb-1.5 block text-sm font-medium text-[#e8e8f0]">Brief (opsional)</label>
-            <textarea {...register("brief")} rows={4} placeholder="Brief detail untuk creator" className="w-full rounded-xl border border-[#2a2a50] bg-[#0d0d22] px-4 py-3 text-sm text-white placeholder:text-[#8888aa] focus:border-[#6c63ff] focus:outline-none" />
+            <textarea {...register("brief")} rows={4} placeholder="Brief detail untuk creator" className="w-full rounded-xl border border-[#2a2a50] bg-[#0d0d22] px-4 py-3 text-sm text-white placeholder:text-[#a0a0c0] focus:border-[#6c63ff] focus:outline-none" />
           </div>
         </div>
 
@@ -84,21 +84,21 @@ export default function NewCampaign() {
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
               <label className="mb-1.5 block text-sm font-medium text-[#e8e8f0]">Total Budget (Rp)</label>
-              <input {...register("totalBudget", { valueAsNumber: true })} type="number" placeholder="1000000" className="w-full rounded-xl border border-[#2a2a50] bg-[#0d0d22] px-4 py-3 text-sm text-white placeholder:text-[#8888aa] focus:border-[#6c63ff] focus:outline-none" />
+              <input {...register("totalBudget", { valueAsNumber: true })} type="number" placeholder="1000000" className="w-full rounded-xl border border-[#2a2a50] bg-[#0d0d22] px-4 py-3 text-sm text-white placeholder:text-[#a0a0c0] focus:border-[#6c63ff] focus:outline-none" />
               {errors.totalBudget && <p className="mt-1 text-xs text-red-400">{errors.totalBudget.message}</p>}
             </div>
             <div>
               <label className="mb-1.5 block text-sm font-medium text-[#e8e8f0]">CPM Rate (Rp per 1K views)</label>
-              <input {...register("cpmRate", { valueAsNumber: true })} type="number" placeholder="3000" className="w-full rounded-xl border border-[#2a2a50] bg-[#0d0d22] px-4 py-3 text-sm text-white placeholder:text-[#8888aa] focus:border-[#6c63ff] focus:outline-none" />
+              <input {...register("cpmRate", { valueAsNumber: true })} type="number" placeholder="3000" className="w-full rounded-xl border border-[#2a2a50] bg-[#0d0d22] px-4 py-3 text-sm text-white placeholder:text-[#a0a0c0] focus:border-[#6c63ff] focus:outline-none" />
               {errors.cpmRate && <p className="mt-1 text-xs text-red-400">{errors.cpmRate.message}</p>}
             </div>
             <div>
               <label className="mb-1.5 block text-sm font-medium text-[#e8e8f0]">Min Views to Claim</label>
-              <input {...register("minViewsToClaim", { valueAsNumber: true })} type="number" placeholder="1000" className="w-full rounded-xl border border-[#2a2a50] bg-[#0d0d22] px-4 py-3 text-sm text-white placeholder:text-[#8888aa] focus:border-[#6c63ff] focus:outline-none" />
+              <input {...register("minViewsToClaim", { valueAsNumber: true })} type="number" placeholder="1000" className="w-full rounded-xl border border-[#2a2a50] bg-[#0d0d22] px-4 py-3 text-sm text-white placeholder:text-[#a0a0c0] focus:border-[#6c63ff] focus:outline-none" />
             </div>
             <div>
               <label className="mb-1.5 block text-sm font-medium text-[#e8e8f0]">Max Views per Video (opsional)</label>
-              <input {...register("maxViewsPerVideo", { valueAsNumber: true })} type="number" placeholder="Tanpa batas" className="w-full rounded-xl border border-[#2a2a50] bg-[#0d0d22] px-4 py-3 text-sm text-white placeholder:text-[#8888aa] focus:border-[#6c63ff] focus:outline-none" />
+              <input {...register("maxViewsPerVideo", { valueAsNumber: true })} type="number" placeholder="Tanpa batas" className="w-full rounded-xl border border-[#2a2a50] bg-[#0d0d22] px-4 py-3 text-sm text-white placeholder:text-[#a0a0c0] focus:border-[#6c63ff] focus:outline-none" />
             </div>
           </div>
         </div>

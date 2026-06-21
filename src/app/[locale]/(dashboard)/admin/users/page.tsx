@@ -53,16 +53,16 @@ export default function AdminUsers() {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold text-white">{t("AdminUsers.title")}</h2>
-        <p className="text-[#8888aa]">{t("AdminUsers.subtitle")}</p>
+        <p className="text-[#a0a0c0]">{t("AdminUsers.subtitle")}</p>
       </div>
 
       <div className="relative flex-1 max-w-md">
-        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#8888aa]" />
+        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#a0a0c0]" />
         <input
           placeholder={t("AdminUsers.searchPlaceholder")}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full rounded-xl border border-[#2a2a50] bg-[#111128] py-2.5 pl-10 pr-4 text-sm text-white placeholder:text-[#8888aa] focus:border-[#6c63ff] focus:outline-none"
+          className="w-full rounded-xl border border-[#2a2a50] bg-[#111128] py-2.5 pl-10 pr-4 text-sm text-white placeholder:text-[#a0a0c0] focus:border-[#6c63ff] focus:outline-none"
         />
       </div>
 
@@ -71,7 +71,7 @@ export default function AdminUsers() {
           <Loader2 className="h-8 w-8 animate-spin text-[#6c63ff]" />
         </div>
       ) : filtered.length === 0 ? (
-        <div className="py-20 text-center text-[#8888aa]">
+        <div className="py-20 text-center text-[#a0a0c0]">
           <p className="text-lg">{t("AdminUsers.empty")}</p>
         </div>
       ) : (
@@ -79,7 +79,7 @@ export default function AdminUsers() {
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead className="border-b border-[#2a2a50]">
-                <tr className="text-left text-xs font-medium text-[#8888aa]">
+                <tr className="text-left text-xs font-medium text-[#a0a0c0]">
                   <th className="px-6 py-4">{t("AdminUsers.colUser")}</th>
                   <th className="px-6 py-4">{t("AdminUsers.colRole")}</th>
                   <th className="px-6 py-4">{t("AdminUsers.colTrustScore")}</th>
@@ -97,7 +97,7 @@ export default function AdminUsers() {
                         </div>
                         <div>
                           <p className="font-medium text-white">{u.name}</p>
-                          <p className="text-xs text-[#8888aa]">{u.email}</p>
+                          <p className="text-xs text-[#a0a0c0]">{u.email}</p>
                         </div>
                       </div>
                     </td>
@@ -124,7 +124,7 @@ export default function AdminUsers() {
                     </td>
                     <td className="px-6 py-4 text-white">{u.trustScore}</td>
                     <td className="px-6 py-4 text-[#10b981]">{formatCurrency(u.totalEarnings)}</td>
-                    <td className="px-6 py-4 text-[#8888aa]">{timeAgo(new Date(u.createdAt))}</td>
+                    <td className="px-6 py-4 text-[#a0a0c0]">{timeAgo(new Date(u.createdAt))}</td>
                   </tr>
                 ))}
               </tbody>

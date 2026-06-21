@@ -23,7 +23,7 @@ export default function AuthError({ error, reset }: Props) {
       <h1 className="mb-2 text-2xl font-bold text-white">
         Autentikasi Gagal
       </h1>
-      <p className="mb-8 max-w-md text-sm text-[#8888aa]">
+      <p className="mb-8 max-w-md text-sm text-[#a0a0c0]">
         Terjadi kesalahan saat memproses autentikasi. Silakan coba lagi.
       </p>
 
@@ -37,7 +37,7 @@ export default function AuthError({ error, reset }: Props) {
         </button>
         <Link
           href="/login"
-          className="inline-flex items-center gap-2 rounded-xl border border-[#2a2a50] bg-transparent px-6 py-3 text-sm font-medium text-[#8888aa] hover:bg-[#1a1a3e] transition-colors"
+          className="inline-flex items-center gap-2 rounded-xl border border-[#2a2a50] bg-transparent px-6 py-3 text-sm font-medium text-[#a0a0c0] hover:bg-[#1a1a3e] transition-colors"
         >
           Kembali ke Login
         </Link>

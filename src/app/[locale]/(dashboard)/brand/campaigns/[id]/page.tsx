@@ -39,7 +39,7 @@ const statusConfig: Record<string, { icon: React.ReactNode; color: string; bg: s
 };
 
 const campaignStatusConfig: Record<string, { color: string; bg: string; label: string }> = {
-  DRAFT: { color: "text-[#8888aa]", bg: "bg-[#8888aa]/10", label: "Draft" },
+  DRAFT: { color: "text-[#a0a0c0]", bg: "bg-[#8888aa]/10", label: "Draft" },
   ACTIVE: { color: "text-[#10b981]", bg: "bg-[#10b981]/10", label: "Active" },
   PAUSED: { color: "text-[#f59e0b]", bg: "bg-[#f59e0b]/10", label: "Paused" },
   ENDED: { color: "text-[#ef4444]", bg: "bg-[#ef4444]/10", label: "Ended" },
@@ -80,14 +80,14 @@ export default function CampaignDetail() {
   }
 
   if (!campaign) {
-    return <p className="py-20 text-center text-[#8888aa]">{t("BrandCampaignDetail.notFound")}</p>;
+    return <p className="py-20 text-center text-[#a0a0c0]">{t("BrandCampaignDetail.notFound")}</p>;
   }
 
   const campaignStatus = campaignStatusConfig[campaign.status];
 
   return (
     <div className="space-y-6">
-      <Link href="/brand/campaigns" className="flex items-center gap-2 text-sm text-[#8888aa] hover:text-white">
+      <Link href="/brand/campaigns" className="flex items-center gap-2 text-sm text-[#a0a0c0] hover:text-white">
         <ArrowLeft className="h-4 w-4" /> {t("BrandCampaignDetail.backToCampaigns")}
       </Link>
 
@@ -103,19 +103,19 @@ export default function CampaignDetail() {
         <h2 className="text-2xl font-bold text-white">{campaign.title}</h2>
         <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div className="rounded-xl bg-[#0d0d22] p-4">
-            <div className="flex items-center gap-2 text-sm text-[#8888aa]"><Users className="h-4 w-4" /> {t("BrandCampaignDetail.creators")}</div>
+            <div className="flex items-center gap-2 text-sm text-[#a0a0c0]"><Users className="h-4 w-4" /> {t("BrandCampaignDetail.creators")}</div>
             <div className="text-xl font-bold text-white">{campaign._count.participants}</div>
           </div>
           <div className="rounded-xl bg-[#0d0d22] p-4">
-            <div className="flex items-center gap-2 text-sm text-[#8888aa]"><BarChart3 className="h-4 w-4" /> {t("BrandCampaignDetail.totalViews")}</div>
+            <div className="flex items-center gap-2 text-sm text-[#a0a0c0]"><BarChart3 className="h-4 w-4" /> {t("BrandCampaignDetail.totalViews")}</div>
             <div className="text-xl font-bold text-white">{formatCompactNumber(campaign.totalViews)}</div>
           </div>
           <div className="rounded-xl bg-[#0d0d22] p-4">
-            <div className="flex items-center gap-2 text-sm text-[#8888aa]"><DollarSign className="h-4 w-4" /> {t("BrandCampaignDetail.remainingBudget")}</div>
+            <div className="flex items-center gap-2 text-sm text-[#a0a0c0]"><DollarSign className="h-4 w-4" /> {t("BrandCampaignDetail.remainingBudget")}</div>
             <div className="text-xl font-bold text-white">{formatCurrency(campaign.remainingBudget)}</div>
           </div>
           <div className="rounded-xl bg-[#0d0d22] p-4">
-            <div className="flex items-center gap-2 text-sm text-[#8888aa]">{t("BrandCampaignDetail.cpm")}</div>
+            <div className="flex items-center gap-2 text-sm text-[#a0a0c0]">{t("BrandCampaignDetail.cpm")}</div>
             <div className="text-xl font-bold text-white">Rp {campaign.cpmRate.toLocaleString()}</div>
           </div>
         </div>
@@ -124,7 +124,7 @@ export default function CampaignDetail() {
       <div className="rounded-2xl border border-[#2a2a50] bg-[#111128]/50 p-6">
         <h3 className="mb-4 text-lg font-semibold text-white">{t("BrandCampaignDetail.submissions")} ({campaign.submissions.length})</h3>
         {campaign.submissions.length === 0 ? (
-          <p className="py-8 text-center text-sm text-[#8888aa]">{t("BrandCampaignDetail.emptySubmissions")}</p>
+          <p className="py-8 text-center text-sm text-[#a0a0c0]">{t("BrandCampaignDetail.emptySubmissions")}</p>
         ) : (
           <div className="space-y-3">
             {campaign.submissions.map((sub) => {
@@ -134,7 +134,7 @@ export default function CampaignDetail() {
                 <div key={sub.id} className="flex items-center justify-between rounded-xl bg-[#0d0d22] p-4">
                   <div>
                     <p className="font-medium text-white">{sub.creator.name || sub.creator.id}</p>
-                    <p className="text-xs text-[#8888aa]">
+                    <p className="text-xs text-[#a0a0c0]">
                       {sub.platform || "N/A"} &middot; {formatCompactNumber(sub.views)} views &middot; Rp {estimatedPayout.toLocaleString()} {t("BrandCampaignDetail.estimated")}
                     </p>
                   </div>

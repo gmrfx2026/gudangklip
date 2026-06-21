@@ -63,17 +63,17 @@ export default function ExploreCampaigns() {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold text-white">{t("CreatorExplore.title")}</h2>
-        <p className="text-[#8888aa]">{t("CreatorExplore.subtitle")}</p>
+        <p className="text-[#a0a0c0]">{t("CreatorExplore.subtitle")}</p>
       </div>
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="relative flex-1 max-w-md">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#8888aa]" />
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#a0a0c0]" />
           <input
             placeholder={t("CreatorExplore.searchPlaceholder")}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full rounded-xl border border-[#2a2a50] bg-[#111128] py-2.5 pl-10 pr-4 text-sm text-white placeholder:text-[#8888aa] focus:border-[#6c63ff] focus:outline-none"
+            className="w-full rounded-xl border border-[#2a2a50] bg-[#111128] py-2.5 pl-10 pr-4 text-sm text-white placeholder:text-[#a0a0c0] focus:border-[#6c63ff] focus:outline-none"
           />
         </div>
         <div className="flex gap-2 overflow-x-auto">
@@ -104,7 +104,7 @@ export default function ExploreCampaigns() {
           <Loader2 className="h-8 w-8 animate-spin text-[#6c63ff]" />
         </div>
       ) : filtered.length === 0 ? (
-        <div className="py-20 text-center text-[#8888aa]">
+        <div className="py-20 text-center text-[#a0a0c0]">
           <p className="text-lg">{t("CreatorExplore.empty")}</p>
         </div>
       ) : (
@@ -124,20 +124,20 @@ export default function ExploreCampaigns() {
                     </span>
                   </div>
                   <h3 className="mb-1 text-base font-semibold text-white">{campaign.title}</h3>
-                  <p className="mb-3 text-xs text-[#8888aa]">{campaign.brand.name || t("CreatorExplore.unknownBrand")}</p>
+                  <p className="mb-3 text-xs text-[#a0a0c0]">{campaign.brand.name || t("CreatorExplore.unknownBrand")}</p>
                   <div className="mb-3 flex items-center justify-between text-sm">
                     <div className="flex items-center gap-1 text-[#10b981]">
                       <DollarSign className="h-4 w-4" />
                       <span className="font-semibold">Rp {campaign.cpmRate.toLocaleString()} /1K views</span>
                     </div>
-                    <div className="flex items-center gap-1 text-[#8888aa]">
+                    <div className="flex items-center gap-1 text-[#a0a0c0]">
                       <Users className="h-4 w-4" />
                       <span>{campaign._count.participants}</span>
                     </div>
                   </div>
                   <div className="mb-3">
                     <div className="mb-1 flex justify-between text-xs">
-                      <span className="text-[#8888aa]">{t("CreatorExplore.budget")}</span>
+                      <span className="text-[#a0a0c0]">{t("CreatorExplore.budget")}</span>
                       <span className="text-white">{formatCurrency(campaign.totalBudget)}</span>
                     </div>
                     <div className="h-1.5 rounded-full bg-[#1a1a35]">

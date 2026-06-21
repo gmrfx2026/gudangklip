@@ -93,7 +93,7 @@ export default function ProfilePage() {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold text-white">{t("CreatorProfile.title")}</h2>
-        <p className="text-[#8888aa]">{t("CreatorProfile.subtitle")}</p>
+        <p className="text-[#a0a0c0]">{t("CreatorProfile.subtitle")}</p>
       </div>
 
       <div className="rounded-2xl border border-[#2a2a50] bg-[#111128]/50 p-6">
@@ -115,10 +115,10 @@ export default function ProfilePage() {
           <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
           <div>
             <h3 className="text-xl font-bold text-white">{session?.user?.name || "User"}</h3>
-            <p className="text-[#8888aa]">{session?.user?.email}</p>
+            <p className="text-[#a0a0c0]">{session?.user?.email}</p>
             <div className="mt-2 flex items-center gap-4">
               <span className="rounded-full bg-[#6c63ff]/10 px-3 py-0.5 text-xs font-medium text-[#6c63ff]">Creator</span>
-              <span className="text-xs text-[#8888aa]">Trust Score: {trustScore}</span>
+              <span className="text-xs text-[#a0a0c0]">Trust Score: {trustScore}</span>
             </div>
           </div>
         </div>
@@ -148,7 +148,7 @@ export default function ProfilePage() {
               </div>
               <div>
                 <label className="mb-1 block text-sm font-medium text-[#e8e8f0]">{t("CreatorProfile.username")}</label>
-                <input name="username" placeholder={t("CreatorProfile.usernamePlaceholder")} className="w-full rounded-xl border border-[#2a2a50] bg-[#111128] px-4 py-2.5 text-sm text-white placeholder:text-[#8888aa] focus:border-[#6c63ff] focus:outline-none" />
+                <input name="username" placeholder={t("CreatorProfile.usernamePlaceholder")} className="w-full rounded-xl border border-[#2a2a50] bg-[#111128] px-4 py-2.5 text-sm text-white placeholder:text-[#a0a0c0] focus:border-[#6c63ff] focus:outline-none" />
               </div>
               <button type="submit" disabled={connecting} className="rounded-xl bg-gradient-to-r from-[#6c63ff] to-[#3b82f6] px-5 py-2 text-sm font-semibold text-white hover:opacity-90 transition-opacity disabled:opacity-50">
                 {connecting ? t("CreatorProfile.connecting") : t("CreatorProfile.connect")}
@@ -162,7 +162,7 @@ export default function ProfilePage() {
             <Loader2 className="h-6 w-6 animate-spin text-[#6c63ff]" />
           </div>
         ) : socialAccounts.length === 0 ? (
-          <p className="py-8 text-center text-sm text-[#8888aa]">{t("CreatorProfile.emptySocial")}</p>
+          <p className="py-8 text-center text-sm text-[#a0a0c0]">{t("CreatorProfile.emptySocial")}</p>
         ) : (
           <div className="space-y-3">
             {socialAccounts.map((acc) => (
@@ -173,7 +173,7 @@ export default function ProfilePage() {
                   </div>
                   <div>
                     <p className="font-medium text-white">{PLATFORMS.find((p) => p.value === acc.platform)?.label}</p>
-                    <p className="text-sm text-[#8888aa]">{acc.username}</p>
+                    <p className="text-sm text-[#a0a0c0]">{acc.username}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">

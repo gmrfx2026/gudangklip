@@ -52,7 +52,7 @@ function VerifyContent() {
               <Loader2 className="h-10 w-10 animate-spin text-[#6c63ff]" />
             </div>
             <h1 className="mb-2 text-xl font-bold text-white">{t("Auth.verifyTitle")}</h1>
-            <p className="text-[#8888aa]">{message}</p>
+            <p className="text-[#a0a0c0]">{message}</p>
           </>
         ) : status === "success" ? (
           <>
@@ -60,7 +60,7 @@ function VerifyContent() {
               <CheckCircle className="h-10 w-10 text-[#10b981]" />
             </div>
             <h1 className="mb-2 text-2xl font-bold text-white">{t("Auth.verifySuccess")}</h1>
-            <p className="mb-8 text-[#8888aa]">{message}</p>
+            <p className="mb-8 text-[#a0a0c0]">{message}</p>
             <Link
               href="/login"
               className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#6c63ff] to-[#3b82f6] px-6 py-3 text-sm font-semibold text-white hover:opacity-90"
@@ -74,7 +74,7 @@ function VerifyContent() {
               <XCircle className="h-10 w-10 text-[#ef4444]" />
             </div>
             <h1 className="mb-2 text-2xl font-bold text-white">{t("Auth.verifyFailed")}</h1>
-            <p className="mb-8 text-[#8888aa]">{message}</p>
+            <p className="mb-8 text-[#a0a0c0]">{message}</p>
             <Link
               href="/login"
               className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#6c63ff] to-[#3b82f6] px-6 py-3 text-sm font-semibold text-white hover:opacity-90"

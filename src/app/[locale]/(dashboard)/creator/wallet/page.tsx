@@ -140,7 +140,7 @@ export default function WalletPage() {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold text-white">{t("CreatorWallet.title")}</h2>
-        <p className="text-[#8888aa]">{t("CreatorWallet.subtitle")}</p>
+        <p className="text-[#a0a0c0]">{t("CreatorWallet.subtitle")}</p>
       </div>
 
       <div className="rounded-2xl border border-[#2a2a50] bg-gradient-to-br from-[#6c63ff]/10 to-[#3b82f6]/10 p-6">
@@ -149,7 +149,7 @@ export default function WalletPage() {
             <Wallet className="h-6 w-6 text-white" />
           </div>
           <div>
-            <p className="text-sm text-[#8888aa]">{t("CreatorWallet.availableBalance")}</p>
+            <p className="text-sm text-[#a0a0c0]">{t("CreatorWallet.availableBalance")}</p>
             <p className="text-3xl font-bold text-white">{formatCurrency(balance)}</p>
           </div>
         </div>
@@ -180,9 +180,9 @@ export default function WalletPage() {
                 name="amount"
                 placeholder={`Min. ${formatCurrency(MIN_TOPUP)}`}
                 defaultValue={50000}
-                className="w-full rounded-xl border border-[#2a2a50] bg-[#0d0d22] px-4 py-3 text-sm text-white placeholder:text-[#8888aa] focus:border-[#6c63ff] focus:outline-none"
+                className="w-full rounded-xl border border-[#2a2a50] bg-[#0d0d22] px-4 py-3 text-sm text-white placeholder:text-[#a0a0c0] focus:border-[#6c63ff] focus:outline-none"
               />
-              <p className="mt-1 text-xs text-[#8888aa]">{t("CreatorWallet.topUpMinMax", { min: formatCurrency(MIN_TOPUP), max: formatCurrency(MAX_TOPUP) })}</p>
+              <p className="mt-1 text-xs text-[#a0a0c0]">{t("CreatorWallet.topUpMinMax", { min: formatCurrency(MIN_TOPUP), max: formatCurrency(MAX_TOPUP) })}</p>
             </div>
             <button type="submit" disabled={toppingUp} className="w-full rounded-xl bg-gradient-to-r from-[#10b981] to-[#059669] py-3 text-sm font-semibold text-white hover:opacity-90 transition-opacity disabled:opacity-50">
               {toppingUp ? t("CreatorWallet.processing") : t("CreatorWallet.payNow")}
@@ -202,7 +202,7 @@ export default function WalletPage() {
                 name="amount"
                 placeholder="Min. Rp 50.000"
                 defaultValue={50000}
-                className="w-full rounded-xl border border-[#2a2a50] bg-[#0d0d22] px-4 py-3 text-sm text-white placeholder:text-[#8888aa] focus:border-[#6c63ff] focus:outline-none"
+                className="w-full rounded-xl border border-[#2a2a50] bg-[#0d0d22] px-4 py-3 text-sm text-white placeholder:text-[#a0a0c0] focus:border-[#6c63ff] focus:outline-none"
               />
             </div>
             <div>
@@ -219,7 +219,7 @@ export default function WalletPage() {
               <input
                 name="accountInfo"
                 placeholder="Contoh: BCA 1234567890 a/n Nama"
-                className="w-full rounded-xl border border-[#2a2a50] bg-[#0d0d22] px-4 py-3 text-sm text-white placeholder:text-[#8888aa] focus:border-[#6c63ff] focus:outline-none"
+                className="w-full rounded-xl border border-[#2a2a50] bg-[#0d0d22] px-4 py-3 text-sm text-white placeholder:text-[#a0a0c0] focus:border-[#6c63ff] focus:outline-none"
               />
             </div>
             <button type="submit" disabled={withdrawing} className="w-full rounded-xl bg-gradient-to-r from-[#6c63ff] to-[#3b82f6] py-3 text-sm font-semibold text-white hover:opacity-90 transition-opacity disabled:opacity-50">
@@ -238,7 +238,7 @@ export default function WalletPage() {
             <Loader2 className="h-6 w-6 animate-spin text-[#6c63ff]" />
           </div>
         ) : (transactions.length === 0 && payouts.length === 0) ? (
-          <p className="py-8 text-center text-sm text-[#8888aa]">Belum ada riwayat transaksi.</p>
+          <p className="py-8 text-center text-sm text-[#a0a0c0]">Belum ada riwayat transaksi.</p>
         ) : (
           <div className="space-y-3">
             {transactions.map((t) => {
@@ -251,7 +251,7 @@ export default function WalletPage() {
                     </div>
                     <div>
                       <p className="font-medium text-white">+ {formatCurrency(t.amount)}</p>
-                      <p className="text-xs text-[#8888aa]">Top-Up {t.paymentMethod ? `via ${t.paymentMethod}` : ""}</p>
+                      <p className="text-xs text-[#a0a0c0]">Top-Up {t.paymentMethod ? `via ${t.paymentMethod}` : ""}</p>
                     </div>
                   </div>
                   <span className={`rounded-full ${config.bg} px-3 py-1 text-xs font-medium ${config.color}`}>
@@ -274,7 +274,7 @@ export default function WalletPage() {
                     </div>
                     <div>
                       <p className="font-medium text-white">- {formatCurrency(p.amount)}</p>
-                      <p className="text-xs text-[#8888aa]">{p.payoutMethod} &middot; {p.accountInfo}</p>
+                      <p className="text-xs text-[#a0a0c0]">{p.payoutMethod} &middot; {p.accountInfo}</p>
                     </div>
                   </div>
                   <span className={`rounded-full ${config.bg} px-3 py-1 text-xs font-medium ${config.color}`}>

@@ -63,7 +63,7 @@ export default function AdminOverview() {
     <div className="space-y-6">
       <div>
         <h2 className="text-2xl font-bold text-white">{t("Admin.title")}</h2>
-        <p className="text-[#8888aa]">{t("Admin.subtitle")}</p>
+        <p className="text-[#a0a0c0]">{t("Admin.subtitle")}</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -76,7 +76,7 @@ export default function AdminOverview() {
           <div key={s.label} className="rounded-2xl border border-[#2a2a50] bg-[#111128]/50 p-5">
             <div className="mb-3 flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#6c63ff]/10 text-[#6c63ff]">{s.icon}</div>
-              <span className="text-sm text-[#8888aa]">{s.label}</span>
+              <span className="text-sm text-[#a0a0c0]">{s.label}</span>
             </div>
             <div className="text-2xl font-bold text-white">{s.value}</div>
           </div>
@@ -87,18 +87,18 @@ export default function AdminOverview() {
         <div className="rounded-2xl border border-[#2a2a50] bg-[#111128]/50 p-6">
           <h3 className="mb-4 text-lg font-semibold text-white">{t("Admin.recentUsers")}</h3>
           {data.recentUsers.length === 0 ? (
-            <p className="py-8 text-center text-sm text-[#8888aa]">{t("Admin.noUsers")}</p>
+            <p className="py-8 text-center text-sm text-[#a0a0c0]">{t("Admin.noUsers")}</p>
           ) : (
             <div className="space-y-3">
               {data.recentUsers.map((u) => (
                 <div key={u.id} className="flex items-center justify-between rounded-xl bg-[#0d0d22] p-4">
                   <div>
                     <p className="font-medium text-white">{u.name}</p>
-                    <p className="text-xs text-[#8888aa]">{u.email}</p>
+                    <p className="text-xs text-[#a0a0c0]">{u.email}</p>
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="rounded-full bg-[#6c63ff]/10 px-2.5 py-0.5 text-xs font-medium text-[#6c63ff]">{u.role}</span>
-                    <span className="text-xs text-[#8888aa]">{timeAgo(new Date(u.createdAt))}</span>
+                    <span className="text-xs text-[#a0a0c0]">{timeAgo(new Date(u.createdAt))}</span>
                   </div>
                 </div>
               ))}
@@ -109,14 +109,14 @@ export default function AdminOverview() {
         <div className="rounded-2xl border border-[#2a2a50] bg-[#111128]/50 p-6">
           <h3 className="mb-4 text-lg font-semibold text-white">{t("Admin.pendingApprovals")}</h3>
           {data.pendingCampaigns.length === 0 ? (
-            <p className="py-8 text-center text-sm text-[#8888aa]">{t("Admin.noPendingCampaigns")}</p>
+            <p className="py-8 text-center text-sm text-[#a0a0c0]">{t("Admin.noPendingCampaigns")}</p>
           ) : (
             <div className="space-y-3">
               {data.pendingCampaigns.map((c) => (
                 <div key={c.id} className="flex items-center justify-between rounded-xl bg-[#0d0d22] p-4">
                   <div>
                     <p className="font-medium text-white">{c.title}</p>
-                    <p className="text-xs text-[#8888aa]">{c.brand.name || "Unknown"} &middot; {formatCurrency(c.totalBudget)}</p>
+                    <p className="text-xs text-[#a0a0c0]">{c.brand.name || "Unknown"} &middot; {formatCurrency(c.totalBudget)}</p>
                   </div>
                   <div className="flex gap-2">
                     <button onClick={() => handleApprove(c.id)} className="rounded-lg bg-[#10b981]/10 px-3 py-1.5 text-xs font-medium text-[#10b981] hover:bg-[#10b981]/20">{t("Admin.approve")}</button>

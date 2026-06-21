@@ -33,7 +33,7 @@ export default class ErrorBoundary extends Component<Props, State> {
             <AlertTriangle className="h-8 w-8 text-[#ef4444]" />
           </div>
           <h3 className="mb-2 text-lg font-semibold text-white">Terjadi Kesalahan</h3>
-          <p className="mb-4 text-sm text-[#8888aa]">
+          <p className="mb-4 text-sm text-[#a0a0c0]">
             {this.state.error?.message || "Halaman tidak dapat dimuat."}
           </p>
           <button
