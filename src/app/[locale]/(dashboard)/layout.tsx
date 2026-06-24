@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { useEffect, useState } from "react";
 import Sidebar from "@/components/dashboard/sidebar";
@@ -13,6 +14,7 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const t = useTranslations("Dashboard");
   const { data: session, status } = useSession();
   const router = useRouter();
   const [sidebarMobileOpen, setSidebarMobileOpen] = useState(false);
@@ -39,9 +41,7 @@ export default function DashboardLayout({
       <div className="flex flex-1 flex-col overflow-hidden">
         {showFeeBanner && (
           <div className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#6c63ff]/20 to-[#3b82f6]/20 border-b border-[#6c63ff]/20 px-4 py-1.5">
-            <span className="text-xs font-medium text-[#e8e8f0]">
-              <strong>0% Biaya</strong> — Tidak ada potongan! 100% penghasilan masuk ke wallet kamu.
-            </span>
+            <span className="text-xs font-medium text-[#e8e8f0]">{t("feeBanner")}</span>
             <button
               onClick={() => setShowFeeBanner(false)}
               className="ml-2 rounded p-0.5 text-[#a0a0c0] hover:text-white hover:bg-[#1e1e3f]"

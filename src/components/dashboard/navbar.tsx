@@ -73,7 +73,7 @@ export default function Navbar({ onToggleSidebar }: NavbarProps) {
           <button
             onClick={onToggleSidebar}
             className="rounded-xl p-2 text-[#a0a0c0] hover:bg-[#1e1e3f] hover:text-white transition-colors lg:hidden"
-            aria-label="Open navigation menu"
+            aria-label={t("Navbar.openMenu")}
           >
             <Menu className="h-5 w-5" />
           </button>

@@ -14,12 +14,6 @@ import {
 import { formatCurrency, formatCompactNumber } from "@/lib/utils";
 import { getBrandAnalytics } from "@/actions/analytics.actions";
 
-const PLATFORM_LABELS: Record<string, string> = {
-  TIKTOK: "TikTok",
-  INSTAGRAM: "Instagram",
-  YOUTUBE: "YouTube",
-};
-
 const PLATFORM_COLORS: Record<string, string> = {
   TIKTOK: "#6c63ff",
   INSTAGRAM: "#e4405f",
@@ -67,7 +61,7 @@ export default function BrandAnalytics() {
   const t = useTranslations();
   const [data, setData] = useState<AnalyticsData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [platformTab, setPlatformTab] = useState<string>("Semua");
+  const [platformTab, setPlatformTab] = useState<string>("all");
   const [toggleTotal, setToggleTotal] = useState<"total" | "growth">("total");
 
   useEffect(() => {
@@ -86,11 +80,11 @@ export default function BrandAnalytics() {
 
   if (!data) return null;
 
-  const platformTabs = ["Semua", "TikTok", "Instagram", "YouTube"];
+  const platformTabs = ["all", "TIKTOK", "INSTAGRAM", "YOUTUBE"];
 
-  const filteredVideos = platformTab === "Semua"
+  const filteredVideos = platformTab === "all"
     ? data.approvedVideos
-    : data.approvedVideos.filter((v) => v.platform === platformTab.toUpperCase());
+    : data.approvedVideos.filter((v) => v.platform === platformTab);
 
   return (
     <div className="space-y-6">
@@ -135,7 +129,7 @@ export default function BrandAnalytics() {
           { icon: <DollarSign className="h-5 w-5" />, label: t("BrandAnalytics.spent"), value: formatCurrency(data.spent) },
           {
             icon: <BarChart3 className="h-5 w-5" />,
-            label: "CPM",
+            label: t("BrandAnalytics.cpm"),
             value: (
               <div className="flex flex-col">
                 <span className="text-sm font-bold text-[#10b981]">Rp {data.cpmEffective.toLocaleString()} {t("BrandAnalytics.cpmEffective")}</span>
@@ -189,7 +183,7 @@ export default function BrandAnalytics() {
                 platformTab === tab ? "bg-[#6c63ff] text-white" : "bg-[#0d0d22] text-[#a0a0c0] hover:text-white"
               }`}
             >
-              {tab === "Semua" ? t("Brand.filterSemua") : tab}
+              {tab === "all" ? t("Brand.filterSemua") : t(`Platform.${tab}`)}
             </button>
           ))}
         </div>
@@ -221,7 +215,7 @@ export default function BrandAnalytics() {
               {data.platformDistribution.map((pd) => (
                 <div key={pd.platform}>
                   <div className="mb-1 flex items-center justify-between text-sm">
-                    <span className="text-[#a0a0c0]">{PLATFORM_LABELS[pd.platform] || pd.platform}</span>
+                    <span className="text-[#a0a0c0]">{t(`Platform.${pd.platform}`)}</span>
                     <span className="text-white font-medium">{pd.percent}%</span>
                   </div>
                   <div className="h-2 w-full rounded-full bg-[#0d0d22]">
@@ -271,7 +265,7 @@ export default function BrandAnalytics() {
             <div className="text-sm text-[#a0a0c0]">{t("BrandAnalytics.cpmEffective")}</div>
             <div className="mt-1 text-2xl font-bold text-[#10b981]">Rp {data.cpmEffective.toLocaleString()}</div>
             <div className="mt-1 text-xs text-[#a0a0c0]">
-              {data.cpmOriginal > 0 ? `${Math.round((1 - data.cpmEffective / data.cpmOriginal) * 100)}% lebih efisien` : ""}
+              {data.cpmOriginal > 0 ? t("BrandAnalytics.cpmEfficiency", { percent: Math.round((1 - data.cpmEffective / data.cpmOriginal) * 100) }) : ""}
             </div>
           </div>
         </div>
@@ -313,7 +307,7 @@ export default function BrandAnalytics() {
                     </td>
                     <td className="py-3 pr-4">
                       <span className="rounded bg-[#1e1e3f] px-2 py-0.5 text-xs text-[#a0a0c0]">
-                        {PLATFORM_LABELS[video.platform || ""] || "-"}
+                        {t(`Platform.${video.platform || "TIKTOK"}`)}
                       </span>
                     </td>
                     <td className="py-3 pr-4 text-white">{formatCompactNumber(video.views)}</td>

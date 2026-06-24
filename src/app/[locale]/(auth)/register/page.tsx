@@ -11,16 +11,16 @@ import { Eye, EyeOff, UserPlus, ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 const INDUSTRIES = [
-  { value: "E_COMMERCE", label: "E-Commerce" },
-  { value: "FOOD_BEVERAGE", label: "Food & Beverage" },
-  { value: "FASHION_BEAUTY", label: "Fashion & Beauty" },
-  { value: "TECHNOLOGY", label: "Technology" },
-  { value: "FINANCE", label: "Finance" },
-  { value: "HEALTH_WELLNESS", label: "Health & Wellness" },
-  { value: "ENTERTAINMENT", label: "Entertainment" },
-  { value: "EDUCATION", label: "Education" },
-  { value: "TRAVEL_HOSPITALITY", label: "Travel & Hospitality" },
-  { value: "OTHER", label: "Other" },
+  { value: "E_COMMERCE", labelKey: "BrandSettings.industryECommerce" },
+  { value: "FOOD_BEVERAGE", labelKey: "BrandSettings.industryFoodBeverage" },
+  { value: "FASHION_BEAUTY", labelKey: "BrandSettings.industryFashionBeauty" },
+  { value: "TECHNOLOGY", labelKey: "BrandSettings.industryTechnology" },
+  { value: "FINANCE", labelKey: "BrandSettings.industryFinance" },
+  { value: "HEALTH_WELLNESS", labelKey: "BrandSettings.industryHealthWellness" },
+  { value: "ENTERTAINMENT", labelKey: "BrandSettings.industryEntertainment" },
+  { value: "EDUCATION", labelKey: "BrandSettings.industryEducation" },
+  { value: "TRAVEL_HOSPITALITY", labelKey: "BrandSettings.industryTravelHospitality" },
+  { value: "OTHER", labelKey: "BrandSettings.industryOther" },
 ];
 
 export default function RegisterPage() {
@@ -167,7 +167,7 @@ export default function RegisterPage() {
                       </option>
                       {INDUSTRIES.map((ind) => (
                         <option key={ind.value} value={ind.value} className="bg-[#111128] text-white">
-                          {ind.label}
+                          {t(ind.labelKey)}
                         </option>
                       ))}
                     </select>
@@ -193,7 +193,7 @@ export default function RegisterPage() {
               <input
                 {...register("email")}
                 type="email"
-                placeholder="nama@email.com"
+                    placeholder={t("Auth.emailPlaceholder")}
                 className="w-full rounded-xl border border-[#2a2a50] bg-[#111128] px-4 py-3 text-sm text-white placeholder:text-[#a0a0c0] focus:border-[#6c63ff] focus:outline-none focus:ring-1 focus:ring-[#6c63ff]"
               />
               {errors.email && <p className="mt-1 text-xs text-red-400">{errors.email.message}</p>}

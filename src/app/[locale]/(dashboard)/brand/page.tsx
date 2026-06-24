@@ -23,12 +23,6 @@ import { getBrandOverview } from "@/actions/campaign.actions";
 import { reviewSubmission } from "@/actions/submission.actions";
 import { toast } from "sonner";
 
-const PLATFORM_LABELS: Record<string, string> = {
-  TIKTOK: "TikTok",
-  INSTAGRAM: "Instagram",
-  YOUTUBE: "YouTube",
-};
-
 type CampaignCard = {
   id: string;
   title: string;
@@ -77,8 +71,8 @@ export default function BrandOverview() {
   const { data: session } = useSession();
   const [data, setData] = useState<OverviewData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [campaignFilter, setCampaignFilter] = useState<string>("Semua");
-  const [platformFilter, setPlatformFilter] = useState<string>("Semua");
+  const [campaignFilter, setCampaignFilter] = useState<string>("all");
+  const [platformFilter, setPlatformFilter] = useState<string>("all");
 
   const fetchData = () => {
     getBrandOverview()
@@ -112,17 +106,17 @@ export default function BrandOverview() {
   const budgetPercent = data.totalBudget > 0 ? Math.round((data.usedBudget / data.totalBudget) * 100) : 0;
 
   // Filter campaigns
-  const filteredCampaigns = campaignFilter === "Semua"
+  const filteredCampaigns = campaignFilter === "all"
     ? data.campaignCards
-    : data.campaignCards.filter((c) => c.status === campaignFilter.toUpperCase());
+    : data.campaignCards.filter((c) => c.status === campaignFilter);
 
   // Filter approved videos
-  const filteredVideos = platformFilter === "Semua"
+  const filteredVideos = platformFilter === "all"
     ? data.approvedVideos
-    : data.approvedVideos.filter((v) => v.platform === platformFilter.toUpperCase());
+    : data.approvedVideos.filter((v) => v.platform === platformFilter);
 
-  const campaignFilterTabs = ["Semua", "Active", "Paused", "Ended"];
-  const platformFilterTabs = ["Semua", "TikTok", "Instagram", "YouTube"];
+  const campaignFilterTabs = ["all", "ACTIVE", "PAUSED", "ENDED"];
+  const platformFilterTabs = ["all", "TIKTOK", "INSTAGRAM", "YOUTUBE"];
 
   return (
     <div className="space-y-6">
@@ -183,7 +177,7 @@ export default function BrandOverview() {
                   : "bg-[#0d0d22] text-[#a0a0c0] hover:text-white"
               }`}
             >
-              {tab === "Semua" ? t("Brand.filterSemua") : tab === "Active" ? t("Brand.filterActive") : tab === "Paused" ? t("Brand.filterPaused") : t("Brand.filterEnded")}
+              {tab === "all" ? t("Brand.filterSemua") : tab === "ACTIVE" ? t("Brand.filterActive") : tab === "PAUSED" ? t("Brand.filterPaused") : t("Brand.filterEnded")}
             </button>
           ))}
         </div>
@@ -198,14 +192,15 @@ export default function BrandOverview() {
                   <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${
                     camp.status === "ACTIVE" ? "bg-[#10b981]/10 text-[#10b981]" :
                     camp.status === "PAUSED" ? "bg-[#f59e0b]/10 text-[#f59e0b]" :
+                    camp.status === "DRAFT" ? "bg-[#8888aa]/10 text-[#a0a0c0]" :
                     "bg-[#ef4444]/10 text-[#ef4444]"
                   }`}>
-                    {camp.status === "ACTIVE" ? t("Brand.filterActive") : camp.status === "PAUSED" ? t("Brand.filterPaused") : t("Brand.filterEnded")}
+                    {camp.status === "ACTIVE" ? t("Brand.filterActive") : camp.status === "PAUSED" ? t("Brand.filterPaused") : camp.status === "DRAFT" ? t("Brand.draft") : t("Brand.filterEnded")}
                   </span>
                   <div className="flex gap-1">
                     {camp.platforms.map((p) => (
                       <span key={p} className="rounded bg-[#1e1e3f] px-1.5 py-0.5 text-[10px] text-[#a0a0c0]">
-                        {PLATFORM_LABELS[p] || p}
+                        {t(`Platform.${p}`)}
                       </span>
                     ))}
                   </div>
@@ -218,7 +213,7 @@ export default function BrandOverview() {
                   <span>{camp.creatorCount} {t("BrandCampaignDetail.creators")}</span>
                 </div>
                 <div className="mt-2 text-xs text-[#a0a0c0]">
-                  Budget: {formatCurrency(camp.remainingBudget)} / {formatCurrency(camp.totalBudget)}
+                  {t("Brand.budgetLabel")}: {formatCurrency(camp.remainingBudget)} / {formatCurrency(camp.totalBudget)}
                 </div>
                 {/* Budget bar */}
                 <div className="mt-1.5 h-1 w-full rounded-full bg-[#1e1e3f]">
@@ -229,12 +224,12 @@ export default function BrandOverview() {
                 </div>
                 <div className="mt-3 flex gap-2">
                   {camp.status === "ACTIVE" && (
-                    <button onClick={() => toast.success("Campaign paused")} className="rounded-lg bg-[#f59e0b]/10 px-2.5 py-1 text-xs text-[#f59e0b] hover:bg-[#f59e0b]/20">
+                    <button onClick={() => toast.success(t("Brand.pauseSuccess"))} className="rounded-lg bg-[#f59e0b]/10 px-2.5 py-1 text-xs text-[#f59e0b] hover:bg-[#f59e0b]/20">
                       <Pause className="h-3 w-3 inline mr-1" />{t("Brand.pauseCampaign")}
                     </button>
                   )}
                   {(camp.status === "ACTIVE" || camp.status === "PAUSED") && (
-                    <button onClick={() => toast.success("Campaign closed")} className="rounded-lg bg-[#ef4444]/10 px-2.5 py-1 text-xs text-[#ef4444] hover:bg-[#ef4444]/20">
+                    <button onClick={() => toast.success(t("Brand.closeSuccess"))} className="rounded-lg bg-[#ef4444]/10 px-2.5 py-1 text-xs text-[#ef4444] hover:bg-[#ef4444]/20">
                       <XCircle className="h-3 w-3 inline mr-1" />{t("Brand.closeCampaign")}
                     </button>
                   )}
@@ -244,7 +239,7 @@ export default function BrandOverview() {
                   >
                     <Edit className="h-3 w-3 inline mr-1" />{t("Brand.editCampaign")}
                   </Link>
-                  <button onClick={() => toast.success("Top up berhasil!")} className="rounded-lg bg-[#3b82f6]/10 px-2.5 py-1 text-xs text-[#3b82f6] hover:bg-[#3b82f6]/20">
+                  <button onClick={() => toast.success(t("Brand.topUpSuccess"))} className="rounded-lg bg-[#3b82f6]/10 px-2.5 py-1 text-xs text-[#3b82f6] hover:bg-[#3b82f6]/20">
                     {t("Brand.topUpCampaign")}
                   </button>
                 </div>
@@ -270,7 +265,7 @@ export default function BrandOverview() {
                   : "bg-[#0d0d22] text-[#a0a0c0] hover:text-white"
               }`}
             >
-              {tab === "Semua" ? t("Brand.filterSemua") : tab === "TikTok" ? t("Brand.filterTikTok") : tab === "Instagram" ? t("Brand.filterInstagram") : t("Brand.filterYouTube")}
+              {tab === "all" ? t("Brand.filterSemua") : t(`Platform.${tab}`)}
             </button>
           ))}
         </div>
@@ -319,7 +314,7 @@ export default function BrandOverview() {
                     </td>
                     <td className="py-3 pr-4">
                       <span className="rounded bg-[#1e1e3f] px-2 py-0.5 text-xs text-[#a0a0c0]">
-                        {PLATFORM_LABELS[video.platform || ""] || "-"}
+                        {t(`Platform.${video.platform || "TIKTOK"}`)}
                       </span>
                     </td>
                     <td className="py-3 pr-4 text-white">{formatCompactNumber(video.views)}</td>
@@ -348,7 +343,7 @@ export default function BrandOverview() {
                   <p className="text-xs text-[#a0a0c0]">{sub.campaignTitle}</p>
                 </div>
                 <div className="flex items-center gap-4">
-                  <span className="text-sm text-[#a0a0c0]">{formatCompactNumber(sub.views)} views</span>
+                  <span className="text-sm text-[#a0a0c0]">{formatCompactNumber(sub.views)} {t("Brand.colViews")}</span>
                   <span className="rounded-full bg-[#f59e0b]/10 px-3 py-1 text-xs font-medium text-[#f59e0b]">
                     {t("Brand.pending")}
                   </span>

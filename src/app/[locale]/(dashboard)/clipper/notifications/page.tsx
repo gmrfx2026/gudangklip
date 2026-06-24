@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { Loader2, CheckCheck } from "lucide-react";
+import { CheckCheck } from "lucide-react";
 
 type NotificationItem = {
   id: string;
-  title: string;
-  body: string;
+  titleKey: string;
+  bodyKey: string;
   time: string;
   link: string;
   category: "campaign" | "akun";
@@ -15,12 +16,13 @@ type NotificationItem = {
 };
 
 export default function ClipperNotifications() {
-  const [filter, setFilter] = useState<"semua" | "belum" | "campaigns" | "akun">("semua");
+  const t = useTranslations();
+  const [filter, setFilter] = useState<"all" | "unread" | "campaigns" | "akun">("all");
   const [notifications, setNotifications] = useState<NotificationItem[]>([
     {
       id: "1",
-      title: "Berhasil join campaign!",
-      body: "Kamu udah join campaign dari brand. Yuk mulai bikin clip dan submit videonya ya kak!",
+      titleKey: "joinTitle",
+      bodyKey: "joinBody",
       time: "1m ago",
       link: "/clipper/campaigns",
       category: "campaign",
@@ -28,8 +30,8 @@ export default function ClipperNotifications() {
     },
     {
       id: "2",
-      title: "Selamat datang di GudangKlip!",
-      body: "Halo! Selamat bergabung di GudangKlip. Mulai eksplor campaign dan dapatkan penghasilan dari setiap views video kamu.",
+      titleKey: "welcomeTitle",
+      bodyKey: "welcomeBody",
       time: "1d ago",
       link: "/clipper",
       category: "akun",
@@ -38,14 +40,14 @@ export default function ClipperNotifications() {
   ]);
 
   const filters = [
-    { key: "semua" as const, label: "Semua" },
-    { key: "belum" as const, label: "Belum dibaca" },
-    { key: "campaigns" as const, label: "Campaigns" },
-    { key: "akun" as const, label: "Akun" },
+    { key: "all" as const, labelKey: "filterAll" },
+    { key: "unread" as const, labelKey: "filterUnread" },
+    { key: "campaigns" as const, labelKey: "filterCampaigns" },
+    { key: "akun" as const, labelKey: "filterAccount" },
   ];
 
   const filtered = notifications.filter((n) => {
-    if (filter === "belum") return !n.read;
+    if (filter === "unread") return !n.read;
     if (filter === "campaigns") return n.category === "campaign";
     if (filter === "akun") return n.category === "akun";
     return true;
@@ -58,7 +60,7 @@ export default function ClipperNotifications() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-white">Notifikasi</h1>
+        <h1 className="text-2xl font-bold text-white">{t("CreatorNotifications.title")}</h1>
       </div>
 
       <div className="flex items-center justify-between gap-2">
@@ -67,33 +69,53 @@ export default function ClipperNotifications() {
             <button
               key={f.key}
               onClick={() => setFilter(f.key)}
-              className={`rounded-lg px-4 py-1.5 text-xs font-medium transition-colors ${filter === f.key ? "bg-[#6c63ff] text-white" : "text-[#a0a0c0] hover:text-white"}`}
-            >{f.label}</button>
+              className={`rounded-lg px-4 py-1.5 text-xs font-medium transition-colors ${
+                filter === f.key ? "bg-[#6c63ff] text-white" : "text-[#a0a0c0] hover:text-white"
+              }`}
+            >
+              {t(`CreatorNotifications.${f.labelKey}` as any)}
+            </button>
           ))}
         </div>
-        <button onClick={markAllRead} className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs text-[#a0a0c0] hover:text-white">
-          <CheckCheck className="h-3.5 w-3.5" /> Tandai semua dibaca
+        <button onClick={markAllRead} className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs text-[#a0a0c0] hover:text-white transition-colors">
+          <CheckCheck className="h-3.5 w-3.5" /> {t("CreatorNotifications.markAllRead")}
         </button>
       </div>
 
       {filtered.length === 0 ? (
         <div className="py-20 text-center">
-          <p className="text-[#6b7280]">Belum ada notifikasi.</p>
+          <p className="text-[#6b7280]">{t("CreatorNotifications.empty")}</p>
         </div>
       ) : (
         <div className="space-y-2">
           {filtered.map((n) => (
-            <Link key={n.id} href={n.link} className={`block rounded-xl border p-4 transition-colors ${n.read ? "border-[#2a2a50] bg-[#111128]/30" : "border-[#6c63ff]/30 bg-[#111128]/50 hover:border-[#6c63ff]/50"}`}>
+            <Link
+              key={n.id}
+              href={n.link}
+              className={`block rounded-xl border p-4 transition-colors ${
+                n.read
+                  ? "border-[#2a2a50] bg-[#111128]/30"
+                  : "border-[#6c63ff]/30 bg-[#111128]/50 hover:border-[#6c63ff]/50"
+              }`}
+            >
               <div className="flex items-start gap-3">
-                <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${n.read ? "bg-[#1e1e3f]" : "bg-[#6c63ff]/20"}`}>
+                <div
+                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${
+                    n.read ? "bg-[#1e1e3f]" : "bg-[#6c63ff]/20"
+                  }`}
+                >
                   <span className="text-sm">{n.read ? "O" : "N"}</span>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between mb-1">
-                    <h3 className="text-sm font-medium text-white">{n.title}</h3>
+                <div className="min-w-0 flex-1">
+                  <div className="mb-1 flex items-center justify-between">
+                    <h3 className="text-sm font-medium text-white">
+                      {t(`CreatorNotifications.${n.titleKey}` as any)}
+                    </h3>
                     <span className="text-[10px] text-[#6b7280]">{n.time}</span>
                   </div>
-                  <p className="text-xs text-[#a0a0c0]">{n.body}</p>
+                  <p className="text-xs text-[#a0a0c0]">
+                    {t(`CreatorNotifications.${n.bodyKey}` as any)}
+                  </p>
                 </div>
               </div>
             </Link>

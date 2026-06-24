@@ -2,14 +2,18 @@
 
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
-import { Camera, MapPin, Loader2 } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { Camera, MapPin, Loader2, Shield, User, AtSign, Key } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
 import { getCreatorOverview } from "@/actions/creator.actions";
 import { toast } from "sonner";
 
+type SettingsTab = "profile" | "account" | "verification" | "security";
+
 export default function ClipperSettings() {
+  const t = useTranslations();
   const { data: session } = useSession();
-  const [activeTab, setActiveTab] = useState<"profil" | "akun" | "verifikasi" | "keamanan">("profil");
+  const [activeTab, setActiveTab] = useState<SettingsTab>("profile");
   const [earnings, setEarnings] = useState(0);
   const [loading, setLoading] = useState(true);
   const [fullName, setFullName] = useState(session?.user?.name || "");
@@ -20,21 +24,27 @@ export default function ClipperSettings() {
       .finally(() => setLoading(false));
   }, []);
 
-  const tabs = [
-    { key: "profil" as const, label: "Profil" },
-    { key: "akun" as const, label: "Akun" },
-    { key: "verifikasi" as const, label: "Verifikasi" },
-    { key: "keamanan" as const, label: "Keamanan" },
+  const tabs: { key: SettingsTab; labelKey: string; icon: React.ReactNode }[] = [
+    { key: "profile", labelKey: "tabProfile", icon: <User className="h-4 w-4" /> },
+    { key: "account", labelKey: "tabAccount", icon: <AtSign className="h-4 w-4" /> },
+    { key: "verification", labelKey: "tabVerification", icon: <Shield className="h-4 w-4" /> },
+    { key: "security", labelKey: "tabSecurity", icon: <Key className="h-4 w-4" /> },
   ];
 
   const joinDate = "Jun 2026";
 
   return (
     <div className="space-y-6">
-      {/* Profile Header */}
-      <div className="rounded-2xl border border-[#2a2a50] bg-[#111128]/50 overflow-hidden">
+      {/* Header */}
+      <div>
+        <h1 className="text-2xl font-bold text-white">{t("CreatorSettings.title")}</h1>
+        <p className="text-sm text-[#a0a0c0]">{t("CreatorSettings.subtitle")}</p>
+      </div>
+
+      {/* Profile Banner Header */}
+      <div className="overflow-hidden rounded-2xl border border-[#2a2a50] bg-[#111128]/50">
         <div className="flex h-24 items-center justify-center bg-gradient-to-r from-[#6c63ff]/20 to-[#3b82f6]/10">
-          <span className="text-xs text-[#a0a0c0]">made to spread.</span>
+          <span className="text-xs text-[#a0a0c0]">{t("CreatorSettings.profileHeader")}</span>
         </div>
         <div className="px-6 pb-6">
           <div className="-mt-8 flex items-end gap-4">
@@ -42,19 +52,21 @@ export default function ClipperSettings() {
               <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-[#0a0a1a] bg-gradient-to-br from-[#6c63ff] to-[#3b82f6] text-lg font-bold text-white">
                 {session?.user?.name?.charAt(0) || "?"}
               </div>
-              <button className="absolute bottom-0 right-0 flex h-6 w-6 items-center justify-center rounded-full bg-[#6c63ff] text-white hover:bg-[#3b82f6]">
+              <button className="absolute bottom-0 right-0 flex h-6 w-6 items-center justify-center rounded-full bg-[#6c63ff] text-white hover:bg-[#3b82f6] transition-colors">
                 <Camera className="h-3 w-3" />
               </button>
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-2">
-                <h2 className="text-lg font-bold text-white">{session?.user?.name || "Clipper"}</h2>
-                <button className="text-[#6c63ff] hover:underline text-sm">Edit</button>
+                <h2 className="text-lg font-bold text-white">{session?.user?.name || t("Sidebar.hubungiAdmin")}</h2>
+                <button className="text-sm text-[#6c63ff] hover:underline">{t("CreatorSettings.edit")}</button>
               </div>
-              <p className="text-xs text-[#a0a0c0]">Bergabung {joinDate}</p>
+              <p className="text-xs text-[#a0a0c0]">
+                {t("CreatorSettings.joined")} {joinDate}
+              </p>
             </div>
             <div className="text-right">
-              <p className="text-xs text-[#a0a0c0]">Total Pendapatan</p>
+              <p className="text-xs text-[#a0a0c0]">{t("CreatorSettings.totalEarnings")}</p>
               <p className="text-lg font-bold text-white">{formatCurrency(earnings)}</p>
             </div>
           </div>
@@ -63,67 +75,92 @@ export default function ClipperSettings() {
 
       {/* Tabs */}
       <div className="flex gap-1 rounded-xl border border-[#2a2a50] bg-[#0d0d22] p-1">
-        {tabs.map((t) => (
+        {tabs.map((tab) => (
           <button
-            key={t.key}
-            onClick={() => setActiveTab(t.key)}
-            className={`flex-1 rounded-lg px-4 py-2 text-sm font-medium transition-colors ${activeTab === t.key ? "bg-[#6c63ff] text-white" : "text-[#a0a0c0] hover:text-white"}`}
-          >{t.label}</button>
+            key={tab.key}
+            onClick={() => setActiveTab(tab.key)}
+            className={`flex flex-1 items-center justify-center gap-1.5 rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
+              activeTab === tab.key
+                ? "bg-[#6c63ff] text-white"
+                : "text-[#a0a0c0] hover:text-white"
+            }`}
+          >
+            {tab.icon}
+            {t(`CreatorSettings.${tab.labelKey}` as any)}
+          </button>
         ))}
       </div>
 
-      {/* Tab Content */}
-      {activeTab === "profil" && (
-        <div className="rounded-2xl border border-[#2a2a50] bg-[#111128]/50 p-6 space-y-4">
+      {/* Tab: Profile */}
+      {activeTab === "profile" && (
+        <div className="space-y-4 rounded-2xl border border-[#2a2a50] bg-[#111128]/50 p-6">
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-[#e8e8f0]">Full Name</label>
+            <label className="mb-1.5 block text-sm font-medium text-[#e8e8f0]">{t("CreatorSettings.fullName")}</label>
             <input
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
-              placeholder="Nama Lengkap"
+              placeholder={t("CreatorSettings.fullNamePlaceholder")}
               className="w-full rounded-xl border border-[#2a2a50] bg-[#0d0d22] px-4 py-3 text-sm text-white focus:border-[#6c63ff] focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-[#e8e8f0]">Location</label>
+            <label className="mb-1.5 block text-sm font-medium text-[#e8e8f0]">{t("CreatorSettings.email")}</label>
+            <input
+              value={session?.user?.email || ""}
+              readOnly
+              className="w-full rounded-xl border border-[#2a2a50] bg-[#0d0d22] px-4 py-3 text-sm text-[#a0a0c0]"
+            />
+          </div>
+          <div>
+            <label className="mb-1.5 block text-sm font-medium text-[#e8e8f0]">{t("CreatorSettings.location")}</label>
             <div className="flex gap-2">
               <input
-                placeholder="Klik tombol untuk deteksi otomatis"
+                placeholder={t("CreatorSettings.locationPlaceholder")}
                 className="flex-1 rounded-xl border border-[#2a2a50] bg-[#0d0d22] px-4 py-3 text-sm text-white placeholder:text-[#a0a0c0] focus:border-[#6c63ff] focus:outline-none"
               />
-              <button className="flex items-center gap-1.5 rounded-xl border border-[#2a2a50] px-4 py-3 text-sm text-[#a0a0c0] hover:bg-[#1e1e3f]">
-                <MapPin className="h-4 w-4" /> Deteksi
+              <button className="flex items-center gap-1.5 rounded-xl border border-[#2a2a50] px-4 py-3 text-sm text-[#a0a0c0] hover:bg-[#1e1e3f] transition-colors">
+                <MapPin className="h-4 w-4" /> {t("CreatorSettings.detect")}
               </button>
             </div>
           </div>
-          <button className="rounded-xl bg-gradient-to-r from-[#6c63ff] to-[#3b82f6] px-6 py-2.5 text-sm font-semibold text-white hover:opacity-90">Save Changes</button>
+          <button
+            onClick={() => toast.success(t("CreatorSettings.toastSaved"))}
+            className="rounded-xl bg-gradient-to-r from-[#6c63ff] to-[#3b82f6] px-6 py-2.5 text-sm font-semibold text-white hover:opacity-90 transition-opacity"
+          >
+            {t("CreatorSettings.saveChanges")}
+          </button>
         </div>
       )}
 
-      {activeTab === "akun" && (
+      {/* Tab: Account */}
+      {activeTab === "account" && (
         <div className="rounded-2xl border border-[#2a2a50] bg-[#111128]/50 p-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#1e1e3f] text-lg">G</div>
               <div>
-                <p className="font-medium text-white">Login dengan Google</p>
-                <p className="text-xs text-[#a0a0c0]">Hubungkan akun Google supaya bisa login pakai Google selain email & password.</p>
+                <p className="font-medium text-white">{t("CreatorSettings.connectGoogle")}</p>
+                <p className="text-xs text-[#a0a0c0]">{t("CreatorSettings.googleDesc")}</p>
               </div>
             </div>
-            <button className="rounded-xl border border-[#2a2a50] px-4 py-2 text-sm text-[#a0a0c0] hover:bg-[#1e1e3f]">Hubungkan Google</button>
+            <button className="rounded-xl border border-[#2a2a50] px-4 py-2 text-sm text-[#a0a0c0] hover:bg-[#1e1e3f] transition-colors">
+              {t("CreatorSettings.connectGoogle")}
+            </button>
           </div>
         </div>
       )}
 
-      {activeTab === "verifikasi" && (
+      {/* Tab: Verification */}
+      {activeTab === "verification" && (
         <div className="rounded-2xl border border-[#2a2a50] bg-[#111128]/50 p-12 text-center">
-          <p className="text-[#6b7280]">Fitur verifikasi akan segera hadir.</p>
+          <p className="text-[#6b7280]">{t("CreatorSettings.comingSoon")}</p>
         </div>
       )}
 
-      {activeTab === "keamanan" && (
+      {/* Tab: Security */}
+      {activeTab === "security" && (
         <div className="rounded-2xl border border-[#2a2a50] bg-[#111128]/50 p-12 text-center">
-          <p className="text-[#6b7280]">Pengaturan keamanan akan segera hadir.</p>
+          <p className="text-[#6b7280]">{t("CreatorSettings.comingSoon")}</p>
         </div>
       )}
     </div>

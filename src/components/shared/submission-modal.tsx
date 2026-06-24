@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { useTranslations } from "next-intl";
 import * as Dialog from "@radix-ui/react-dialog";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -58,6 +59,7 @@ export function SubmissionModal({
   endDate,
   onSuccess,
 }: SubmissionModalProps) {
+  const t = useTranslations("SubmissionModal");
   const [step, setStep] = useState(1);
   const [accounts, setAccounts] = useState<SocialAccount[]>([]);
   const [selectedPlatform, setSelectedPlatform] = useState<string>("");
@@ -94,11 +96,11 @@ export function SubmissionModal({
         platform: selectedPlatform,
         platformLink: videoUrl,
       });
-      toast.success("Video berhasil dikirim! Menunggu review.");
+      toast.success(t("toastSubmitSuccess"));
       onSuccess();
       onOpenChange(false);
     } catch (err: any) {
-      toast.error(err.message || "Gagal mengirim video");
+      toast.error(err.message || t("toastSubmitFailed"));
     } finally {
       setSubmitting(false);
     }
@@ -139,7 +141,7 @@ export function SubmissionModal({
             <div className="flex items-center justify-between border-b border-[#1e1e3f] px-6 py-4">
               <div>
                 <Dialog.Title className="text-lg font-bold text-white">
-                  Kirim Video
+                  {t("title")}
                 </Dialog.Title>
                 <Dialog.Description className="mt-0.5 text-xs text-[#a0a0c0]">
                   {campaignTitle}
@@ -172,7 +174,7 @@ export function SubmissionModal({
                 </div>
               ))}
               <span className="ml-auto text-xs font-medium text-[#a0a0c0]">
-                Step {step} dari 3
+                {t("stepIndicator", { step })}
               </span>
             </div>
 
@@ -193,38 +195,42 @@ export function SubmissionModal({
                       <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-[#f59e0b]" />
                       <div>
                         <h4 className="text-sm font-semibold text-[#f59e0b]">
-                          Batas Waktu Pengiriman
+                          {t("deadlineTitle")}
                         </h4>
                         <p className="mt-1 text-sm text-[#e8e8f0]">
-                          Kamu hanya punya waktu{" "}
-                          <span className="font-bold text-[#f59e0b]">24 jam</span>{" "}
-                          setelah join campaign untuk mengirimkan video. Campaign
-                          ini berakhir dalam{" "}
-                          <span className="font-bold">{hoursLeft} jam</span>.
+                          {t.rich("deadlineMessage", {
+                            important: (chunks) => (
+                              <span className="font-bold text-[#f59e0b]">{chunks}</span>
+                            ),
+                            hours: (chunks) => (
+                              <span className="font-bold">{chunks}</span>
+                            ),
+                            hoursLeft,
+                          })}
                         </p>
                       </div>
                     </div>
 
                     <h4 className="text-sm font-semibold text-white">
-                      Informasi Penting
+                      {t("importantInfo")}
                     </h4>
                     <div className="space-y-3">
                       {[
                         {
                           icon: <Info className="h-4 w-4" />,
-                          text: "Video yang dikirim wajib sesuai dengan brief & aturan campaign",
+                          text: t("infoBrief"),
                         },
                         {
                           icon: <FileText className="h-4 w-4" />,
-                          text: "Pastikan kamu sudah membaca creative brief dan menggunakan materi yang disediakan",
+                          text: t("infoReadBrief"),
                         },
                         {
                           icon: <Hash className="h-4 w-4" />,
-                          text: "Gunakan hashtag dan mention yang diminta brand di caption video",
+                          text: t("infoHashtag"),
                         },
                         {
                           icon: <CheckCircle className="h-4 w-4" />,
-                          text: "Video akan direview oleh brand. Status bisa dicek di halaman ini",
+                          text: t("infoReview"),
                         },
                       ].map((item, i) => (
                         <div
@@ -252,8 +258,7 @@ export function SubmissionModal({
                     className="space-y-4"
                   >
                     <p className="text-sm text-[#a0a0c0]">
-                      Pilih platform akun social media yang sudah kamu hubungkan.
-                      Video harus diupload ke platform yang dipilih.
+                      {t("selectPlatform")}
                     </p>
 
                     {loadingAccounts ? (
@@ -263,11 +268,10 @@ export function SubmissionModal({
                     ) : accounts.length === 0 ? (
                       <div className="rounded-xl border border-[#2a2a50] bg-[#111128]/30 p-8 text-center">
                         <p className="text-sm text-[#a0a0c0]">
-                          Kamu belum menghubungkan akun social media.
+                          {t("noAccount")}
                         </p>
                         <p className="mt-2 text-xs text-[#6b7280]">
-                          Hubungkan akun TikTok/Instagram/YouTube melalui halaman
-                          Profil &gt; Verifikasi.
+                          {t("noAccountHint")}
                         </p>
                       </div>
                     ) : (
@@ -297,7 +301,7 @@ export function SubmissionModal({
                               </div>
                               <div className="flex-1 min-w-0">
                                 <p className="text-sm font-semibold text-white">
-                                  {p?.label || account.platform}
+                                  {t(`Platform.${account.platform}` as any)}
                                 </p>
                                 <p className="text-xs text-[#a0a0c0] truncate">
                                   @{account.username}
@@ -305,7 +309,7 @@ export function SubmissionModal({
                               </div>
                               {account.verified && (
                                 <span className="rounded-full bg-[#10b981]/10 px-2 py-0.5 text-[10px] font-medium text-[#10b981]">
-                                  Verified
+                                  {t("verified")}
                                 </span>
                               )}
                               {selectedPlatform === account.platform && (
@@ -335,17 +339,17 @@ export function SubmissionModal({
                       </div>
                       <div>
                         <p className="text-sm font-medium text-white">
-                          {PLATFORMS.find((p) => p.value === selectedPlatform)?.label}
+                          {t(`Platform.${selectedPlatform}` as any)}
                         </p>
                         <p className="mt-1 text-xs text-[#a0a0c0]">
-                          Masukkan URL video yang sudah kamu upload ke platform ini
+                          {t("urlDescription")}
                         </p>
                       </div>
                     </div>
 
                     <div>
                       <label className="mb-1.5 block text-sm font-medium text-[#e8e8f0]">
-                        URL Video
+                        {t("urlLabel")}
                       </label>
                       <div className="relative">
                         <ExternalLink className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#a0a0c0]" />
@@ -355,16 +359,16 @@ export function SubmissionModal({
                           onChange={(e) => setVideoUrl(e.target.value)}
                           placeholder={
                             selectedPlatform === "TIKTOK"
-                              ? "https://www.tiktok.com/@user/video/..."
+                              ? t("urlPlaceholderTikTok")
                               : selectedPlatform === "INSTAGRAM"
-                                ? "https://www.instagram.com/reel/..."
-                                : "https://www.youtube.com/shorts/..."
+                                ? t("urlPlaceholderInstagram")
+                                : t("urlPlaceholderYouTube")
                           }
                           className="w-full rounded-xl border border-[#2a2a50] bg-[#0d0d22] py-3 pl-10 pr-4 text-sm text-white placeholder:text-[#a0a0c0] focus:border-[#6c63ff] focus:outline-none focus:ring-1 focus:ring-[#6c63ff]/30"
                         />
                       </div>
                       <p className="mt-1.5 text-xs text-[#6b7280]">
-                        Pastikan video di-set sebagai public agar bisa dilihat
+                        {t("urlHint")}
                       </p>
                     </div>
                   </motion.div>
@@ -380,7 +384,7 @@ export function SubmissionModal({
                 className="flex items-center gap-1 rounded-xl px-4 py-2.5 text-sm font-medium text-[#a0a0c0] hover:text-white hover:bg-[#1e1e3f] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               >
                 <ChevronLeft className="h-4 w-4" />
-                Kembali
+                {t("back")}
               </button>
               <button
                 onClick={() => {
@@ -400,16 +404,16 @@ export function SubmissionModal({
                 {submitting ? (
                   <>
                     <Loader2 className="h-4 w-4 animate-spin" />
-                    Mengirim...
+                    {t("submitting")}
                   </>
                 ) : step === 3 ? (
                   <>
-                    Kirim Video
+                    {t("submitButton")}
                     <CheckCircle className="h-4 w-4" />
                   </>
                 ) : (
                   <>
-                    Lanjut
+                    {t("next")}
                     <ChevronRight className="h-4 w-4" />
                   </>
                 )}

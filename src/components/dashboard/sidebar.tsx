@@ -125,7 +125,7 @@ function SidebarContent({ onCloseMobile }: { onCloseMobile?: () => void }) {
         <button
           onClick={() => setCollapsed(!collapsed)}
           className="ml-auto hidden rounded-lg p-1 text-[#a0a0c0] hover:bg-[#1e1e3f] hover:text-white lg:block"
-          aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+          aria-label={collapsed ? t("Sidebar.expandSidebar") : t("Sidebar.collapseSidebar")}
         >
           <ChevronLeft className={`h-4 w-4 transition-transform ${collapsed ? "rotate-180" : ""}`} />
         </button>
@@ -133,7 +133,7 @@ function SidebarContent({ onCloseMobile }: { onCloseMobile?: () => void }) {
           <button
             onClick={onCloseMobile}
             className="ml-auto rounded-lg p-1 text-[#a0a0c0] hover:bg-[#1e1e3f] hover:text-white lg:hidden"
-            aria-label="Close sidebar"
+            aria-label={t("Sidebar.closeSidebar")}
           >
             <X className="h-4 w-4" />
           </button>
@@ -167,18 +167,18 @@ function SidebarContent({ onCloseMobile }: { onCloseMobile?: () => void }) {
           <div className="pt-4">
             <div className="mb-2 px-3">
               <p className="text-xs font-semibold uppercase tracking-wider text-[#6b7280]">
-                Campaign Aktif Diikuti
+                {t("Sidebar.activeCampaignsJoined")}
               </p>
             </div>
             {joinedCampaigns.length === 0 ? (
               <div className="px-3 py-2">
-                <p className="text-xs text-[#6b7280]">Belum join campaign apapun.</p>
+                <p className="text-xs text-[#6b7280]">{t("Sidebar.noCampaignsJoined")}</p>
                 <Link
                   href="/clipper/campaigns"
                   onClick={onCloseMobile}
                   className="mt-1 flex items-center gap-1 text-xs text-[#6c63ff] hover:underline"
                 >
-                  Jelajahi campaign
+                  {t("Sidebar.exploreCampaigns")}
                   <Search className="h-3 w-3" />
                 </Link>
               </div>
@@ -265,7 +265,7 @@ function SidebarContent({ onCloseMobile }: { onCloseMobile?: () => void }) {
           <div className="pt-4">
             <div className="mb-2 px-3">
               <p className="text-xs font-semibold uppercase tracking-wider text-[#6b7280]">
-                Butuh Bantuan?
+                {t("Sidebar.helpSection")}
               </p>
             </div>
             <a
@@ -275,7 +275,7 @@ function SidebarContent({ onCloseMobile }: { onCloseMobile?: () => void }) {
               className="flex items-center gap-3 rounded-xl px-3 py-2 text-sm text-[#a0a0c0] hover:bg-[#1e1e3f]/50 hover:text-[#e8e8f0] transition-colors"
             >
               <MessageCircle className="h-5 w-5 shrink-0" />
-              <span>Hubungi Admin</span>
+              <span>{t("Sidebar.hubungiAdmin")}</span>
             </a>
             <Link
               href="/clipper/rules"
@@ -287,7 +287,7 @@ function SidebarContent({ onCloseMobile }: { onCloseMobile?: () => void }) {
               }`}
             >
               <Shield className="h-5 w-5 shrink-0" />
-              <span>FaQ & Peraturan</span>
+              <span>{t("Sidebar.faqRules")}</span>
             </Link>
           </div>
         )}
@@ -305,7 +305,7 @@ function SidebarContent({ onCloseMobile }: { onCloseMobile?: () => void }) {
               }`}
             >
               <User className="h-5 w-5 shrink-0" />
-              {!collapsed && <span>Profile</span>}
+              {!collapsed && <span>{t("Sidebar.profile")}</span>}
             </Link>
             <Link
               href="/clipper/notifications"
@@ -317,7 +317,7 @@ function SidebarContent({ onCloseMobile }: { onCloseMobile?: () => void }) {
               }`}
             >
               <Bell className="h-5 w-5 shrink-0" />
-              {!collapsed && <span>Notifikasi</span>}
+              {!collapsed && <span>{t("Sidebar.notifications")}</span>}
             </Link>
           </div>
         )}
@@ -332,17 +332,17 @@ function SidebarContent({ onCloseMobile }: { onCloseMobile?: () => void }) {
           {!collapsed && (
             <div className="flex-1 min-w-0">
               <p className="truncate text-sm font-medium text-white">{session?.user?.name}</p>
-              <p className="truncate text-xs text-[#a0a0c0] capitalize">{role === "CREATOR" ? "Clipper" : role?.toLowerCase()}</p>
+              <p className="truncate text-xs text-[#a0a0c0] capitalize">{t(`Role.${role}`)}</p>
             </div>
           )}
         </div>
         <button
           onClick={() => signOut({ callbackUrl: "/" })}
           className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-[#a0a0c0] hover:bg-[#ef4444]/10 hover:text-[#ef4444] transition-colors"
-          aria-label="Sign out"
+          aria-label={t("Sidebar.logout")}
         >
           <LogOut className="h-5 w-5 shrink-0" />
-          {!collapsed && <span>Logout</span>}
+          {!collapsed && <span>{t("Sidebar.logout")}</span>}
         </button>
       </div>
     </div>

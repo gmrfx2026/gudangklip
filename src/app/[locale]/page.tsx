@@ -1,8 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
+import { RoleDialog } from "@/components/landing/role-dialog";
+import { LivePayoutFeed } from "@/components/landing/live-payout-feed";
+import { RevenueCalculator } from "@/components/landing/revenue-calculator";
 import {
   ArrowRight,
   TrendingUp,
@@ -16,10 +20,13 @@ import {
   Users,
   BarChart3,
   DollarSign,
+  Building2,
+  User,
 } from "lucide-react";
 
 export default function LandingPage() {
   const t = useTranslations("Landing");
+  const [roleDialogOpen, setRoleDialogOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-[#0a0a1a]">
@@ -83,6 +90,7 @@ export default function LandingPage() {
                   href="/register"
                   className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#6c63ff] to-[#3b82f6] px-8 py-3.5 text-base font-semibold text-white hover:opacity-90 transition-opacity glow-sm"
                 >
+                  <User className="h-5 w-5" />
                   {t("ctaStart")}
                   <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -94,6 +102,16 @@ export default function LandingPage() {
                   {t("ctaExplore")}
                 </Link>
               </div>
+              <div className="mt-4">
+                <button
+                  onClick={() => setRoleDialogOpen(true)}
+                  className="inline-flex items-center gap-2 rounded-full border border-[#2a2a50]/50 bg-[#111128]/50 px-5 py-2 text-sm font-medium text-[#b8b8d0] hover:border-[#6c63ff]/50 hover:text-white transition-all backdrop-blur"
+                >
+                  <Building2 className="h-4 w-4" />
+                  {t("createCampaignBtn")}
+                  <ChevronRight className="h-4 w-4" />
+                </button>
+              </div>
             </motion.div>
 
             {/* Stats */}
@@ -104,10 +122,10 @@ export default function LandingPage() {
               className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-4"
             >
               {[
-                { value: "Rp 1M+", label: t("statBudget") },
-                { value: "300K+", label: t("statCreators") },
-                { value: "200+", label: t("statBrands") },
-                { value: "3 Hari", label: t("statPayout") },
+                { value: t("statBudgetValue"), label: t("statBudget") },
+                { value: t("statCreatorsValue"), label: t("statCreators") },
+                { value: t("statBrandsValue"), label: t("statBrands") },
+                { value: t("statPayoutValue"), label: t("statPayout") },
               ].map((stat) => (
                 <div key={stat.label} className="rounded-2xl border border-[#2a2a50] bg-[#111128]/50 p-4 backdrop-blur">
                   <div className="text-xl font-bold text-white">{stat.value}</div>
@@ -115,6 +133,12 @@ export default function LandingPage() {
                 </div>
               ))}
             </motion.div>
+          </div>
+
+          {/* Live Payout + Calculator */}
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
+            <LivePayoutFeed />
+            <RevenueCalculator />
           </div>
         </div>
       </section>
@@ -202,7 +226,7 @@ export default function LandingPage() {
                 <div className="p-5">
                   <div className="mb-2 flex items-center gap-2">
                     <span className="rounded-full bg-[#6c63ff]/10 px-2.5 py-0.5 text-xs font-medium text-[#6c63ff]">
-                      {campaign.category}
+                      {t(`Category.${campaign.category}` as any)}
                     </span>
                     <span className="rounded-full bg-[#10b981]/10 px-2.5 py-0.5 text-xs font-medium text-[#10b981]">
                       {t("active")}
@@ -382,15 +406,17 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
+
+      <RoleDialog open={roleDialogOpen} onClose={() => setRoleDialogOpen(false)} />
     </div>
   );
 }
 
 const CAMPAIGNS = [
-  { icon: "\uD83C\uDFB5", category: "Music", title: "Adiw - Untuk Apa Kucintai", cpm: 3000, creators: 142, progress: 68 },
-  { icon: "\uD83C\uDFAC", category: "Film", title: "Jangan Buang Ibu - Official", cpm: 500, creators: 352, progress: 45 },
-  { icon: "\uD83C\uDFAD", category: "Entertainment", title: "Ternakklip Interviews Eps. 5", cpm: 5000, creators: 243, progress: 82 },
-  { icon: "\uD83D\uDCF1", category: "Brand", title: "Nyemil Saji - Launch Campaign", cpm: 1000, creators: 76, progress: 30 },
-  { icon: "\uD83C\uDFB6", category: "Music", title: "Angga Elza - New Single", cpm: 2000, creators: 57, progress: 55 },
-  { icon: "\uD83C\uDFAC", category: "Film", title: "Tanah Runtuh - Gala Premier", cpm: 2500, creators: 123, progress: 20 },
+  { icon: "\uD83C\uDFB5", category: "MUSIC", title: "Adiw - Untuk Apa Kucintai", cpm: 3000, creators: 142, progress: 68 },
+  { icon: "\uD83C\uDFAC", category: "FILM", title: "Jangan Buang Ibu - Official", cpm: 500, creators: 352, progress: 45 },
+  { icon: "\uD83C\uDFAD", category: "ENTERTAINMENT", title: "Ternakklip Interviews Eps. 5", cpm: 5000, creators: 243, progress: 82 },
+  { icon: "\uD83D\uDCF1", category: "BRAND", title: "Nyemil Saji - Launch Campaign", cpm: 1000, creators: 76, progress: 30 },
+  { icon: "\uD83C\uDFB6", category: "MUSIC", title: "Angga Elza - New Single", cpm: 2000, creators: 57, progress: 55 },
+  { icon: "\uD83C\uDFAC", category: "FILM", title: "Tanah Runtuh - Gala Premier", cpm: 2500, creators: 123, progress: 20 },
 ];

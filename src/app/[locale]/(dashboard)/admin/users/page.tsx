@@ -110,7 +110,7 @@ export default function AdminUsers() {
                           className="rounded-lg border border-[#2a2a50] bg-[#0d0d22] px-2 py-1 text-xs text-white focus:border-[#6c63ff] focus:outline-none"
                         >
                           {ROLES.map((r) => (
-                            <option key={r.value} value={r.value}>{r.label}</option>
+                            <option key={r.value} value={r.value}>{t(`Role.${r.value}` as any)}</option>
                           ))}
                         </select>
                       ) : (
@@ -118,7 +118,7 @@ export default function AdminUsers() {
                           onClick={() => setEditingRole(u.id)}
                           className="rounded-full bg-[#6c63ff]/10 px-2.5 py-0.5 text-xs font-medium text-[#6c63ff] hover:bg-[#6c63ff]/20"
                         >
-                          {u.role}
+                          {t(`Role.${u.role}` as any)}
                         </button>
                       )}
                     </td>

@@ -46,11 +46,11 @@ export default function BrandBudget() {
   useEffect(() => { fetchData(); }, []);
 
   const handleTopUp = async () => {
-    const amountStr = window.prompt("Masukkan jumlah top-up (Rp):");
+    const amountStr = window.prompt(t("BrandBudget.topUpPrompt"));
     if (!amountStr) return;
     const amount = parseInt(amountStr, 10);
     if (isNaN(amount) || amount < 10000) {
-      toast.error("Minimal top-up Rp 10.000");
+      toast.error(t("BrandBudget.topUpMinError"));
       return;
     }
     setToppingUp(true);
@@ -165,7 +165,7 @@ export default function BrandBudget() {
                   </div>
                 </div>
                 <button
-                  onClick={() => toast.success("Budget added!")}
+                  onClick={() => toast.success(t("BrandBudget.budgetAdded"))}
                   className="ml-4 rounded-lg bg-[#6c63ff]/10 px-3 py-1.5 text-xs font-medium text-[#6c63ff] hover:bg-[#6c63ff]/20 transition-colors"
                 >
                   {t("BrandBudget.addBudget")}

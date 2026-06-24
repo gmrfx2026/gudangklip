@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { AlertTriangle, RefreshCw, Home } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 
@@ -10,6 +11,7 @@ type Props = {
 };
 
 export default function DashboardError({ error, reset }: Props) {
+  const t = useTranslations("DashboardError");
   useEffect(() => {
     console.error("Dashboard error:", error.message);
   }, [error]);
@@ -21,10 +23,10 @@ export default function DashboardError({ error, reset }: Props) {
       </div>
 
       <h1 className="mb-2 text-2xl font-bold text-white">
-        Dashboard Error
+        {t("errorTitle")}
       </h1>
       <p className="mb-8 max-w-md text-sm text-[#a0a0c0]">
-        Gagal memuat halaman dashboard. Data mungkin sedang tidak tersedia.
+        {t("errorDesc")}
       </p>
 
       <div className="flex gap-3">
@@ -33,14 +35,14 @@ export default function DashboardError({ error, reset }: Props) {
           className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#6c63ff] to-[#3b82f6] px-6 py-3 text-sm font-semibold text-white hover:opacity-90 transition-opacity"
         >
           <RefreshCw className="h-4 w-4" />
-          Muat Ulang
+          {t("reload")}
         </button>
         <Link
           href="/"
           className="inline-flex items-center gap-2 rounded-xl border border-[#2a2a50] bg-transparent px-6 py-3 text-sm font-medium text-[#a0a0c0] hover:bg-[#1a1a3e] transition-colors"
         >
           <Home className="h-4 w-4" />
-          Beranda
+          {t("home")}
         </Link>
       </div>
     </div>

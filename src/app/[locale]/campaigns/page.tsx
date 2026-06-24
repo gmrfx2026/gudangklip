@@ -73,7 +73,7 @@ export default function PublicCampaigns() {
             <div className="flex gap-2 overflow-x-auto">
               <button onClick={() => setCategory("")} className={`rounded-xl px-4 py-2 text-xs font-medium whitespace-nowrap ${!category ? "bg-[#6c63ff] text-white" : "border border-[#2a2a50] text-[#b8b8d0]"}`}>{t("Campaigns.allCategories")}</button>
               {CATEGORIES.map((cat) => (
-                <button key={cat.value} onClick={() => setCategory(cat.value)} className={`rounded-xl px-4 py-2 text-xs font-medium whitespace-nowrap ${category === cat.value ? "bg-[#6c63ff] text-white" : "border border-[#2a2a50] text-[#b8b8d0]"}`}>{cat.label}</button>
+                <button key={cat.value} onClick={() => setCategory(cat.value)} className={`rounded-xl px-4 py-2 text-xs font-medium whitespace-nowrap ${category === cat.value ? "bg-[#6c63ff] text-white" : "border border-[#2a2a50] text-[#b8b8d0]"}`}>{t(`Category.${cat.value}`)}</button>
               ))}
             </div>
           </div>
@@ -98,7 +98,7 @@ export default function PublicCampaigns() {
                     </div>
                     <div className="p-5">
                       <div className="mb-2 flex items-center gap-2">
-                        <span className="rounded-full bg-[#6c63ff]/10 px-2.5 py-0.5 text-xs font-medium text-[#6c63ff]">{CATEGORIES.find((x) => x.value === c.category)?.label}</span>
+                        <span className="rounded-full bg-[#6c63ff]/10 px-2.5 py-0.5 text-xs font-medium text-[#6c63ff]">{t(`Category.${c.category}`)}</span>
                       </div>
                       <h3 className="mb-1 font-semibold text-white">{c.title}</h3>
                       <p className="mb-3 text-xs text-[#a0a0c0]">{c.brand.name || t("Campaigns.unknownBrand")}</p>

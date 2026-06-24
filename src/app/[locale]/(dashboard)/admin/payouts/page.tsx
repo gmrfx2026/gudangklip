@@ -17,12 +17,16 @@ type PayoutItem = {
   creator: { id: string; name: string; email: string };
 };
 
-const statusConfig: Record<string, { color: string; bg: string; label: string; icon: React.ReactNode }> = {
-  PENDING: { color: "text-[#f59e0b]", bg: "bg-[#f59e0b]/10", label: "Pending", icon: <Clock className="h-4 w-4" /> },
-  PROCESSING: { color: "text-[#3b82f6]", bg: "bg-[#3b82f6]/10", label: "Processing", icon: <Loader className="h-4 w-4 animate-spin" /> },
-  COMPLETED: { color: "text-[#10b981]", bg: "bg-[#10b981]/10", label: "Completed", icon: <CheckCircle className="h-4 w-4" /> },
-  FAILED: { color: "text-[#ef4444]", bg: "bg-[#ef4444]/10", label: "Failed", icon: <XCircle className="h-4 w-4" /> },
+const statusConfig: Record<string, { color: string; bg: string; icon: React.ReactNode }> = {
+  PENDING: { color: "text-[#f59e0b]", bg: "bg-[#f59e0b]/10", icon: <Clock className="h-4 w-4" /> },
+  PROCESSING: { color: "text-[#3b82f6]", bg: "bg-[#3b82f6]/10", icon: <Loader className="h-4 w-4 animate-spin" /> },
+  COMPLETED: { color: "text-[#10b981]", bg: "bg-[#10b981]/10", icon: <CheckCircle className="h-4 w-4" /> },
+  FAILED: { color: "text-[#ef4444]", bg: "bg-[#ef4444]/10", icon: <XCircle className="h-4 w-4" /> },
 };
+
+function getStatusLabel(status: string): string {
+  return `status${status.charAt(0)}${status.slice(1).toLowerCase()}`;
+}
 
 export default function AdminPayouts() {
   const t = useTranslations();
@@ -77,7 +81,7 @@ export default function AdminPayouts() {
           const config = statusConfig[status];
           return (
             <button key={status} onClick={() => setFilter(status)} className={`rounded-xl px-4 py-2 text-xs font-medium whitespace-nowrap ${filter === status ? "bg-[#6c63ff] text-white" : "border border-[#2a2a50] text-[#b8b8d0]"}`}>
-              {config?.label || status} ({count})
+              {t(`AdminPayouts.${getStatusLabel(status)}` as any)} ({count})
             </button>
           );
         })}
@@ -124,7 +128,7 @@ export default function AdminPayouts() {
                       <td className="px-6 py-4 text-[#a0a0c0]">{p.accountInfo}</td>
                       <td className="px-6 py-4">
                         <span className={`flex items-center gap-1 rounded-full ${config.bg} px-2.5 py-0.5 text-xs font-medium ${config.color}`}>
-                          {config.icon} {config.label}
+                          {config.icon} {t(`AdminPayouts.${getStatusLabel(p.status)}` as any)}
                         </span>
                       </td>
                       <td className="px-6 py-4">

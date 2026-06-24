@@ -8,16 +8,16 @@ import { toast } from "sonner";
 import { getBrandProfile, updateBrandProfile, updateProfileImage } from "@/actions/profile.actions";
 
 const INDUSTRY_OPTIONS = [
-  { value: "E_COMMERCE", label: "E-Commerce" },
-  { value: "FOOD_BEVERAGE", label: "Food & Beverage" },
-  { value: "FASHION_BEAUTY", label: "Fashion & Beauty" },
-  { value: "TECHNOLOGY", label: "Technology" },
-  { value: "FINANCE", label: "Finance" },
-  { value: "HEALTH_WELLNESS", label: "Health & Wellness" },
-  { value: "ENTERTAINMENT", label: "Entertainment" },
-  { value: "EDUCATION", label: "Education" },
-  { value: "TRAVEL_HOSPITALITY", label: "Travel & Hospitality" },
-  { value: "OTHER", label: "Other" },
+  { value: "E_COMMERCE", labelKey: "BrandSettings.industryECommerce" },
+  { value: "FOOD_BEVERAGE", labelKey: "BrandSettings.industryFoodBeverage" },
+  { value: "FASHION_BEAUTY", labelKey: "BrandSettings.industryFashionBeauty" },
+  { value: "TECHNOLOGY", labelKey: "BrandSettings.industryTechnology" },
+  { value: "FINANCE", labelKey: "BrandSettings.industryFinance" },
+  { value: "HEALTH_WELLNESS", labelKey: "BrandSettings.industryHealthWellness" },
+  { value: "ENTERTAINMENT", labelKey: "BrandSettings.industryEntertainment" },
+  { value: "EDUCATION", labelKey: "BrandSettings.industryEducation" },
+  { value: "TRAVEL_HOSPITALITY", labelKey: "BrandSettings.industryTravelHospitality" },
+  { value: "OTHER", labelKey: "BrandSettings.industryOther" },
 ];
 
 type ProfileData = {
@@ -68,7 +68,7 @@ export default function BrandSettings() {
 
       const res = await fetch("/api/upload", { method: "POST", body: formData });
       const json = await res.json();
-      if (!res.ok) throw new Error(json.error || "Upload failed");
+      if (!res.ok) throw new Error(json.error || t("BrandSettings.uploadFailed"));
 
       await updateProfileImage(json.url);
       setProfile((prev) => prev ? { ...prev, image: json.url } : null);
@@ -201,7 +201,7 @@ export default function BrandSettings() {
                 >
                   <option value="">{t("BrandSettings.industryPlaceholder")}</option>
                   {INDUSTRY_OPTIONS.map((opt) => (
-                    <option key={opt.value} value={opt.value}>{opt.label}</option>
+                    <option key={opt.value} value={opt.value}>{t(opt.labelKey)}</option>
                   ))}
                 </select>
               </div>

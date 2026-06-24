@@ -23,12 +23,6 @@ import { getBrandCampaignById } from "@/actions/campaign.actions";
 import { reviewSubmission } from "@/actions/submission.actions";
 import { toast } from "sonner";
 
-const PLATFORM_LABELS: Record<string, string> = {
-  TIKTOK: "TikTok",
-  INSTAGRAM: "Instagram",
-  YOUTUBE: "YouTube",
-};
-
 type SubmissionView = {
   id: string;
   creator: { id: string; name: string | null; image: string | null };
@@ -63,11 +57,11 @@ const statusConfig: Record<string, { icon: React.ReactNode; color: string; bg: s
   REJECTED: { icon: <XCircle className="h-4 w-4" />, color: "text-[#ef4444]", bg: "bg-[#ef4444]/10" },
 };
 
-const campaignStatusConfig: Record<string, { color: string; bg: string }> = {
-  DRAFT: { color: "text-[#a0a0c0]", bg: "bg-[#8888aa]/10" },
-  ACTIVE: { color: "text-[#10b981]", bg: "bg-[#10b981]/10" },
-  PAUSED: { color: "text-[#f59e0b]", bg: "bg-[#f59e0b]/10" },
-  ENDED: { color: "text-[#ef4444]", bg: "bg-[#ef4444]/10" },
+const campaignStatusConfig: Record<string, { color: string; bg: string; labelKey: string }> = {
+  DRAFT: { color: "text-[#a0a0c0]", bg: "bg-[#8888aa]/10", labelKey: "Brand.draft" },
+  ACTIVE: { color: "text-[#10b981]", bg: "bg-[#10b981]/10", labelKey: "Brand.filterActive" },
+  PAUSED: { color: "text-[#f59e0b]", bg: "bg-[#f59e0b]/10", labelKey: "Brand.filterPaused" },
+  ENDED: { color: "text-[#ef4444]", bg: "bg-[#ef4444]/10", labelKey: "Brand.filterEnded" },
 };
 
 export default function CampaignDetail() {
@@ -125,10 +119,10 @@ export default function CampaignDetail() {
       <div className="rounded-2xl border border-[#2a2a50] bg-gradient-to-br from-[#111128] to-[#6c63ff]/5 p-6">
         <div className="mb-3 flex items-center gap-2 flex-wrap">
           <span className="rounded-full bg-[#6c63ff]/10 px-2.5 py-0.5 text-xs font-medium text-[#6c63ff]">
-            {CATEGORIES.find((cat) => cat.value === campaign.category)?.label || campaign.category}
+            {t(`Category.${campaign.category}` as any)}
           </span>
           <span className={`rounded-full ${campaignStatus.bg} px-2.5 py-0.5 text-xs font-medium ${campaignStatus.color}`}>
-            {campaign.status}
+            {t(campaignStatus.labelKey)}
           </span>
         </div>
         <h2 className="text-2xl font-bold text-white">{campaign.title}</h2>
@@ -229,9 +223,9 @@ export default function CampaignDetail() {
                             {i + 1}
                           </span>
                           <div>
-                            <p className="text-sm font-medium text-white">{sub.creator.name || "Unknown"}</p>
+                            <p className="text-sm font-medium text-white">{sub.creator.name || t("BrandCampaignDetail.unknownCreator")}</p>
                             <p className="text-xs text-[#a0a0c0]">
-                              {sub.platform ? PLATFORM_LABELS[sub.platform] : "-"} &middot; {formatCompactNumber(sub.views)} views
+                              {sub.platform ? t(`Platform.${sub.platform}`) : "-"} &middot; {formatCompactNumber(sub.views)} {t("Brand.colViews")}
                             </p>
                           </div>
                         </div>
@@ -276,7 +270,7 @@ export default function CampaignDetail() {
                           <div>
                             <p className="font-medium text-white">{sub.creator.name || sub.creator.id}</p>
                             <p className="text-xs text-[#a0a0c0]">
-                              {sub.platform ? PLATFORM_LABELS[sub.platform] : "N/A"} &middot; {formatCompactNumber(sub.views)} views &middot; Rp {sub.estimatedPayout.toLocaleString()} {t("BrandCampaignDetail.estimated")}
+                              {sub.platform ? t(`Platform.${sub.platform}`) : t("BrandCampaignDetail.na")} &middot; {formatCompactNumber(sub.views)} {t("Brand.colViews")} &middot; Rp {sub.estimatedPayout.toLocaleString()} {t("BrandCampaignDetail.estimated")}
                             </p>
                           </div>
                         </div>

@@ -31,11 +31,11 @@ export default function BrandCampaigns() {
       .finally(() => setLoading(false));
   }, []);
 
-  const statusConfig: Record<string, { color: string; bg: string; label: string }> = {
-    DRAFT: { color: "text-[#a0a0c0]", bg: "bg-[#8888aa]/10", label: "Draft" },
-    ACTIVE: { color: "text-[#10b981]", bg: "bg-[#10b981]/10", label: "Active" },
-    PAUSED: { color: "text-[#f59e0b]", bg: "bg-[#f59e0b]/10", label: "Paused" },
-    ENDED: { color: "text-[#ef4444]", bg: "bg-[#ef4444]/10", label: "Ended" },
+  const statusConfig: Record<string, { color: string; bg: string; labelKey: string }> = {
+    DRAFT: { color: "text-[#a0a0c0]", bg: "bg-[#8888aa]/10", labelKey: "Brand.draft" },
+    ACTIVE: { color: "text-[#10b981]", bg: "bg-[#10b981]/10", labelKey: "Brand.filterActive" },
+    PAUSED: { color: "text-[#f59e0b]", bg: "bg-[#f59e0b]/10", labelKey: "Brand.filterPaused" },
+    ENDED: { color: "text-[#ef4444]", bg: "bg-[#ef4444]/10", labelKey: "Brand.filterEnded" },
   };
 
   return (
@@ -82,10 +82,10 @@ export default function BrandCampaigns() {
                   <div className="flex-1">
                     <div className="mb-2 flex items-center gap-2">
                       <span className="rounded-full bg-[#6c63ff]/10 px-2.5 py-0.5 text-xs font-medium text-[#6c63ff]">
-                        {CATEGORIES.find((cat) => cat.value === c.category)?.label}
+                        {t(`Category.${c.category}` as any)}
                       </span>
                       <span className={`rounded-full ${config.bg} px-2.5 py-0.5 text-xs font-medium ${config.color}`}>
-                        {config.label}
+                        {t(config.labelKey)}
                       </span>
                     </div>
                     <h3 className="text-lg font-semibold text-white">{c.title}</h3>
