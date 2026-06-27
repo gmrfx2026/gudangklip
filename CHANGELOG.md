@@ -4,6 +4,154 @@ Semua perubahan penting pada project GudangKlip dicatat di sini.
 
 ---
 
+## [0.1.8] - 2026-06-27
+
+### Creator Dashboard — Gap Analysis & Fix (konten.com parity)
+
+Analisis 8 gap antara GudangKlip Creator Dashboard dengan konten.com sebagai referensi.
+
+#### Gap #4 — 0% Fee Banner di Navbar
+- `messages/en.json`, `messages/id.json` — key `Navbar.zeroFee` ("0% Fee" / "0% Biaya")
+- `src/components/dashboard/navbar.tsx` — `<span>` pill hijau `#10b981` gradient di sebelah greeting, hidden on mobile
+
+**Alur**: i18n key → Navbar render → pill badge di header. Tidak ada data dependency, statis.
+
+#### Gap #5 — Onboarding Step 2: SocialConnect Live Data
+- `src/app/[locale]/(dashboard)/clipper/page.tsx` — import `getCreatorSocialAccounts`, state `socialCount`, fetch di `Promise.all` bersama `getCreatorOverview`
+
+**Alur**:
+```
+Page mount → useEffect
+  ├─ getCreatorOverview() → stats (submitted, approved, pending, earnings)
+  └─ getCreatorSocialAccounts() → socialCount = socialAccounts.length
+       ├─ onboardingDone = step1 && step2 (socialCount > 0) && step3 && step4
+       └─ OnboardingTracker: step 2 checked ⇔ socialCount > 0
+```
+
+#### Gap #6 — Campaign Platform Filter Fix
+- `src/app/[locale]/(dashboard)/clipper/campaigns/page.tsx` — add `ponytail:` comment di `filtered()`: platform filter pass-through karena Campaign tidak punya kolom `platform` (multi-platform by design)
+
+**Alur**: Filter toggle tetap dipertahankan sebagai UI indicator decorative. Tidak ada query filtering berdasarkan platform. ponytail: tambah kolom `platform` di Campaign model + filter server-side jika benar-benar dibutuhkan.
+
+#### Gap #7 — Notifications Page: Connect to Database
+- `src/app/[locale]/(dashboard)/clipper/notifications/page.tsx` — full rewrite dari 2 mock items ke DB-driven
+
+**Alur**:
+```
+Page mount → useEffect
+  ├─ getNotifications() → prisma.notification.findMany({ where: { userId }, take: 20 })
+  │     return: { id, title, message, isRead, link, createdAt }[]
+  │     filter:
+  │       ├─ all → semua
+  │       ├─ unread → isRead === false
+  │       ├─ campaigns → link.includes("/campaign")   (heuristic, model tidak punya kolom category)
+  │       └─ akun → !link.includes("/campaign")
+  └─ markAllRead() → prisma.notification.updateMany({ isRead: true })
+        → revalidatePath + optimistic UI update
+```
+
+**Dependency**: Notification model (Prisma) → `getNotifications()`, `getUnreadCount()`, `markAllRead()` di `notification.actions.ts` (sudah ada, sebelumnya hanya dipakai navbar dropdown).
+
+#### Gap #8 — Analytics Chart: Real Data dari ViewLog
+- `src/actions/submission.actions.ts` — `getDailyViewStats()` (NEW): query ViewLog 28 hari terakhir, aggregate per hari, fill zero
+- `src/app/[locale]/(dashboard)/clipper/analytic/page.tsx` — replace `generateChartData()` zero-data → `getDailyViewStats()`
+
+**Alur**:
+```
+Page mount → useEffect
+  ├─ getCreatorOverview() → stat cards (totalEarnings, activeCampaigns)
+  ├─ getCreatorSubmissions() → status breakdown, platform distribution, approved videos table
+  └─ getDailyViewStats() → chart data untuk LineChart
+       │
+       ▼ Server Action:
+       prisma.viewLog.findMany({
+         where: { submission: { creatorId: userId }, date: { gte: 28d ago } },
+         select: { views, date }
+       })
+       → Map<string, number> agregat per hari (YYYY-MM-DD)
+       → fill 28 hari, zero untuk hari tanpa views
+       → return { date: "27 Jun", views: 123 }[]
+```
+
+**Dependency**: ViewLog model (`views`, `date`) ← Submission (`creatorId`, `campaignId`) ← User (session userId).
+
+### Arsitektur Data Flow — Creator Dashboard
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                     CREATOR DASHBOARD                            │
+│                                                                  │
+│  /clipper (Overview)          /clipper/notifications             │
+│  ┌──────────────────┐         ┌──────────────────────┐           │
+│  │ getCreatorOverview│         │ getNotifications()    │           │
+│  │  → Wallet balance │         │  → 20 most recent    │           │
+│  │  → totalEarnings  │         │ getUnreadCount()      │           │
+│  │  → activeCampaigns│         │  → badge counter      │           │
+│  │  → stats cards    │         │ markAllRead()         │           │
+│  │ getCreatorSocial  │         │  → updateMany(isRead) │           │
+│  │  Accounts()       │         │  → revalidatePath     │           │
+│  │  → onboarding     │         └──────────────────────┘           │
+│  │    step 2 tracker │                                            │
+│  └──────────────────┘                                            │
+│                                                                  │
+│  /clipper/analytic              /clipper/campaigns               │
+│  ┌──────────────────┐         ┌──────────────────────┐           │
+│  │ getCreatorOverview│         │ getAvailableCampaigns│           │
+│  │  → stat cards     │         │  → campaign list     │           │
+│  │ getCreator        │         │  → tag filtering     │           │
+│  │  Submissions()    │         │  → platform filter   │           │
+│  │  → status pie     │         │    (decorative only) │           │
+│  │  → platform bars  │         │  → search            │           │
+│  │  → approved table │         └──────────────────────┘           │
+│  │ getDailyViewStats │                                            │
+│  │  → LineChart 28d  │                                            │
+│  └──────────────────┘                                            │
+│                                                                  │
+│  /clipper/earnings                                               │
+│  ┌──────────────────┐                                            │
+│  │ getPayoutHistory  │                                            │
+│  │  → payout list    │                                            │
+│  │ getCreatorOverview│                                            │
+│  │  → walletBalance  │                                            │
+│  │ getTransaction    │                                            │
+│  │  History()        │                                            │
+│  │  → topup list     │                                            │
+│  │ requestPayout()   │                                            │
+│  │  → withdraw form  │                                            │
+│  │ createTopUp()     │                                            │
+│  │  → Midtrans Snap  │                                            │
+│  └──────────────────┘                                            │
+│                                                                  │
+│  Server Actions (14 modules):                                    │
+│  ┌────────────────────────────────────────────────────┐          │
+│  │ creator.actions    — getCreatorOverview,            │          │
+│  │                      getCreatorSocialAccounts       │          │
+│  │ submission.actions — getCreatorSubmissions,         │          │
+│  │                      getDailyViewStats (NEW)        │          │
+│  │ notification.actions — getNotifications,            │          │
+│  │                        getUnreadCount, markAllRead  │          │
+│  │ campaign.actions   — getAvailableCampaigns          │          │
+│  │ payout.actions     — getPayoutHistory, requestPayout│          │
+│  │ transaction.actions — createTopUp, getTransaction   │          │
+│  │                      History                        │          │
+│  └────────────────────────────────────────────────────┘          │
+│                                                                  │
+│  Database Models (relevant):                                     │
+│  ┌────────────────────────────────────────────────────┐          │
+│  │ User ◄── Notification (userId)                     │          │
+│  │ User ◄── SocialAccount (userId)                    │          │
+│  │ User ◄── Submission (creatorId)                    │          │
+│  │  │                                                   │          │
+│  │  ├── ViewLog (submissionId) → getDailyViewStats()   │          │
+│  │  └── Campaign (campaignId)                           │          │
+│  │ User ◄── Payout (creatorId)                        │          │
+│  │ User ◄── Transaction (userId)                      │          │
+│  └────────────────────────────────────────────────────┘          │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
 ## [0.1.7] - 2026-06-22
 
 ### Brand Dashboard Redesign — Budget, Settings, Analytics & Campaign Detail

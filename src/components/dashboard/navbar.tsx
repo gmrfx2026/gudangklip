@@ -67,20 +67,23 @@ export default function Navbar({ onToggleSidebar }: NavbarProps) {
 
   return (
     <header className="flex h-16 items-center justify-between border-b border-[#2a2a50]/50 bg-[#0d0d22]/80 px-4 sm:px-6 backdrop-blur-xl">
-      <div className="flex items-center gap-3">
-        {/* Mobile hamburger */}
-        {onToggleSidebar && (
-          <button
-            onClick={onToggleSidebar}
-            className="rounded-xl p-2 text-[#a0a0c0] hover:bg-[#1e1e3f] hover:text-white transition-colors lg:hidden"
-            aria-label={t("Navbar.openMenu")}
-          >
-            <Menu className="h-5 w-5" />
-          </button>
-        )}
-        <h1 className="text-lg font-semibold text-white">
-          {t("Navbar.greeting", { name: session?.user?.name?.split(" ")[0] ?? "" })}
-        </h1>
+        <div className="flex items-center gap-3">
+          {/* Mobile hamburger */}
+          {onToggleSidebar && (
+            <button
+              onClick={onToggleSidebar}
+              className="rounded-xl p-2 text-[#a0a0c0] hover:bg-[#1e1e3f] hover:text-white transition-colors lg:hidden"
+              aria-label={t("Navbar.openMenu")}
+            >
+              <Menu className="h-5 w-5" />
+            </button>
+          )}
+          <h1 className="text-lg font-semibold text-white">
+            {t("Navbar.greeting", { name: session?.user?.name?.split(" ")[0] ?? "" })}
+          </h1>
+          <span className="hidden sm:inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-[#10b981]/20 to-[#10b981]/10 border border-[#10b981]/30 px-2.5 py-0.5 text-[11px] font-semibold text-[#10b981]">
+            {t("Navbar.zeroFee")}
+          </span>
       </div>
       <div className="flex items-center gap-4">
         <div className="relative hidden sm:block">

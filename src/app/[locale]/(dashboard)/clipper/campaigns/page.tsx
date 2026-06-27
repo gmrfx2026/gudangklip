@@ -64,6 +64,9 @@ export default function ClipperCampaigns() {
   const filtered = campaigns.filter((c) => {
     if (category && c.category !== category) return false;
     if (search && !c.title.toLowerCase().includes(search.toLowerCase()) && !(c.brand?.name || "").toLowerCase().includes(search.toLowerCase())) return false;
+    // ponytail: platform filter is UI-only — campaigns are multi-platform by design.
+    // Platform model field not in schema; add Campaign.platforms JSON when needed.
+    if (platformFilters.length > 0) return true; // pass-through, all campaigns available on all platforms
     return true;
   });
 

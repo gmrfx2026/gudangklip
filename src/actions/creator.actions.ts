@@ -2,6 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { auth, getSessionUser } from "@/lib/auth";
+import { revalidatePath } from "next/cache";
 
 export async function getCreatorOverview() {
   const session = await auth();
@@ -91,6 +92,47 @@ export async function getCreatorSocialAccounts() {
 
   return prisma.socialAccount.findMany({
     where: { userId },
-    select: { id: true, platform: true, username: true, verified: true },
+    select: { id: true, platform: true, username: true, verified: true, followersCount: true },
   });
+}
+
+export async function addSocialAccount(platform: string, username: string) {
+  const session = await auth();
+  const { id: userId, role } = getSessionUser(session);
+  if (!userId || role !== "CREATOR") throw new Error("Unauthorized");
+
+  const existing = await prisma.socialAccount.findUnique({
+    where: { userId_platform: { userId, platform: platform as any } },
+  });
+  if (existing) throw new Error("Platform ini sudah terhubung");
+
+  const account = await prisma.socialAccount.create({
+    data: {
+      userId,
+      platform: platform as any,
+      username,
+      verified: false,
+      verificationCode: Math.random().toString(36).substring(2, 8).toUpperCase(),
+    },
+    select: { id: true, platform: true, username: true, verified: true, followersCount: true },
+  });
+
+  revalidatePath("/clipper/settings");
+  return account;
+}
+
+export async function disconnectSocialAccount(accountId: string) {
+  const session = await auth();
+  const { id: userId, role } = getSessionUser(session);
+  if (!userId || role !== "CREATOR") throw new Error("Unauthorized");
+
+  const account = await prisma.socialAccount.findUnique({
+    where: { id: accountId },
+    select: { userId: true },
+  });
+  if (!account || account.userId !== userId) throw new Error("Unauthorized");
+
+  await prisma.socialAccount.delete({ where: { id: accountId } });
+  revalidatePath("/clipper/settings");
+  return { success: true };
 }

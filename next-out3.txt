@@ -1,0 +1,1253 @@
+   ▲ Next.js 15.5.19
+   - Local:        http://localhost:3000
+   - Network:      http://10.6.2.151:3000
+   - Environments: .env.local, .env
+
+ ✓ Starting...
+ ✓ Ready in 2.2s
+ ○ Compiling /middleware ...
+ ✓ Compiled /middleware in 634ms (268 modules)
+ ○ Compiling /[locale]/clipper ...
+ ✓ Compiled /[locale]/clipper in 5.5s (3187 modules)
+ ✓ Compiled in 499ms (1368 modules)
+ GET /en/clipper 200 in 7742ms
+ ○ Compiling /api/auth/[...nextauth] ...
+ ✓ Compiled /api/auth/[...nextauth] in 3s (4125 modules)
+ GET /en/clipper 200 in 176ms
+ GET /api/auth/session 200 in 4130ms
+ GET /api/auth/session 200 in 312ms
+ GET /favicon.ico 404 in 4512ms
+ POST /en/clipper 200 in 158ms
+ POST /en/clipper 200 in 38ms
+ POST /en/clipper 200 in 51ms
+ POST /en/clipper 200 in 67ms
+ POST /en/clipper 200 in 47ms
+ POST /en/clipper 200 in 43ms
+ POST /en/clipper 200 in 37ms
+ POST /en/clipper 200 in 37ms
+ POST /en/clipper 200 in 33ms
+ POST /en/clipper 200 in 44ms
+ POST /en/clipper 200 in 44ms
+ POST /en/clipper 200 in 25ms
+ POST /en/clipper 200 in 33ms
+ POST /en/clipper 200 in 48ms
+ ✓ Compiled in 797ms (1779 modules)
+ GET /en/clipper 200 in 99ms
+ ✓ Compiled in 253ms (1779 modules)
+ GET /en/clipper 200 in 57ms
+ ✓ Compiled in 225ms (1779 modules)
+ GET /en/clipper 200 in 61ms
+ POST /en/clipper 200 in 46ms
+ POST /en/clipper 200 in 26ms
+ POST /en/clipper 200 in 32ms
+ POST /en/clipper 200 in 24ms
+ ✓ Compiled in 249ms (1779 modules)
+ GET /en/clipper 200 in 74ms
+ ✓ Compiled in 326ms (1779 modules)
+ GET /en/clipper 200 in 71ms
+ ✓ Compiled in 219ms (1779 modules)
+ GET /en/clipper 200 in 69ms
+ POST /en/clipper 200 in 47ms
+ ✓ Compiled in 245ms (1779 modules)
+ GET /en/clipper 200 in 62ms
+ ✓ Compiled in 208ms (1779 modules)
+ GET /en/clipper 200 in 66ms
+ ✓ Compiled in 200ms (1779 modules)
+ GET /en/clipper 200 in 72ms
+ ○ Compiling /[locale]/clipper/campaigns ...
+ ✓ Compiled /[locale]/clipper/campaigns in 1374ms (4135 modules)
+ GET /en/clipper/campaigns 200 in 2707ms
+ GET /api/auth/session 200 in 97ms
+ GET /api/auth/session 200 in 27ms
+ POST /en/clipper/campaigns 200 in 154ms
+ POST /en/clipper/campaigns 200 in 33ms
+ POST /en/clipper/campaigns 200 in 46ms
+ POST /en/clipper/campaigns 200 in 26ms
+ ✓ Compiled in 590ms (1782 modules)
+ POST /en/clipper/campaigns 200 in 590ms
+ POST /en/clipper/campaigns 200 in 48ms
+ POST /en/clipper/campaigns 200 in 49ms
+ POST /en/clipper/campaigns 200 in 46ms
+ POST /en/clipper/campaigns 200 in 40ms
+ ✓ Compiled in 249ms (1782 modules)
+ POST /en/clipper/campaigns 200 in 350ms
+ ✓ Compiled in 398ms (1782 modules)
+ ✓ Compiled in 235ms (1782 modules)
+ ✓ Compiled in 358ms (1782 modules)
+ GET /en/clipper/campaigns 200 in 515ms
+ ✓ Compiled in 438ms (1782 modules)
+ ✓ Compiled in 303ms (1782 modules)
+ GET /en/clipper/campaigns 200 in 473ms
+ ✓ Compiled in 234ms (1782 modules)
+ ✓ Compiled in 277ms (1782 modules)
+ GET /en/clipper/campaigns 200 in 415ms
+ ✓ Compiled in 256ms (1782 modules)
+ GET /en/clipper/campaigns 200 in 441ms
+ ✓ Compiled in 321ms (1782 modules)
+ ✓ Compiled in 254ms (1782 modules)
+ GET /en/clipper/campaigns 200 in 526ms
+ ✓ Compiled in 303ms (1782 modules)
+ ✓ Compiled in 238ms (1782 modules)
+ GET /en/clipper/campaigns 200 in 277ms
+ ✓ Compiled in 198ms (1782 modules)
+ ✓ Compiled in 246ms (1782 modules)
+ GET /en/clipper/campaigns 200 in 376ms
+ ✓ Compiled in 200ms (1782 modules)
+ GET /en/clipper/campaigns 200 in 332ms
+ ✓ Compiled in 230ms (1782 modules)
+ ✓ Compiled in 154ms (1782 modules)
+ ✓ Compiled in 158ms (1782 modules)
+ ✓ Compiled in 269ms (1782 modules)
+ ✓ Compiled in 285ms (1782 modules)
+ ✓ Compiled in 186ms (1782 modules)
+ ○ Compiling /[locale]/clipper/analytic ...
+ ✓ Compiled /[locale]/clipper/settings in 1798ms (3745 modules)
+ GET /en/clipper/settings 200 in 3038ms
+ GET /api/auth/session 200 in 99ms
+ GET /api/auth/session 200 in 27ms
+ POST /en/clipper/settings 200 in 183ms
+ POST /en/clipper/settings 200 in 30ms
+ POST /en/clipper/settings 200 in 36ms
+ POST /en/clipper/settings 200 in 61ms
+ POST /en/clipper/settings 200 in 466ms
+ ✓ Compiled in 476ms (1790 modules)
+ POST /en/clipper/settings 200 in 47ms
+ POST /en/clipper/settings 200 in 66ms
+ POST /en/clipper/settings 200 in 42ms
+ GET /en/clipper/settings 200 in 100ms
+ ✓ Compiled in 213ms (1790 modules)
+ GET /en/clipper/settings 200 in 70ms
+ ✓ Compiled in 245ms (1790 modules)
+ GET /en/clipper/settings 200 in 97ms
+ ✓ Compiled in 250ms (1790 modules)
+ GET /en/clipper/settings 200 in 89ms
+ ✓ Compiled in 258ms (1790 modules)
+ GET /en/clipper/settings 200 in 251ms
+ ✓ Compiled in 264ms (1790 modules)
+ GET /en/clipper/settings 200 in 76ms
+ GET /en/clipper/analytic 200 in 151ms
+ GET /api/auth/session 200 in 40ms
+ GET /api/auth/session 200 in 27ms
+ POST /en/clipper/analytic 200 in 51ms
+ POST /en/clipper/analytic 200 in 29ms
+ POST /en/clipper/analytic 200 in 46ms
+ POST /en/clipper/analytic 200 in 52ms
+ POST /en/clipper/analytic 200 in 65ms
+ POST /en/clipper/analytic 200 in 364ms
+ ✓ Compiled in 388ms (1790 modules)
+ POST /en/clipper/analytic 200 in 53ms
+ POST /en/clipper/analytic 200 in 48ms
+ GET /en/clipper/analytic 200 in 59ms
+ ✓ Compiled in 229ms (1790 modules)
+ GET /en/clipper/analytic 200 in 159ms
+ ✓ Compiled in 228ms (1790 modules)
+ GET /en/clipper/analytic 200 in 78ms
+ POST /en/clipper/analytic 200 in 143ms
+ ✓ Compiled in 488ms (1790 modules)
+ ✓ Compiled in 407ms (1790 modules)
+ ✓ Compiled in 483ms (1790 modules)
+ GET /en/clipper/analytic 200 in 700ms
+ ✓ Compiled in 439ms (1790 modules)
+ ✓ Compiled in 278ms (1790 modules)
+ GET /en/clipper/analytic 200 in 541ms
+ ✓ Compiled in 266ms (1790 modules)
+ GET /en/clipper/analytic 200 in 488ms
+ ✓ Compiled in 331ms (1790 modules)
+ ✓ Compiled in 256ms (1790 modules)
+ ✓ Compiled in 201ms (1790 modules)
+ ✓ Compiled in 191ms (1790 modules)
+ ✓ Compiled in 174ms (1790 modules)
+ ✓ Compiled in 181ms (1790 modules)
+ ✓ Compiled in 173ms (1790 modules)
+ ✓ Compiled in 178ms (1790 modules)
+ ✓ Compiled in 174ms (1790 modules)
+ ✓ Compiled in 188ms (1790 modules)
+ ✓ Compiled in 220ms (1790 modules)
+ ✓ Compiled in 289ms (1790 modules)
+ ✓ Compiled in 179ms (1790 modules)
+ ✓ Compiled in 186ms (1790 modules)
+ ✓ Compiled in 189ms (1790 modules)
+ ✓ Compiled in 170ms (1790 modules)
+ ✓ Compiled in 172ms (1790 modules)
+ ✓ Compiled in 187ms (1790 modules)
+ ✓ Compiled in 192ms (1790 modules)
+ ✓ Compiled in 182ms (1790 modules)
+ ✓ Compiled in 174ms (1790 modules)
+ ✓ Compiled in 174ms (1790 modules)
+ ✓ Compiled in 170ms (1790 modules)
+ ✓ Compiled in 176ms (1790 modules)
+ ✓ Compiled in 174ms (1790 modules)
+ ✓ Compiled in 167ms (1790 modules)
+ ✓ Compiled in 183ms (1790 modules)
+ ○ Compiling /[locale]/clipper/rules ...
+ ✓ Compiled /[locale]/clipper/rules in 2.5s (3763 modules)
+ GET /en/clipper/rules 200 in 4021ms
+ GET /api/auth/session 200 in 169ms
+ GET /api/auth/session 200 in 54ms
+ POST /en/clipper/rules 200 in 219ms
+ POST /en/clipper/rules 200 in 53ms
+ POST /en/clipper/rules 200 in 197ms
+ POST /en/clipper/rules 200 in 75ms
+ ✓ Compiled in 425ms (1796 modules)
+ POST /en/clipper/rules 200 in 416ms
+ ✓ Compiled in 361ms (1796 modules)
+ ✓ Compiled in 291ms (1796 modules)
+ POST /en/clipper/rules 200 in 381ms
+ ✓ Compiled in 347ms (1796 modules)
+ ✓ Compiled in 330ms (1796 modules)
+ GET /en/clipper/rules 200 in 509ms
+ ✓ Compiled in 452ms (1796 modules)
+ ✓ Compiled in 347ms (1796 modules)
+ GET /en/clipper/rules 200 in 722ms
+ ✓ Compiled in 531ms (1796 modules)
+ ✓ Compiled in 586ms (1796 modules)
+ GET /en/clipper/rules 200 in 1063ms
+ ✓ Compiled in 344ms (1796 modules)
+ ✓ Compiled in 342ms (1796 modules)
+ GET /en/clipper/rules 200 in 531ms
+ ✓ Compiled in 211ms (1796 modules)
+ GET /en/clipper/rules 200 in 575ms
+ ✓ Compiled in 454ms (1796 modules)
+ ✓ Compiled in 359ms (1796 modules)
+ GET /en/clipper/rules 200 in 862ms
+ ✓ Compiled in 549ms (1796 modules)
+ ✓ Compiled in 258ms (1796 modules)
+ GET /en/clipper/rules 200 in 257ms
+ ✓ Compiled in 234ms (1796 modules)
+ ✓ Compiled in 262ms (1796 modules)
+ GET /en/clipper/rules 200 in 404ms
+ ✓ Compiled in 235ms (1796 modules)
+ GET /en/clipper/rules 200 in 457ms
+ ✓ Compiled in 342ms (1796 modules)
+ ✓ Compiled in 369ms (1796 modules)
+ ✓ Compiled in 406ms (1796 modules)
+ ✓ Compiled in 268ms (1796 modules)
+ ✓ Compiled in 229ms (1796 modules)
+ ✓ Compiled in 234ms (1796 modules)
+ ✓ Compiled in 212ms (1796 modules)
+ ✓ Compiled in 222ms (1796 modules)
+ ✓ Compiled in 239ms (1796 modules)
+ ✓ Compiled in 210ms (1796 modules)
+ ✓ Compiled in 278ms (1796 modules)
+ ✓ Compiled in 211ms (1796 modules)
+ ✓ Compiled in 188ms (1796 modules)
+ ✓ Compiled in 199ms (1796 modules)
+ ✓ Compiled in 230ms (1796 modules)
+ ✓ Compiled in 208ms (1796 modules)
+ ✓ Compiled in 253ms (1796 modules)
+ ✓ Compiled in 317ms (1796 modules)
+ ✓ Compiled in 488ms (1796 modules)
+ ✓ Compiled in 412ms (1796 modules)
+ ✓ Compiled in 563ms (1796 modules)
+ ✓ Compiled in 189ms (1796 modules)
+ ✓ Compiled in 180ms (1796 modules)
+ ✓ Compiled in 216ms (1796 modules)
+ ✓ Compiled in 189ms (1796 modules)
+ ✓ Compiled in 192ms (1796 modules)
+ ✓ Compiled in 157ms (1796 modules)
+ ✓ Compiled in 167ms (1796 modules)
+ ✓ Compiled in 151ms (1796 modules)
+ ✓ Compiled in 175ms (1796 modules)
+ ✓ Compiled in 161ms (1796 modules)
+ ✓ Compiled in 167ms (1796 modules)
+ ✓ Compiled in 1959ms (3777 modules)
+ ✓ Compiled in 303ms (1796 modules)
+ ✓ Compiled in 214ms (1796 modules)
+ ✓ Compiled in 257ms (1796 modules)
+ ✓ Compiled in 196ms (1796 modules)
+ ✓ Compiled in 334ms (1796 modules)
+ GET /en/clipper/notifications 200 in 467ms
+ GET /api/auth/session 200 in 94ms
+ GET /api/auth/session 200 in 25ms
+ POST /en/clipper/notifications 200 in 151ms
+ POST /en/clipper/notifications 200 in 28ms
+ POST /en/clipper/notifications 200 in 50ms
+ POST /en/clipper/notifications 200 in 33ms
+ ✓ Compiled in 302ms (1796 modules)
+ POST /en/clipper/notifications 200 in 217ms
+ POST /en/clipper/notifications 200 in 46ms
+ GET /en/clipper/notifications 200 in 58ms
+ ✓ Compiled in 204ms (1796 modules)
+ GET /en/clipper/notifications 200 in 66ms
+ ✓ Compiled in 258ms (1796 modules)
+ GET /en/clipper/notifications 200 in 84ms
+ ○ Compiling /[locale]/clipper/campaigns/[slug] ...
+ ✓ Compiled /[locale]/clipper/campaigns/[slug] in 1662ms (3765 modules)
+ GET /en/clipper/campaigns/cmqo0bimh001pug1gmm9chrlz 200 in 2621ms
+ GET /api/auth/session 200 in 131ms
+ GET /api/auth/session 200 in 39ms
+ POST /en/clipper/campaigns/cmqo0bimh001pug1gmm9chrlz 200 in 150ms
+ POST /en/clipper/campaigns/cmqo0bimh001pug1gmm9chrlz 200 in 31ms
+ POST /en/clipper/campaigns/cmqo0bimh001pug1gmm9chrlz 200 in 54ms
+ POST /en/clipper/campaigns/cmqo0bimh001pug1gmm9chrlz 200 in 31ms
+ POST /en/clipper/campaigns/cmqo0bimh001pug1gmm9chrlz 200 in 46ms
+ POST /en/clipper/campaigns/cmqo0bimh001pug1gmm9chrlz 200 in 47ms
+ POST /en/clipper/campaigns/cmqo0bimh001pug1gmm9chrlz 200 in 29ms
+ POST /en/clipper/campaigns/cmqo0bimh001pug1gmm9chrlz 200 in 55ms
+ ✓ Compiled in 536ms (1801 modules)
+ POST /en/clipper/campaigns/cmqo0bimh001pug1gmm9chrlz 200 in 614ms
+ ✓ Compiled in 423ms (1801 modules)
+ ✓ Compiled in 268ms (1801 modules)
+ ✓ Compiled in 196ms (1801 modules)
+ ✓ Compiled in 247ms (1801 modules)
+ ✓ Compiled in 206ms (1801 modules)
+ ✓ Compiled in 266ms (1801 modules)
+ ✓ Compiled in 223ms (1801 modules)
+ ✓ Compiled in 208ms (1801 modules)
+ ✓ Compiled in 217ms (1801 modules)
+ ✓ Compiled in 196ms (1801 modules)
+ ✓ Compiled in 191ms (1801 modules)
+ ✓ Compiled in 173ms (1801 modules)
+ ✓ Compiled in 201ms (1801 modules)
+ ✓ Compiled in 217ms (1801 modules)
+ ✓ Compiled in 178ms (1801 modules)
+ ✓ Compiled in 185ms (1801 modules)
+ ✓ Compiled in 184ms (1801 modules)
+ ✓ Compiled in 188ms (1801 modules)
+ ✓ Compiled in 190ms (1801 modules)
+ ✓ Compiled in 177ms (1801 modules)
+ ✓ Compiled in 172ms (1801 modules)
+ ✓ Compiled in 166ms (1801 modules)
+ ✓ Compiled in 300ms (1801 modules)
+ ✓ Compiled in 241ms (1801 modules)
+ ✓ Compiled in 200ms (1801 modules)
+ ✓ Compiled in 237ms (1801 modules)
+ ✓ Compiled in 247ms (1801 modules)
+ ✓ Compiled in 284ms (1801 modules)
+ ✓ Compiled in 205ms (1801 modules)
+ ✓ Compiled in 195ms (1801 modules)
+ ✓ Compiled in 190ms (1801 modules)
+ ✓ Compiled in 233ms (1801 modules)
+ ✓ Compiled in 1163ms (3646 modules)
+ ✓ Compiled in 213ms (1801 modules)
+ ✓ Compiled in 206ms (1801 modules)
+ ✓ Compiled in 178ms (1801 modules)
+ ✓ Compiled in 210ms (1801 modules)
+ ✓ Compiled in 189ms (1801 modules)
+ ✓ Compiled in 210ms (1801 modules)
+ ✓ Compiled in 369ms (1801 modules)
+ ✓ Compiled in 402ms (1801 modules)
+ ✓ Compiled in 193ms (1801 modules)
+ ✓ Compiled in 191ms (1801 modules)
+ ✓ Compiled in 188ms (1801 modules)
+ ✓ Compiled in 183ms (1801 modules)
+ ✓ Compiled in 221ms (1801 modules)
+ ✓ Compiled in 203ms (1801 modules)
+ ✓ Compiled in 191ms (1801 modules)
+ ✓ Compiled in 194ms (1801 modules)
+ ✓ Compiled in 199ms (1801 modules)
+ ✓ Compiled in 193ms (1801 modules)
+ ✓ Compiled in 248ms (1801 modules)
+ ✓ Compiled in 236ms (1801 modules)
+ ✓ Compiled in 207ms (1801 modules)
+ ✓ Compiled in 215ms (1801 modules)
+ ✓ Compiled in 225ms (1801 modules)
+ ✓ Compiled in 231ms (1801 modules)
+ ✓ Compiled in 191ms (1801 modules)
+ ✓ Compiled in 219ms (1801 modules)
+ ✓ Compiled in 345ms (1801 modules)
+ ✓ Compiled in 231ms (1801 modules)
+ ✓ Compiled in 196ms (1801 modules)
+ ✓ Compiled in 206ms (1801 modules)
+ ✓ Compiled in 194ms (1801 modules)
+ ✓ Compiled in 197ms (1801 modules)
+ ✓ Compiled in 234ms (1801 modules)
+ ✓ Compiled in 419ms (1801 modules)
+ ✓ Compiled in 214ms (1801 modules)
+ ✓ Compiled in 194ms (1801 modules)
+ ✓ Compiled in 182ms (1801 modules)
+ ✓ Compiled in 177ms (1801 modules)
+ ✓ Compiled in 183ms (1801 modules)
+ ✓ Compiled in 180ms (1801 modules)
+ ✓ Compiled in 181ms (1801 modules)
+ ✓ Compiled in 194ms (1801 modules)
+ ✓ Compiled in 177ms (1801 modules)
+ ✓ Compiled in 252ms (1801 modules)
+ ✓ Compiled in 252ms (1801 modules)
+ ✓ Compiled in 209ms (1801 modules)
+ ✓ Compiled in 277ms (1801 modules)
+ ✓ Compiled in 353ms (1801 modules)
+ ✓ Compiled in 297ms (1801 modules)
+ ✓ Compiled in 268ms (1801 modules)
+ ✓ Compiled in 311ms (1801 modules)
+ ✓ Compiled in 239ms (1801 modules)
+ ✓ Compiled in 178ms (1801 modules)
+ ✓ Compiled in 188ms (1801 modules)
+ ✓ Compiled in 309ms (1801 modules)
+ ✓ Compiled in 221ms (1801 modules)
+ ✓ Compiled in 268ms (1801 modules)
+ ✓ Compiled in 255ms (1801 modules)
+ ✓ Compiled in 206ms (1801 modules)
+ ○ Compiling /[locale] ...
+ ✓ Compiled /[locale] in 1086ms (2258 modules)
+ GET /en 200 in 1601ms
+ ✓ Compiled /api/auth/[...nextauth] in 382ms (2385 modules)
+ GET /api/auth/session 200 in 1190ms
+ GET /favicon.ico 404 in 1749ms
+ GET /api/auth/session 200 in 198ms
+ ○ Compiling /[locale]/login ...
+ ✓ Compiled /[locale]/login in 1658ms (4357 modules)
+ GET /en/login 200 in 2432ms
+ GET /api/auth/providers 200 in 77ms
+ GET /api/auth/csrf 200 in 16ms
+[31m[auth][error][0m CredentialsSignin: Read more at https://errors.authjs.dev#credentialssignin
+    at Module.callback (webpack-internal:///(rsc)/./node_modules/@auth/core/lib/actions/callback/index.js:246:23)
+    at async AuthInternal (webpack-internal:///(rsc)/./node_modules/@auth/core/lib/index.js:70:24)
+    at async Auth (webpack-internal:///(rsc)/./node_modules/@auth/core/index.js:130:34)
+    at async AppRouteRouteModule.do (E:\web\clipper\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:5:38696)
+    at async AppRouteRouteModule.handle (E:\web\clipper\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:5:45978)
+    at async responseGenerator (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fauth%2F%5B...nextauth%5D%2Froute&page=%2Fapi%2Fauth%2F%5B...nextauth%5D%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fauth%2F%5B...nextauth%5D%2Froute.ts&appDir=E%3A%5Cweb%5Cclipper%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=E%3A%5Cweb%5Cclipper&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=standalone&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:203:38)
+    at async AppRouteRouteModule.handleResponse (E:\web\clipper\node_modules\next\dist\compiled\next-server\app-route.runtime.dev.js:1:195304)
+    at async handleResponse (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fauth%2F%5B...nextauth%5D%2Froute&page=%2Fapi%2Fauth%2F%5B...nextauth%5D%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fauth%2F%5B...nextauth%5D%2Froute.ts&appDir=E%3A%5Cweb%5Cclipper%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=E%3A%5Cweb%5Cclipper&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=standalone&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:265:32)
+    at async handler (webpack-internal:///(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader/index.js?name=app%2Fapi%2Fauth%2F%5B...nextauth%5D%2Froute&page=%2Fapi%2Fauth%2F%5B...nextauth%5D%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fauth%2F%5B...nextauth%5D%2Froute.ts&appDir=E%3A%5Cweb%5Cclipper%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=E%3A%5Cweb%5Cclipper&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=standalone&preferredRegion=&middlewareConfig=e30%3D&isGlobalNotFoundEnabled=!:317:13)
+    at async DevServer.renderToResponseWithComponentsImpl (E:\web\clipper\node_modules\next\dist\server\base-server.js:1430:9)
+    at async DevServer.renderPageComponent (E:\web\clipper\node_modules\next\dist\server\base-server.js:1482:24)
+    at async DevServer.renderToResponseImpl (E:\web\clipper\node_modules\next\dist\server\base-server.js:1522:32)
+    at async DevServer.pipeImpl (E:\web\clipper\node_modules\next\dist\server\base-server.js:1026:25)
+    at async NextNodeServer.handleCatchallRenderRequest (E:\web\clipper\node_modules\next\dist\server\next-server.js:394:17)
+    at async DevServer.handleRequestImpl (E:\web\clipper\node_modules\next\dist\server\base-server.js:917:17)
+    at async E:\web\clipper\node_modules\next\dist\server\dev\next-dev-server.js:400:20
+    at async Span.traceAsyncFn (E:\web\clipper\node_modules\next\dist\trace\trace.js:157:20)
+    at async DevServer.handleRequest (E:\web\clipper\node_modules\next\dist\server\dev\next-dev-server.js:396:24)
+    at async invokeRender (E:\web\clipper\node_modules\next\dist\server\lib\router-server.js:240:21)
+    at async handleRequest (E:\web\clipper\node_modules\next\dist\server\lib\router-server.js:437:24)
+    at async requestHandlerImpl (E:\web\clipper\node_modules\next\dist\server\lib\router-server.js:485:13)
+    at async Server.requestListener (E:\web\clipper\node_modules\next\dist\server\lib\start-server.js:226:13)
+ POST /api/auth/callback/credentials? 200 in 280ms
+ GET /api/auth/session 200 in 17ms
+ GET /api/auth/providers 200 in 22ms
+ GET /api/auth/csrf 200 in 17ms
+ POST /api/auth/callback/credentials? 200 in 273ms
+ GET /api/auth/session 200 in 21ms
+ ○ Compiling /[locale]/clipper ...
+ ✓ Compiled /[locale]/clipper in 862ms (2476 modules)
+ GET /en/clipper 200 in 977ms
+ GET /en/clipper 200 in 78ms
+ POST /en/clipper 200 in 134ms
+ POST /en/clipper 200 in 40ms
+ POST /en/clipper 200 in 47ms
+ POST /en/clipper 200 in 45ms
+ POST /en/clipper 200 in 28ms
+ POST /en/clipper 200 in 44ms
+ POST /en/clipper 200 in 56ms
+ POST /en/clipper 200 in 33ms
+ POST /en/clipper 200 in 46ms
+ POST /en/clipper 200 in 38ms
+ POST /en/clipper 200 in 50ms
+ POST /en/clipper 200 in 25ms
+ POST /en/clipper 200 in 30ms
+ POST /en/clipper 200 in 35ms
+ ✓ Compiled /[locale]/clipper/analytic in 476ms (2476 modules)
+ GET /en/clipper/analytic 200 in 685ms
+ POST /en/clipper/analytic 200 in 117ms
+ POST /en/clipper/analytic 200 in 48ms
+ ○ Compiling /[locale]/clipper/earnings ...
+ ✓ Compiled /[locale]/clipper/earnings in 1170ms (4469 modules)
+ GET /en/clipper/earnings 200 in 2062ms
+ POST /en/clipper/earnings 200 in 126ms
+ POST /en/clipper/earnings 200 in 44ms
+ POST /en/clipper/earnings 200 in 36ms
+ POST /en/clipper/earnings 200 in 43ms
+ POST /en/clipper/earnings 200 in 47ms
+ POST /en/clipper/earnings 200 in 32ms
+ GET /en/clipper/analytic 200 in 56ms
+ POST /en/clipper/analytic 200 in 34ms
+ POST /en/clipper/analytic 200 in 36ms
+ ○ Compiling /[locale]/clipper/campaigns ...
+ ✓ Compiled /[locale]/clipper/campaigns in 668ms (2590 modules)
+ GET /en/clipper/campaigns 200 in 767ms
+ POST /en/clipper/campaigns 200 in 59ms
+ POST /en/clipper/campaigns 200 in 41ms
+ POST /en/clipper/campaigns 200 in 33ms
+ POST /en/clipper/campaigns 200 in 41ms
+ GET /en/clipper 200 in 47ms
+ GET /en/clipper 200 in 60ms
+ POST /en/clipper 200 in 58ms
+ POST /en/clipper 200 in 53ms
+ POST /en/clipper 200 in 62ms
+ POST /en/clipper 200 in 37ms
+ POST /en/clipper 200 in 51ms
+ POST /en/clipper 200 in 26ms
+ POST /en/clipper 200 in 182ms
+ POST /en/clipper 200 in 284ms
+ POST /en/clipper 200 in 60ms
+ ✓ Compiled in 392ms (1899 modules)
+ GET /en/clipper 200 in 98ms
+ ✓ Compiled in 248ms (1899 modules)
+ GET /en/clipper 200 in 78ms
+ ✓ Compiled in 304ms (1899 modules)
+ GET /en/clipper 200 in 265ms
+ ✓ Compiled in 259ms (1899 modules)
+ GET /en/clipper 200 in 60ms
+ POST /en/clipper 200 in 50ms
+ ✓ Compiled in 285ms (1899 modules)
+ GET /en/clipper 200 in 157ms
+ ✓ Compiled in 228ms (1899 modules)
+ GET /en/clipper 200 in 72ms
+ ✓ Compiled in 209ms (1899 modules)
+ ✓ Compiled in 227ms (1899 modules)
+ ✓ Compiled in 330ms (1899 modules)
+ GET /en/clipper 200 in 466ms
+ ✓ Compiled in 524ms (1899 modules)
+ ✓ Compiled in 378ms (1899 modules)
+ GET /en/clipper 200 in 1070ms
+ ✓ Compiled in 428ms (1899 modules)
+ GET /en/clipper 200 in 763ms
+ ✓ Compiled in 473ms (1899 modules)
+ ✓ Compiled in 220ms (1899 modules)
+ ✓ Compiled in 204ms (1899 modules)
+ ✓ Compiled in 184ms (1899 modules)
+ ✓ Compiled in 189ms (1899 modules)
+ ✓ Compiled in 175ms (1899 modules)
+ ✓ Compiled in 175ms (1899 modules)
+ ✓ Compiled in 270ms (1899 modules)
+ ✓ Compiled in 359ms (1899 modules)
+ ✓ Compiled in 308ms (1899 modules)
+ ✓ Compiled in 431ms (1899 modules)
+ ✓ Compiled in 271ms (1899 modules)
+ ✓ Compiled in 298ms (1899 modules)
+ GET /api/auth/session 200 in 139ms
+ GET /api/auth/session 200 in 34ms
+ GET /en/clipper 200 in 869ms
+ ✓ Compiled in 384ms (1899 modules)
+ GET /api/auth/session 200 in 35ms
+ GET /api/auth/session 200 in 59ms
+ POST /en/clipper 200 in 45ms
+ POST /en/clipper 200 in 45ms
+ POST /en/clipper 200 in 49ms
+ POST /en/clipper 200 in 51ms
+ POST /en/clipper 200 in 79ms
+ POST /en/clipper 200 in 81ms
+ ✓ Compiled in 316ms (1899 modules)
+ POST /en/clipper 200 in 355ms
+ POST /en/clipper 200 in 65ms
+ POST /en/clipper 200 in 38ms
+ POST /en/clipper 200 in 53ms
+ POST /en/clipper 200 in 41ms
+ POST /en/clipper 200 in 45ms
+ POST /en/clipper 200 in 49ms
+ POST /en/clipper 200 in 100ms
+ GET /en/clipper 200 in 327ms
+ ✓ Compiled in 286ms (1899 modules)
+ GET /en/clipper 200 in 124ms
+ ✓ Compiled in 286ms (1899 modules)
+ GET /en/clipper 200 in 120ms
+ ✓ Compiled in 253ms (1899 modules)
+ GET /en/clipper 200 in 117ms
+ ✓ Compiled in 249ms (1899 modules)
+ GET /en/clipper 200 in 70ms
+ ✓ Compiled in 298ms (1899 modules)
+ GET /en/clipper 200 in 78ms
+ ✓ Compiled in 279ms (1899 modules)
+ GET /en/clipper 200 in 140ms
+ ✓ Compiled in 242ms (1899 modules)
+ ○ Compiling /[locale]/clipper/settings ...
+ ✓ Compiled /[locale]/clipper/settings in 1063ms (4479 modules)
+ GET /en/clipper/settings 200 in 1254ms
+ GET /en/clipper/settings 200 in 125ms
+ GET /en/clipper/settings 200 in 125ms
+ POST /en/clipper/settings 200 in 281ms
+ ✓ Compiled in 512ms (1899 modules)
+ POST /en/clipper/settings 200 in 809ms
+ ✓ Compiled in 537ms (1899 modules)
+ GET /en/clipper/campaigns/cmqo0bimh001pug1gmm9chrlz 200 in 570ms
+ ✓ Compiled in 358ms (1899 modules)
+ ✓ Compiled in 349ms (1899 modules)
+ GET /en/clipper/campaigns/cmqo0bimh001pug1gmm9chrlz 200 in 567ms
+ ✓ Compiled in 235ms (1899 modules)
+ ✓ Compiled in 277ms (1899 modules)
+ GET /en/clipper/campaigns/cmqo0bimh001pug1gmm9chrlz 200 in 428ms
+ ✓ Compiled in 302ms (1899 modules)
+ ✓ Compiled in 250ms (1899 modules)
+ ✓ Compiled in 210ms (1899 modules)
+ ✓ Compiled in 195ms (1899 modules)
+ ✓ Compiled in 200ms (1899 modules)
+ ✓ Compiled in 191ms (1899 modules)
+ ✓ Compiled in 203ms (1899 modules)
+ GET /en/clipper 200 in 187ms
+ ✓ Compiled in 257ms (1899 modules)
+ ✓ Compiled in 273ms (1899 modules)
+ GET /en/clipper 200 in 328ms
+ ✓ Compiled in 222ms (1899 modules)
+ GET /en/clipper 200 in 362ms
+ ✓ Compiled in 250ms (1899 modules)
+ ✓ Compiled in 202ms (1899 modules)
+ ✓ Compiled in 230ms (1899 modules)
+ ✓ Compiled in 231ms (1899 modules)
+ ✓ Compiled in 269ms (1899 modules)
+ ✓ Compiled in 226ms (1899 modules)
+ ✓ Compiled in 222ms (1899 modules)
+ ✓ Compiled in 248ms (1899 modules)
+ ✓ Compiled in 199ms (1899 modules)
+ ✓ Compiled in 719ms (1899 modules)
+ ✓ Compiled in 274ms (1899 modules)
+ ✓ Compiled in 228ms (1899 modules)
+ ✓ Compiled in 232ms (1899 modules)
+ ✓ Compiled in 203ms (1899 modules)
+ ✓ Compiled in 241ms (1899 modules)
+ ✓ Compiled in 227ms (1899 modules)
+ ✓ Compiled in 239ms (1899 modules)
+ ✓ Compiled in 397ms (1899 modules)
+ ✓ Compiled in 224ms (1899 modules)
+ ✓ Compiled in 216ms (1899 modules)
+ ✓ Compiled in 210ms (1899 modules)
+ ✓ Compiled in 190ms (1899 modules)
+ ✓ Compiled in 206ms (1899 modules)
+ ✓ Compiled in 197ms (1899 modules)
+ ✓ Compiled in 232ms (1899 modules)
+ ✓ Compiled in 423ms (1899 modules)
+ ✓ Compiled in 309ms (1899 modules)
+ ✓ Compiled in 212ms (1899 modules)
+ ✓ Compiled in 183ms (1899 modules)
+ ✓ Compiled in 196ms (1899 modules)
+ ✓ Compiled in 181ms (1899 modules)
+ ✓ Compiled in 214ms (1899 modules)
+ ✓ Compiled in 180ms (1899 modules)
+ ✓ Compiled in 190ms (1899 modules)
+ ✓ Compiled in 204ms (1899 modules)
+ ✓ Compiled in 171ms (1899 modules)
+ ✓ Compiled in 190ms (1899 modules)
+ ✓ Compiled in 343ms (1899 modules)
+ ✓ Compiled in 241ms (1899 modules)
+ ✓ Compiled in 295ms (1899 modules)
+ ✓ Compiled in 313ms (1899 modules)
+ ✓ Compiled in 223ms (1899 modules)
+ ✓ Compiled in 280ms (1899 modules)
+ ✓ Compiled in 2.4s (4479 modules)
+ ✓ Compiled in 328ms (1899 modules)
+ ✓ Compiled in 349ms (1899 modules)
+ ✓ Compiled in 198ms (1899 modules)
+ ✓ Compiled in 208ms (1899 modules)
+ ✓ Compiled in 229ms (1899 modules)
+ ✓ Compiled in 1220ms (4352 modules)
+ ✓ Compiled in 248ms (1899 modules)
+ ✓ Compiled in 276ms (1899 modules)
+ ✓ Compiled in 229ms (1899 modules)
+ ✓ Compiled in 268ms (1899 modules)
+ ✓ Compiled in 354ms (1899 modules)
+ ✓ Compiled in 222ms (1899 modules)
+ ✓ Compiled in 258ms (1899 modules)
+ GET /en 200 in 685ms
+ ✓ Compiled /api/auth/[...nextauth] in 470ms (2571 modules)
+ ✓ Compiled in 486ms (1899 modules)
+ GET /api/auth/session 200 in 1919ms
+ GET /favicon.ico 404 in 2478ms
+ GET /api/auth/session 200 in 209ms
+ GET /en 200 in 574ms
+ ○ Compiling /[locale]/register ...
+ ✓ Compiled /[locale]/register in 4.3s (4481 modules)
+ GET /en/register 200 in 4729ms
+ GET /en/login 200 in 118ms
+ GET /en/register 200 in 120ms
+ ✓ Compiled in 249ms (1903 modules)
+ GET /en/login 200 in 72ms
+ ✓ Compiled in 271ms (1903 modules)
+ GET /en/login 200 in 78ms
+ GET /en/register 200 in 49ms
+ ✓ Compiled in 284ms (1903 modules)
+ GET /en/register 200 in 64ms
+ ✓ Compiled in 230ms (1903 modules)
+ GET /en/register 200 in 67ms
+ ✓ Compiled in 251ms (1903 modules)
+ GET /en/register 200 in 61ms
+ ✓ Compiled in 314ms (1903 modules)
+ GET /en/register 200 in 432ms
+ ✓ Compiled in 259ms (1903 modules)
+ GET /en/register 200 in 63ms
+ ✓ Compiled in 252ms (1903 modules)
+ GET /en/register 200 in 64ms
+ ✓ Compiled in 405ms (1903 modules)
+ GET /en/register 200 in 76ms
+ ✓ Compiled in 301ms (1903 modules)
+ GET /en/register 200 in 67ms
+ ✓ Compiled in 334ms (1903 modules)
+ ✓ Compiled in 319ms (1903 modules)
+ GET /en/register 200 in 386ms
+ ✓ Compiled in 396ms (1903 modules)
+ GET /en/register 200 in 308ms
+ GET /en/register 200 in 58ms
+ ✓ Compiled in 279ms (1903 modules)
+ GET /en/register 200 in 167ms
+ ✓ Compiled in 344ms (1903 modules)
+ GET /en/register 200 in 113ms
+ ✓ Compiled in 249ms (1903 modules)
+ GET /en/register 200 in 98ms
+ ✓ Compiled in 254ms (1903 modules)
+ GET /en/register 200 in 58ms
+ ✓ Compiled in 756ms (1903 modules)
+ GET /en/register 200 in 177ms
+ ✓ Compiled in 1626ms (1966 modules)
+ ⨯ SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>) {
+  page: '/en/register'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 2.5s (4349 modules)
+ GET /en/register 500 in 2892ms
+ GET /en/register 200 in 164ms
+ GET /en/register 200 in 72ms
+ GET /en/register 200 in 47ms
+ GET /en/register 200 in 303ms
+ ✓ Compiled /api/auth/[...nextauth] in 432ms (2358 modules)
+ GET /api/auth/session 200 in 642ms
+ GET /api/auth/session 200 in 20ms
+ ✓ Compiled in 319ms (2118 modules)
+ GET /en/register 200 in 123ms
+ ✓ Compiled in 336ms (2118 modules)
+ GET /en/register 200 in 72ms
+ ✓ Compiled in 362ms (2118 modules)
+ GET /en/register 200 in 63ms
+ ✓ Compiled in 271ms (2118 modules)
+ GET /en/register 200 in 72ms
+ ✓ Compiled in 303ms (2118 modules)
+ GET /en/register 200 in 410ms
+ ✓ Compiled in 365ms (2118 modules)
+ GET /en/register 200 in 59ms
+ ✓ Compiled in 680ms (2118 modules)
+ GET /en/register 200 in 85ms
+ ✓ Compiled in 326ms (2118 modules)
+ GET /en/register 200 in 80ms
+ ✓ Compiled in 2.5s (4476 modules)
+ GET /en/register 200 in 401ms
+ ✓ Compiled in 392ms (2118 modules)
+ GET /en/register 200 in 84ms
+ ✓ Compiled in 324ms (2118 modules)
+ GET /en/register 200 in 230ms
+ ✓ Compiled in 351ms (2118 modules)
+ GET /en/register 200 in 61ms
+ ✓ Compiled in 370ms (2118 modules)
+ GET /en/register 200 in 185ms
+ ✓ Compiled in 299ms (2118 modules)
+ GET /en/register 200 in 63ms
+ ✓ Compiled in 330ms (2117 modules)
+ GET /en/register 200 in 446ms
+ ✓ Compiled in 1813ms (2117 modules)
+ GET /en/register 200 in 92ms
+ ✓ Compiled in 359ms (2117 modules)
+ ⨯ [Error: ENOENT: no such file or directory, open 'E:\web\clipper\.next\routes-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'E:\\web\\clipper\\.next\\routes-manifest.json',
+  page: '/en/register'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 647ms (4335 modules)
+ ⨯ Error: Cannot find module './5611.js'
+Require stack:
+- E:\web\clipper\.next\server\webpack-runtime.js
+- E:\web\clipper\.next\server\pages\_document.js
+- E:\web\clipper\node_modules\next\dist\server\require.js
+- E:\web\clipper\node_modules\next\dist\server\load-components.js
+- E:\web\clipper\node_modules\next\dist\build\utils.js
+- E:\web\clipper\node_modules\next\dist\build\swc\options.js
+- E:\web\clipper\node_modules\next\dist\build\swc\index.js
+- E:\web\clipper\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- E:\web\clipper\node_modules\next\dist\server\config.js
+- E:\web\clipper\node_modules\next\dist\server\next.js
+- E:\web\clipper\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (E:\web\clipper\.next\server\pages\_document.js:1:327)
+    at Object.<anonymous> (E:\web\clipper\.next\server\pages\_document.js:1:374) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error: ENOENT: no such file or directory, open 'E:\web\clipper\.next\routes-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'E:\\web\\clipper\\.next\\routes-manifest.json',
+  page: '/en/register'
+}
+ ⨯ Error: Cannot find module './5611.js'
+Require stack:
+- E:\web\clipper\.next\server\webpack-runtime.js
+- E:\web\clipper\.next\server\pages\_document.js
+- E:\web\clipper\node_modules\next\dist\server\require.js
+- E:\web\clipper\node_modules\next\dist\server\load-components.js
+- E:\web\clipper\node_modules\next\dist\build\utils.js
+- E:\web\clipper\node_modules\next\dist\build\swc\options.js
+- E:\web\clipper\node_modules\next\dist\build\swc\index.js
+- E:\web\clipper\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- E:\web\clipper\node_modules\next\dist\server\config.js
+- E:\web\clipper\node_modules\next\dist\server\next.js
+- E:\web\clipper\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (E:\web\clipper\.next\server\pages\_document.js:1:327)
+    at Object.<anonymous> (E:\web\clipper\.next\server\pages\_document.js:1:374) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ✓ Compiled in 2.2s (4349 modules)
+[Error: ENOENT: no such file or directory, open 'E:\web\clipper\.next\routes-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'E:\\web\\clipper\\.next\\routes-manifest.json'
+}
+ GET /en/register 500 in 5532ms
+ GET /en/register 500 in 1646ms
+ ⨯ [Error: ENOENT: no such file or directory, open 'E:\web\clipper\.next\routes-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'E:\\web\\clipper\\.next\\routes-manifest.json',
+  page: '/en/register'
+}
+ ⨯ Error: Cannot find module './5611.js'
+Require stack:
+- E:\web\clipper\.next\server\webpack-runtime.js
+- E:\web\clipper\.next\server\app\[locale]\(auth)\register\page.js
+- E:\web\clipper\node_modules\next\dist\server\require.js
+- E:\web\clipper\node_modules\next\dist\server\load-components.js
+- E:\web\clipper\node_modules\next\dist\build\utils.js
+- E:\web\clipper\node_modules\next\dist\build\swc\options.js
+- E:\web\clipper\node_modules\next\dist\build\swc\index.js
+- E:\web\clipper\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- E:\web\clipper\node_modules\next\dist\server\config.js
+- E:\web\clipper\node_modules\next\dist\server\next.js
+- E:\web\clipper\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (E:\web\clipper\.next\server\pages\_document.js:1:327)
+    at Object.<anonymous> (E:\web\clipper\.next\server\pages\_document.js:1:374) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error: ENOENT: no such file or directory, open 'E:\web\clipper\.next\routes-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'E:\\web\\clipper\\.next\\routes-manifest.json',
+  page: '/en/register'
+}
+ ⨯ Error: Cannot find module './5611.js'
+Require stack:
+- E:\web\clipper\.next\server\webpack-runtime.js
+- E:\web\clipper\.next\server\app\[locale]\(auth)\register\page.js
+- E:\web\clipper\node_modules\next\dist\server\require.js
+- E:\web\clipper\node_modules\next\dist\server\load-components.js
+- E:\web\clipper\node_modules\next\dist\build\utils.js
+- E:\web\clipper\node_modules\next\dist\build\swc\options.js
+- E:\web\clipper\node_modules\next\dist\build\swc\index.js
+- E:\web\clipper\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- E:\web\clipper\node_modules\next\dist\server\config.js
+- E:\web\clipper\node_modules\next\dist\server\next.js
+- E:\web\clipper\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (E:\web\clipper\.next\server\pages\_document.js:1:327)
+    at Object.<anonymous> (E:\web\clipper\.next\server\pages\_document.js:1:374) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error: ENOENT: no such file or directory, open 'E:\web\clipper\.next\routes-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'E:\\web\\clipper\\.next\\routes-manifest.json'
+}
+ GET /en/register 500 in 1226ms
+ GET /en/register 500 in 126ms
+ ⨯ Failed to generate static paths for /[locale]/register:
+[Error: Cannot find module './vendor-chunks/@swc.js'
+Require stack:
+- E:\web\clipper\.next\server\webpack-runtime.js
+- E:\web\clipper\.next\server\app\[locale]\(auth)\register\page.js
+- E:\web\clipper\node_modules\next\dist\server\require.js
+- E:\web\clipper\node_modules\next\dist\server\load-components.js
+- E:\web\clipper\node_modules\next\dist\build\utils.js
+- E:\web\clipper\node_modules\next\dist\server\dev\static-paths-worker.js
+- E:\web\clipper\node_modules\next\dist\compiled\jest-worker\processChild.js] {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ [Error: Cannot find module './vendor-chunks/@swc.js'
+Require stack:
+- E:\web\clipper\.next\server\webpack-runtime.js
+- E:\web\clipper\.next\server\app\[locale]\(auth)\register\page.js
+- E:\web\clipper\node_modules\next\dist\server\require.js
+- E:\web\clipper\node_modules\next\dist\server\load-components.js
+- E:\web\clipper\node_modules\next\dist\build\utils.js
+- E:\web\clipper\node_modules\next\dist\server\dev\static-paths-worker.js
+- E:\web\clipper\node_modules\next\dist\compiled\jest-worker\processChild.js] {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/en/register'
+}
+ ⨯ Error: Cannot find module './5611.js'
+Require stack:
+- E:\web\clipper\.next\server\webpack-runtime.js
+- E:\web\clipper\.next\server\app\[locale]\(auth)\register\page.js
+- E:\web\clipper\node_modules\next\dist\server\require.js
+- E:\web\clipper\node_modules\next\dist\server\load-components.js
+- E:\web\clipper\node_modules\next\dist\build\utils.js
+- E:\web\clipper\node_modules\next\dist\build\swc\options.js
+- E:\web\clipper\node_modules\next\dist\build\swc\index.js
+- E:\web\clipper\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- E:\web\clipper\node_modules\next\dist\server\config.js
+- E:\web\clipper\node_modules\next\dist\server\next.js
+- E:\web\clipper\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (E:\web\clipper\.next\server\pages\_document.js:1:327)
+    at Object.<anonymous> (E:\web\clipper\.next\server\pages\_document.js:1:374) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error: Cannot find module './vendor-chunks/@swc.js'
+Require stack:
+- E:\web\clipper\.next\server\webpack-runtime.js
+- E:\web\clipper\.next\server\app\[locale]\(auth)\register\page.js
+- E:\web\clipper\node_modules\next\dist\server\require.js
+- E:\web\clipper\node_modules\next\dist\server\load-components.js
+- E:\web\clipper\node_modules\next\dist\build\utils.js
+- E:\web\clipper\node_modules\next\dist\server\dev\static-paths-worker.js
+- E:\web\clipper\node_modules\next\dist\compiled\jest-worker\processChild.js] {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/en/register'
+}
+ ⨯ Error: Cannot find module './5611.js'
+Require stack:
+- E:\web\clipper\.next\server\webpack-runtime.js
+- E:\web\clipper\.next\server\app\[locale]\(auth)\register\page.js
+- E:\web\clipper\node_modules\next\dist\server\require.js
+- E:\web\clipper\node_modules\next\dist\server\load-components.js
+- E:\web\clipper\node_modules\next\dist\build\utils.js
+- E:\web\clipper\node_modules\next\dist\build\swc\options.js
+- E:\web\clipper\node_modules\next\dist\build\swc\index.js
+- E:\web\clipper\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- E:\web\clipper\node_modules\next\dist\server\config.js
+- E:\web\clipper\node_modules\next\dist\server\next.js
+- E:\web\clipper\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (E:\web\clipper\.next\server\pages\_document.js:1:327)
+    at Object.<anonymous> (E:\web\clipper\.next\server\pages\_document.js:1:374) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error: ENOENT: no such file or directory, open 'E:\web\clipper\.next\routes-manifest.json'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'E:\\web\\clipper\\.next\\routes-manifest.json'
+}
+ GET /en/register 500 in 666ms
+ GET /en/register 500 in 36ms
+ ✓ Compiled in 247ms (2118 modules)
+ ✓ Compiled in 221ms (2118 modules)
+ ✓ Compiled in 390ms (2118 modules)
+ ✓ Compiled in 365ms (2118 modules)
+ ✓ Compiled in 350ms (2118 modules)
+ ✓ Compiled in 356ms (2118 modules)
+ ✓ Compiled in 278ms (2118 modules)
+ ✓ Compiled in 352ms (2118 modules)
+ ✓ Compiled in 257ms (2117 modules)
+ ✓ Compiled in 259ms (2117 modules)
+ ✓ Compiled in 280ms (2117 modules)
+ ✓ Compiled in 294ms (2117 modules)
+ ✓ Compiled in 235ms (2117 modules)
+ ✓ Compiled in 405ms (2117 modules)
+ ✓ Compiled in 409ms (2117 modules)
+ ✓ Compiled in 331ms (2117 modules)
+ ✓ Compiled in 262ms (2117 modules)
+ ✓ Compiled in 300ms (2117 modules)
+ ✓ Compiled in 245ms (2117 modules)
+ ✓ Compiled in 392ms (2117 modules)
+ ⨯ Error: Cannot find module './1331.js'
+Require stack:
+- E:\web\clipper\.next\server\webpack-runtime.js
+- E:\web\clipper\.next\server\app\[locale]\(auth)\register\page.js
+- E:\web\clipper\node_modules\next\dist\server\require.js
+- E:\web\clipper\node_modules\next\dist\server\load-components.js
+- E:\web\clipper\node_modules\next\dist\build\utils.js
+- E:\web\clipper\node_modules\next\dist\build\swc\options.js
+- E:\web\clipper\node_modules\next\dist\build\swc\index.js
+- E:\web\clipper\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- E:\web\clipper\node_modules\next\dist\server\config.js
+- E:\web\clipper\node_modules\next\dist\server\next.js
+- E:\web\clipper\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (E:\web\clipper\.next\server\app\[locale]\(dashboard)\clipper\page.js:2:26393)
+    at Object.<anonymous> (E:\web\clipper\.next\server\app\[locale]\(dashboard)\clipper\page.js:2:26483) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/en/clipper'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 1456ms (4335 modules)
+ GET /en/clipper 500 in 1792ms
+ ○ Compiling /[locale] ...
+ ✓ Compiled /[locale] in 2.2s (4763 modules)
+ GET /favicon.ico 404 in 2995ms
+ ⨯ Failed to generate static paths for /[locale]:
+[Error: Cannot find module './vendor-chunks/next.js'
+Require stack:
+- E:\web\clipper\.next\server\webpack-runtime.js
+- E:\web\clipper\.next\server\app\[locale]\page.js
+- E:\web\clipper\node_modules\next\dist\server\require.js
+- E:\web\clipper\node_modules\next\dist\server\load-components.js
+- E:\web\clipper\node_modules\next\dist\build\utils.js
+- E:\web\clipper\node_modules\next\dist\server\dev\static-paths-worker.js
+- E:\web\clipper\node_modules\next\dist\compiled\jest-worker\processChild.js] {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ✓ Compiled in 468ms (2118 modules)
+ ✓ Compiled in 372ms (2118 modules)
+ ✓ Compiled in 222ms (2118 modules)
+ ✓ Compiled in 220ms (2118 modules)
+ ✓ Compiled in 228ms (2118 modules)
+ ✓ Compiled in 214ms (2118 modules)
+ ✓ Compiled in 202ms (2118 modules)
+ ✓ Compiled in 208ms (2118 modules)
+ ✓ Compiled in 201ms (2118 modules)
+ ✓ Compiled in 213ms (2118 modules)
+ ✓ Compiled in 229ms (2118 modules)
+ ✓ Compiled in 198ms (2118 modules)
+ ✓ Compiled in 204ms (2118 modules)
+ ✓ Compiled in 204ms (2118 modules)
+ ✓ Compiled in 272ms (2118 modules)
+ ✓ Compiled in 219ms (2118 modules)
+ ✓ Compiled in 261ms (2118 modules)
+ ✓ Compiled in 242ms (2118 modules)
+ ✓ Compiled in 234ms (2118 modules)
+ ✓ Compiled in 223ms (2118 modules)
+ ✓ Compiled in 224ms (2118 modules)
+ ○ Compiling /[locale]/clipper/campaigns ...
+ ✓ Compiled /[locale]/clipper/campaigns in 2.2s (4770 modules)
+ ⨯ Error: ENOENT: no such file or directory, open 'E:\web\clipper\.next\server\vendor-chunks\jose.js'
+    at <unknown> (E:\web\clipper\.next\server\app\[locale]\(dashboard)\clipper\campaigns\page.js:810:47)
+    at Object.<anonymous> (E:\web\clipper\.next\server\app\[locale]\(dashboard)\clipper\campaigns\page.js:813:3) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'E:\\web\\clipper\\.next\\server\\vendor-chunks\\jose.js',
+  page: '/en/clipper/campaigns'
+}
+ ✓ Compiled in 823ms (4770 modules)
+ ⨯ Error: Cannot find module './5611.js'
+Require stack:
+- E:\web\clipper\.next\server\webpack-runtime.js
+- E:\web\clipper\.next\server\pages\_document.js
+- E:\web\clipper\node_modules\next\dist\server\require.js
+- E:\web\clipper\node_modules\next\dist\server\load-components.js
+- E:\web\clipper\node_modules\next\dist\build\utils.js
+- E:\web\clipper\node_modules\next\dist\build\swc\options.js
+- E:\web\clipper\node_modules\next\dist\build\swc\index.js
+- E:\web\clipper\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- E:\web\clipper\node_modules\next\dist\server\config.js
+- E:\web\clipper\node_modules\next\dist\server\next.js
+- E:\web\clipper\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (E:\web\clipper\.next\server\pages\_document.js:1:327)
+    at Object.<anonymous> (E:\web\clipper\.next\server\pages\_document.js:1:374) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at new Promise (<anonymous>)
+ ⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at new Promise (<anonymous>)
+Error: ENOENT: no such file or directory, open 'E:\web\clipper\.next\server\vendor-chunks\jose.js'
+    at <unknown> (E:\web\clipper\.next\server\app\[locale]\(dashboard)\clipper\campaigns\page.js:810:47)
+    at Object.<anonymous> (E:\web\clipper\.next\server\app\[locale]\(dashboard)\clipper\campaigns\page.js:813:3) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'E:\\web\\clipper\\.next\\server\\vendor-chunks\\jose.js',
+  page: '/en/clipper/campaigns'
+}
+ ⨯ Error: Cannot find module './5611.js'
+Require stack:
+- E:\web\clipper\.next\server\webpack-runtime.js
+- E:\web\clipper\.next\server\pages\_document.js
+- E:\web\clipper\node_modules\next\dist\server\require.js
+- E:\web\clipper\node_modules\next\dist\server\load-components.js
+- E:\web\clipper\node_modules\next\dist\build\utils.js
+- E:\web\clipper\node_modules\next\dist\build\swc\options.js
+- E:\web\clipper\node_modules\next\dist\build\swc\index.js
+- E:\web\clipper\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- E:\web\clipper\node_modules\next\dist\server\config.js
+- E:\web\clipper\node_modules\next\dist\server\next.js
+- E:\web\clipper\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (E:\web\clipper\.next\server\pages\_document.js:1:327)
+    at Object.<anonymous> (E:\web\clipper\.next\server\pages\_document.js:1:374) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at new Promise (<anonymous>)
+ ⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at new Promise (<anonymous>)
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at new Promise (<anonymous>)
+ GET /en/clipper/campaigns 500 in 3059ms
+ GET /en/clipper/campaigns 500 in 64ms
+ ✓ Compiled in 244ms (2118 modules)
+ ✓ Compiled in 239ms (2118 modules)
+ ✓ Compiled in 306ms (2118 modules)
+ ✓ Compiled in 390ms (2118 modules)
+ ✓ Compiled in 245ms (2118 modules)
+ ✓ Compiled in 251ms (2118 modules)
+ ✓ Compiled in 233ms (2118 modules)
+ ✓ Compiled in 242ms (2118 modules)
+ ✓ Compiled in 325ms (2118 modules)
+ ✓ Compiled in 286ms (2118 modules)
+ ✓ Compiled in 260ms (2118 modules)
+ ✓ Compiled in 349ms (2118 modules)
+ ✓ Compiled in 348ms (2118 modules)
+ ✓ Compiled in 368ms (2118 modules)
+ ✓ Compiled in 368ms (2118 modules)
+ ✓ Compiled in 261ms (2118 modules)
+ ✓ Compiled in 224ms (2118 modules)
+ ✓ Compiled in 253ms (2118 modules)
+ ⨯ Error: ENOENT: no such file or directory, open 'E:\web\clipper\.next\server\vendor-chunks\jose.js'
+    at <unknown> (E:\web\clipper\.next\server\app\[locale]\(dashboard)\clipper\page.js:843:47)
+    at Object.<anonymous> (E:\web\clipper\.next\server\app\[locale]\(dashboard)\clipper\page.js:846:3) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'E:\\web\\clipper\\.next\\server\\vendor-chunks\\jose.js',
+  page: '/en/clipper'
+}
+ ⨯ Error: Cannot find module './5611.js'
+Require stack:
+- E:\web\clipper\.next\server\webpack-runtime.js
+- E:\web\clipper\.next\server\pages\_document.js
+- E:\web\clipper\node_modules\next\dist\server\require.js
+- E:\web\clipper\node_modules\next\dist\server\load-components.js
+- E:\web\clipper\node_modules\next\dist\build\utils.js
+- E:\web\clipper\node_modules\next\dist\build\swc\options.js
+- E:\web\clipper\node_modules\next\dist\build\swc\index.js
+- E:\web\clipper\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- E:\web\clipper\node_modules\next\dist\server\config.js
+- E:\web\clipper\node_modules\next\dist\server\next.js
+- E:\web\clipper\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (E:\web\clipper\.next\server\pages\_document.js:1:327)
+    at Object.<anonymous> (E:\web\clipper\.next\server\pages\_document.js:1:374) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at new Promise (<anonymous>)
+ ⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at new Promise (<anonymous>)
+Error: ENOENT: no such file or directory, open 'E:\web\clipper\.next\server\vendor-chunks\jose.js'
+    at <unknown> (E:\web\clipper\.next\server\app\[locale]\(dashboard)\clipper\page.js:843:47)
+    at Object.<anonymous> (E:\web\clipper\.next\server\app\[locale]\(dashboard)\clipper\page.js:846:3) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'E:\\web\\clipper\\.next\\server\\vendor-chunks\\jose.js',
+  page: '/en/clipper'
+}
+ ⨯ Error: Cannot find module './5611.js'
+Require stack:
+- E:\web\clipper\.next\server\webpack-runtime.js
+- E:\web\clipper\.next\server\pages\_document.js
+- E:\web\clipper\node_modules\next\dist\server\require.js
+- E:\web\clipper\node_modules\next\dist\server\load-components.js
+- E:\web\clipper\node_modules\next\dist\build\utils.js
+- E:\web\clipper\node_modules\next\dist\build\swc\options.js
+- E:\web\clipper\node_modules\next\dist\build\swc\index.js
+- E:\web\clipper\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- E:\web\clipper\node_modules\next\dist\server\config.js
+- E:\web\clipper\node_modules\next\dist\server\next.js
+- E:\web\clipper\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (E:\web\clipper\.next\server\pages\_document.js:1:327)
+    at Object.<anonymous> (E:\web\clipper\.next\server\pages\_document.js:1:374) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at new Promise (<anonymous>)
+ ⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at new Promise (<anonymous>)
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at new Promise (<anonymous>)
+ GET /en/clipper 500 in 176ms
+ GET /en/clipper 500 in 53ms
+ ✓ Compiled in 284ms (2118 modules)
+ ✓ Compiled in 245ms (2118 modules)
+ ✓ Compiled in 292ms (2118 modules)
+ ✓ Compiled in 244ms (2118 modules)
+ ✓ Compiled in 230ms (2118 modules)
+ ✓ Compiled in 292ms (2118 modules)
+ ⨯ [Error: Cannot find module './vendor-chunks/next.js'
+Require stack:
+- E:\web\clipper\.next\server\webpack-runtime.js
+- E:\web\clipper\.next\server\app\[locale]\page.js
+- E:\web\clipper\node_modules\next\dist\server\require.js
+- E:\web\clipper\node_modules\next\dist\server\load-components.js
+- E:\web\clipper\node_modules\next\dist\build\utils.js
+- E:\web\clipper\node_modules\next\dist\server\dev\static-paths-worker.js
+- E:\web\clipper\node_modules\next\dist\compiled\jest-worker\processChild.js] {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/en'
+}
+ ⨯ Error: Cannot find module './5611.js'
+Require stack:
+- E:\web\clipper\.next\server\webpack-runtime.js
+- E:\web\clipper\.next\server\pages\_document.js
+- E:\web\clipper\node_modules\next\dist\server\require.js
+- E:\web\clipper\node_modules\next\dist\server\load-components.js
+- E:\web\clipper\node_modules\next\dist\build\utils.js
+- E:\web\clipper\node_modules\next\dist\build\swc\options.js
+- E:\web\clipper\node_modules\next\dist\build\swc\index.js
+- E:\web\clipper\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- E:\web\clipper\node_modules\next\dist\server\config.js
+- E:\web\clipper\node_modules\next\dist\server\next.js
+- E:\web\clipper\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (E:\web\clipper\.next\server\pages\_document.js:1:327)
+    at Object.<anonymous> (E:\web\clipper\.next\server\pages\_document.js:1:374) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at new Promise (<anonymous>)
+ ⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at new Promise (<anonymous>)
+[Error: Cannot find module './vendor-chunks/next.js'
+Require stack:
+- E:\web\clipper\.next\server\webpack-runtime.js
+- E:\web\clipper\.next\server\app\[locale]\page.js
+- E:\web\clipper\node_modules\next\dist\server\require.js
+- E:\web\clipper\node_modules\next\dist\server\load-components.js
+- E:\web\clipper\node_modules\next\dist\build\utils.js
+- E:\web\clipper\node_modules\next\dist\server\dev\static-paths-worker.js
+- E:\web\clipper\node_modules\next\dist\compiled\jest-worker\processChild.js] {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/en'
+}
+ ⨯ Error: Cannot find module './5611.js'
+Require stack:
+- E:\web\clipper\.next\server\webpack-runtime.js
+- E:\web\clipper\.next\server\pages\_document.js
+- E:\web\clipper\node_modules\next\dist\server\require.js
+- E:\web\clipper\node_modules\next\dist\server\load-components.js
+- E:\web\clipper\node_modules\next\dist\build\utils.js
+- E:\web\clipper\node_modules\next\dist\build\swc\options.js
+- E:\web\clipper\node_modules\next\dist\build\swc\index.js
+- E:\web\clipper\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- E:\web\clipper\node_modules\next\dist\server\config.js
+- E:\web\clipper\node_modules\next\dist\server\next.js
+- E:\web\clipper\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (E:\web\clipper\.next\server\pages\_document.js:1:327)
+    at Object.<anonymous> (E:\web\clipper\.next\server\pages\_document.js:1:374) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at new Promise (<anonymous>)
+ ⨯ TypeError: Cannot read properties of undefined (reading '/_app')
+    at new Promise (<anonymous>)
+TypeError: Cannot read properties of undefined (reading '/_app')
+    at new Promise (<anonymous>)
+ GET /en 500 in 598ms
+ GET /en 500 in 60ms
+ ✓ Compiled in 232ms (2118 modules)
+ ✓ Compiled in 677ms (2118 modules)
+ ✓ Compiled in 317ms (2118 modules)
+ ✓ Compiled in 243ms (2118 modules)
+ ✓ Compiled in 247ms (2118 modules)
+ ✓ Compiled in 273ms (2118 modules)
+[?25h

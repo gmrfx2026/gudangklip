@@ -30,7 +30,8 @@
     "markAllRead": "Mark all as read",
     "noNotifications": "No notifications yet.",
     "newNotification": "{count, plural, =0 {No new notifications} =1 {# new notification} other {# new notifications}}",
-    "openMenu": "Open navigation menu"
+    "openMenu": "Open navigation menu",
+    "zeroFee": "0% Fee"
   },
   "Sidebar": {
     "overview": "Dashboard",
@@ -1076,6 +1077,32 @@
     "clipperDesc": "Join campaigns, create videos, earn per view",
     "brandTitle": "As Brand",
     "brandDesc": "Create campaigns, get thousands of UGC content, pay per view"
+  },
+  "SocialConnect": {
+    "title": "Social Media Accounts",
+    "subtitle": "Connect your social media accounts to submit videos. You can connect up to 3 accounts.",
+    "addAccount": "Add Account",
+    "empty": "No social media accounts connected.",
+    "emptyHint": "Connect your TikTok, Instagram, or YouTube account to start submitting videos.",
+    "verified": "Verified",
+    "unverified": "Unverified",
+    "dialogTitle": "Connect Social Media Account",
+    "platformLabel": "Platform",
+    "platformPlaceholder": "Select platform",
+    "usernameLabel": "Username",
+    "usernamePlaceholder": "@your_username",
+    "verificationNote": "After connecting, we'll generate a verification code. Add this code to your social media bio to verify your account ownership.",
+    "connectButton": "Connect Account",
+    "connecting": "Connecting...",
+    "toastConnected": "Account connected successfully!",
+    "toastFailed": "Failed to connect account",
+    "toastDisconnected": "Account disconnected",
+    "alreadyConnected": "Connected",
+    "Platform": {
+      "TIKTOK": "TikTok",
+      "INSTAGRAM": "Instagram",
+      "YOUTUBE": "YouTube"
+    }
   },
   "SubmissionModal": {
     "title": "Submit Video",

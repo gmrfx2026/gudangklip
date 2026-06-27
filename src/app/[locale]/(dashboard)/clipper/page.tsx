@@ -10,9 +10,8 @@ import {
 } from "lucide-react";
 import { formatCurrency, formatCompactNumber } from "@/lib/utils";
 import { PLATFORMS, CATEGORIES, TRUST_SCORE_THRESHOLDS } from "@/lib/constants";
-import { getCreatorOverview } from "@/actions/creator.actions";
+import { getCreatorOverview, getCreatorJoinedCampaignIds, getCreatorSocialAccounts } from "@/actions/creator.actions";
 import { getActiveCampaigns } from "@/actions/campaign.actions";
-import { getCreatorJoinedCampaignIds } from "@/actions/creator.actions";
 import { getCreatorSubmissions } from "@/actions/submission.actions";
 import { joinCampaign } from "@/actions/auth.actions";
 import { toast } from "sonner";
@@ -82,6 +81,7 @@ export default function ClipperDashboard() {
   const [campaigns, setCampaigns] = useState<CampaignItem[]>([]);
   const [joinedIds, setJoinedIds] = useState<string[]>([]);
   const [submissions, setSubmissions] = useState<SubmissionItem[]>([]);
+  const [socialCount, setSocialCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [joining, setJoining] = useState<string | null>(null);
   const [showBalance, setShowBalance] = useState(false);
@@ -93,15 +93,17 @@ export default function ClipperDashboard() {
   useEffect(() => {
     Promise.all([
       getCreatorOverview(),
-      getActiveCampaigns(),
-      getCreatorJoinedCampaignIds(),
-      getCreatorSubmissions(),
-    ])
-      .then(([o, c, ids, s]) => {
-        setOverview(o);
-        setCampaigns(c as unknown as CampaignItem[]);
-        setJoinedIds(ids);
-        setSubmissions(s as unknown as SubmissionItem[]);
+        getActiveCampaigns(),
+        getCreatorJoinedCampaignIds(),
+        getCreatorSubmissions(),
+        getCreatorSocialAccounts(),
+      ])
+        .then(([o, c, ids, s, sa]) => {
+          setOverview(o);
+          setCampaigns(c as unknown as CampaignItem[]);
+          setJoinedIds(ids);
+          setSubmissions(s as unknown as SubmissionItem[]);
+          setSocialCount(sa.length);
       })
       .finally(() => setLoading(false));
   }, []);
@@ -136,7 +138,7 @@ export default function ClipperDashboard() {
   // Compute onboarding steps
   const onboardingDone = [
     !!(session?.user?.name && session?.user?.name.length > 0), // step 1: profile
-    false, // step 2: social media - would need social accounts data
+    socialCount > 0, // step 2: social media connected
     (overview?.activeCampaigns ?? 0) > 0, // step 3: joined campaign
     submissions.length > 0, // step 4: submitted video
   ].filter(Boolean).length;
@@ -249,7 +251,7 @@ export default function ClipperDashboard() {
         <div className="space-y-3">
           {[
             { label: t("CreatorOverview.onboardingStep1"), done: !!(session?.user?.name && session?.user?.name.length > 0) },
-            { label: t("CreatorOverview.onboardingStep2"), done: false },
+            { label: t("CreatorOverview.onboardingStep2"), done: socialCount > 0 },
             { label: t("CreatorOverview.onboardingStep3"), done: (overview?.activeCampaigns ?? 0) > 0 },
             { label: t("CreatorOverview.onboardingStep4"), done: submissions.length > 0 },
           ].map((item, i) => (

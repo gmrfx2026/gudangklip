@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { Camera, MapPin, Loader2, Shield, User, AtSign, Key } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
 import { getCreatorOverview } from "@/actions/creator.actions";
+import { SocialConnect } from "@/components/clipper/social-connect";
 import { toast } from "sonner";
 
 type SettingsTab = "profile" | "account" | "verification" | "security";
@@ -134,18 +135,23 @@ export default function ClipperSettings() {
 
       {/* Tab: Account */}
       {activeTab === "account" && (
-        <div className="rounded-2xl border border-[#2a2a50] bg-[#111128]/50 p-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#1e1e3f] text-lg">G</div>
-              <div>
-                <p className="font-medium text-white">{t("CreatorSettings.connectGoogle")}</p>
-                <p className="text-xs text-[#a0a0c0]">{t("CreatorSettings.googleDesc")}</p>
+        <div className="space-y-4">
+          <div className="rounded-2xl border border-[#2a2a50] bg-[#111128]/50 p-6">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#1e1e3f] text-lg">G</div>
+                <div>
+                  <p className="font-medium text-white">{t("CreatorSettings.connectGoogle")}</p>
+                  <p className="text-xs text-[#a0a0c0]">{t("CreatorSettings.googleDesc")}</p>
+                </div>
               </div>
+              <button className="rounded-xl border border-[#2a2a50] px-4 py-2 text-sm text-[#a0a0c0] hover:bg-[#1e1e3f] transition-colors">
+                {t("CreatorSettings.connectGoogle")}
+              </button>
             </div>
-            <button className="rounded-xl border border-[#2a2a50] px-4 py-2 text-sm text-[#a0a0c0] hover:bg-[#1e1e3f] transition-colors">
-              {t("CreatorSettings.connectGoogle")}
-            </button>
+          </div>
+          <div className="rounded-2xl border border-[#2a2a50] bg-[#111128]/50 p-6">
+            <SocialConnect />
           </div>
         </div>
       )}

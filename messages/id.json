@@ -30,7 +30,8 @@
     "markAllRead": "Tandai semua dibaca",
     "noNotifications": "Belum ada notifikasi.",
     "newNotification": "{count, plural, =0 {Tidak ada notifikasi baru} =1 {# notifikasi baru} other {# notifikasi baru}}",
-    "openMenu": "Buka menu navigasi"
+    "openMenu": "Buka menu navigasi",
+    "zeroFee": "0% Biaya"
   },
   "Sidebar": {
     "overview": "Dashboard",
@@ -1076,6 +1077,32 @@
     "clipperDesc": "Join campaign, bikin video, dapat cuan per view",
     "brandTitle": "Sebagai Brand",
     "brandDesc": "Buat campaign, dapat ribuan konten UGC, bayar per view"
+  },
+  "SocialConnect": {
+    "title": "Akun Sosial Media",
+    "subtitle": "Hubungkan akun sosial media kamu untuk submit video. Maksimal 3 akun.",
+    "addAccount": "Tambah Akun",
+    "empty": "Belum ada akun sosial media terhubung.",
+    "emptyHint": "Hubungkan akun TikTok, Instagram, atau YouTube kamu untuk mulai submit video.",
+    "verified": "Terverifikasi",
+    "unverified": "Belum Terverifikasi",
+    "dialogTitle": "Hubungkan Akun Sosial Media",
+    "platformLabel": "Platform",
+    "platformPlaceholder": "Pilih platform",
+    "usernameLabel": "Username",
+    "usernamePlaceholder": "@username_kamu",
+    "verificationNote": "Setelah terhubung, kami akan generate kode verifikasi. Tambahkan kode ini ke bio sosial media kamu untuk verifikasi kepemilikan akun.",
+    "connectButton": "Hubungkan Akun",
+    "connecting": "Menghubungkan...",
+    "toastConnected": "Akun berhasil dihubungkan!",
+    "toastFailed": "Gagal menghubungkan akun",
+    "toastDisconnected": "Akun berhasil dilepas",
+    "alreadyConnected": "Terhubung",
+    "Platform": {
+      "TIKTOK": "TikTok",
+      "INSTAGRAM": "Instagram",
+      "YOUTUBE": "YouTube"
+    }
   },
   "SubmissionModal": {
     "title": "Kirim Video",

@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { Loader2, Download, Eye, TrendingUp, DollarSign, Video, CheckCircle, Megaphone } from "lucide-react";
 import { formatCurrency, formatCompactNumber } from "@/lib/utils";
 import { getCreatorOverview } from "@/actions/creator.actions";
-import { getCreatorSubmissions } from "@/actions/submission.actions";
+import { getCreatorSubmissions, getDailyViewStats } from "@/actions/submission.actions";
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, BarChart, Bar, Cell, PieChart, Pie,
@@ -34,19 +34,7 @@ const STATUS_COLORS: Record<string, string> = {
   REJECTED: "#ef4444",
 };
 
-function generateChartData() {
-  const data = [];
-  const now = new Date();
-  for (let i = 27; i >= 0; i--) {
-    const d = new Date(now);
-    d.setDate(d.getDate() - i);
-    data.push({
-      date: d.toLocaleDateString("id-ID", { day: "numeric", month: "short" }),
-      views: 0,
-    });
-  }
-  return data;
-}
+type DailyStat = { date: string; views: number };
 
 export default function ClipperAnalytics() {
   const t = useTranslations();
@@ -55,14 +43,14 @@ export default function ClipperAnalytics() {
   const [loading, setLoading] = useState(true);
   const [chartToggle, setChartToggle] = useState<"total" | "growth">("total");
   const [platformTab, setPlatformTab] = useState<string>("ALL");
-
-  const chartData = generateChartData();
+  const [dailyStats, setDailyStats] = useState<DailyStat[]>([]);
 
   useEffect(() => {
-    Promise.all([getCreatorOverview(), getCreatorSubmissions()])
-      .then(([o, s]) => {
+    Promise.all([getCreatorOverview(), getCreatorSubmissions(), getDailyViewStats()])
+      .then(([o, s, ds]) => {
         setOverview(o);
         setSubmissions(s as unknown as SubmissionItem[]);
+        setDailyStats(ds as unknown as DailyStat[]);
       })
       .finally(() => setLoading(false));
   }, []);
@@ -210,7 +198,7 @@ export default function ClipperAnalytics() {
             </div>
           </div>
           <ResponsiveContainer width="100%" height={220}>
-            <LineChart data={chartData}>
+            <LineChart data={dailyStats}>
               <CartesianGrid strokeDasharray="3 3" stroke="#2a2a50" />
               <XAxis dataKey="date" tick={{ fill: "#a0a0c0", fontSize: 10 }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fill: "#a0a0c0", fontSize: 10 }} axisLine={false} tickLine={false} tickFormatter={(v) => formatCompactNumber(v)} />

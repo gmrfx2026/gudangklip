@@ -1,0 +1,189 @@
+   ▲ Next.js 15.5.19
+   - Local:        http://localhost:3000
+   - Network:      http://10.6.2.151:3000
+   - Environments: .env.local, .env
+
+ ✓ Starting...
+ ✓ Ready in 2s
+ ✓ Compiled /middleware in 374ms (268 modules)
+ ○ Compiling /[locale]/brand ...
+ ✓ Compiled /[locale]/brand in 2.8s (2246 modules)
+ ✓ Compiled in 407ms (898 modules)
+ GET /en/brand 200 in 4058ms
+ ○ Compiling /api/auth/[...nextauth] ...
+ ✓ Compiled /api/auth/[...nextauth] in 3s (3178 modules)
+ GET /en/brand 200 in 137ms
+ GET /api/auth/session 200 in 4092ms
+ GET /api/auth/session 200 in 278ms
+ GET /favicon.ico 404 in 4412ms
+ POST /en/brand 200 in 133ms
+ POST /en/brand 200 in 55ms
+ POST /en/brand 200 in 48ms
+ POST /en/brand 200 in 49ms
+ GET /en/brand 200 in 183ms
+ GET /api/auth/session 200 in 33ms
+ GET /api/auth/session 200 in 33ms
+ POST /en/brand 200 in 41ms
+ POST /en/brand 200 in 54ms
+ POST /en/brand 200 in 54ms
+ POST /en/brand 200 in 75ms
+ ✓ Compiled in 264ms (1306 modules)
+ GET /en/brand 200 in 76ms
+ ✓ Compiled in 153ms (1306 modules)
+ GET /en/brand 200 in 57ms
+ ✓ Compiled in 263ms (1306 modules)
+ GET /en/brand 200 in 69ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 517ms (3183 modules)
+ GET /en/logout 404 in 702ms
+ ✓ Compiled in 155ms (1310 modules)
+ GET /en/logout 404 in 50ms
+ GET /en/logout 404 in 40ms
+ ✓ Compiled in 175ms (1310 modules)
+ GET /en/logout 404 in 28ms
+ GET /en/logout 404 in 44ms
+ ✓ Compiled in 187ms (1310 modules)
+ GET /en/logout 404 in 26ms
+ GET /en/logout 404 in 52ms
+ ✓ Compiled in 148ms (1310 modules)
+ GET /en/logout 404 in 41ms
+ GET /en/logout 404 in 51ms
+ ✓ Compiled in 179ms (1310 modules)
+ GET /en/logout 404 in 29ms
+ GET /en/logout 404 in 42ms
+ ✓ Compiled in 164ms (1310 modules)
+ GET /en/logout 404 in 27ms
+ GET /en/logout 404 in 58ms
+ GET /en/brand 200 in 188ms
+ GET /api/auth/session 200 in 87ms
+ GET /api/auth/session 200 in 40ms
+ POST /en/brand 200 in 148ms
+ POST /en/brand 200 in 135ms
+ POST /en/brand 200 in 48ms
+ ✓ Compiled in 190ms (1310 modules)
+ POST /en/brand 200 in 227ms
+ GET /en/brand 200 in 62ms
+ ✓ Compiled in 146ms (1310 modules)
+ GET /en/brand 200 in 58ms
+ ✓ Compiled in 175ms (1310 modules)
+ GET /en/brand 200 in 62ms
+ ✓ Compiled in 199ms (1310 modules)
+ GET /en/brand 200 in 91ms
+ ✓ Compiled in 230ms (1310 modules)
+ GET /en/brand 200 in 73ms
+ ✓ Compiled in 247ms (1310 modules)
+ GET /en/brand 200 in 116ms
+ ✓ Compiled in 221ms (1310 modules)
+ GET /en/brand 200 in 138ms
+ ✓ Compiled in 282ms (1310 modules)
+ GET /en/brand 200 in 61ms
+ ✓ Compiled in 173ms (1310 modules)
+ GET /en/brand 200 in 75ms
+ ✓ Compiled in 166ms (1310 modules)
+ GET /en/brand 200 in 73ms
+ ✓ Compiled in 161ms (1310 modules)
+ GET /en/brand 200 in 61ms
+ ✓ Compiled in 184ms (1310 modules)
+ GET /en/brand 200 in 101ms
+ POST /en/brand 200 in 45ms
+ GET /api/auth/csrf 200 in 26ms
+ POST /api/auth/signout 200 in 22ms
+ GET /en 200 in 342ms
+ GET /api/auth/session 200 in 126ms
+ ✓ Compiled in 290ms (1310 modules)
+ GET /api/auth/session 200 in 44ms
+ GET /en 200 in 70ms
+ ✓ Compiled in 234ms (1310 modules)
+ GET /en 200 in 66ms
+ ✓ Compiled in 215ms (1310 modules)
+ GET /en 200 in 75ms
+ ○ Compiling /[locale]/login ...
+ ✓ Compiled /[locale]/login in 506ms (3370 modules)
+ GET /en/login 200 in 1713ms
+ GET /api/auth/session 200 in 52ms
+ GET /api/auth/session 200 in 16ms
+ ✓ Compiled in 206ms (1401 modules)
+ GET /en/login 200 in 74ms
+ ✓ Compiled in 166ms (1401 modules)
+ GET /en/login 200 in 53ms
+ ✓ Compiled in 220ms (1401 modules)
+ GET /en/login 200 in 54ms
+ ✓ Compiled in 169ms (1401 modules)
+ GET /en/login 200 in 143ms
+ ✓ Compiled in 245ms (1401 modules)
+ GET /en/login 200 in 78ms
+ ✓ Compiled in 225ms (1401 modules)
+ GET /en/login 200 in 65ms
+ ✓ Compiled in 181ms (1401 modules)
+ GET /en/login 200 in 121ms
+ ✓ Compiled in 276ms (1397 modules)
+ ✓ Compiled in 211ms (1397 modules)
+ GET /en/login 200 in 335ms
+ ✓ Compiled in 242ms (1397 modules)
+ ✓ Compiled in 242ms (1397 modules)
+ GET /en/login 200 in 302ms
+ ✓ Compiled in 200ms (1397 modules)
+ GET /en/login 200 in 344ms
+ ✓ Compiled in 231ms (1397 modules)
+ ✓ Compiled in 355ms (1397 modules)
+ GET /en/login 200 in 534ms
+ ✓ Compiled in 238ms (1397 modules)
+ ✓ Compiled in 237ms (1397 modules)
+ GET /en/login 200 in 329ms
+ ✓ Compiled in 174ms (1397 modules)
+ GET /en/login 200 in 348ms
+ ✓ Compiled in 226ms (1397 modules)
+ ✓ Compiled in 221ms (1397 modules)
+ GET /en/login 200 in 248ms
+ GET /en/login 200 in 69ms
+ GET /en/login 200 in 47ms
+ GET /en/login 200 in 49ms
+ GET /en/login 200 in 46ms
+ GET /en/login 200 in 47ms
+ ✓ Compiled in 180ms (1397 modules)
+ GET /en/login 200 in 212ms
+ ✓ Compiled in 174ms (1397 modules)
+ GET /en/login 200 in 49ms
+ ✓ Compiled in 163ms (1397 modules)
+ GET /en/login 200 in 90ms
+ GET /api/auth/providers 200 in 29ms
+ GET /api/auth/csrf 200 in 17ms
+ POST /api/auth/callback/credentials? 200 in 278ms
+ GET /api/auth/session 200 in 17ms
+ ○ Compiling /[locale]/creator ...
+ ✓ Compiled /[locale]/creator in 724ms (3377 modules)
+ GET /en/creator 200 in 2140ms
+ GET /en/creator 200 in 131ms
+ POST /en/creator 200 in 138ms
+ POST /en/creator 200 in 31ms
+ POST /en/creator 200 in 27ms
+ POST /en/creator 200 in 44ms
+ POST /en/creator 200 in 30ms
+ POST /en/creator 200 in 31ms
+ POST /en/creator 200 in 26ms
+ POST /en/creator 200 in 31ms
+ ✓ Compiled in 191ms (1401 modules)
+ GET /en/creator 200 in 62ms
+ ✓ Compiled in 177ms (1401 modules)
+ GET /en/creator 200 in 58ms
+ ✓ Compiled in 170ms (1401 modules)
+ GET /en/creator 200 in 105ms
+ ✓ Compiled in 204ms (1401 modules)
+ GET /en/creator 200 in 68ms
+ ✓ Compiled in 193ms (1401 modules)
+ GET /en/creator 200 in 163ms
+ ✓ Compiled in 283ms (1401 modules)
+ GET /en/creator 200 in 99ms
+ ✓ Compiled in 239ms (1401 modules)
+ GET /en/creator 200 in 74ms
+ ✓ Compiled in 286ms (1401 modules)
+ GET /en/creator 200 in 69ms
+ ✓ Compiled in 199ms (1401 modules)
+ GET /en/creator 200 in 194ms
+ POST /en/creator 200 in 46ms
+ ✓ Compiled in 221ms (1401 modules)
+ GET /en/creator 200 in 66ms
+ ✓ Compiled in 169ms (1401 modules)
+ GET /en/creator 200 in 64ms
+ ✓ Compiled in 158ms (1401 modules)
+ GET /en/creator 200 in 70ms
